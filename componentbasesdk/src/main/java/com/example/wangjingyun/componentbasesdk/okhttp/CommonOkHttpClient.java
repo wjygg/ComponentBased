@@ -1,14 +1,19 @@
 package com.example.wangjingyun.componentbasesdk.okhttp;
 
+import com.example.wangjingyun.componentbasesdk.okhttp.https.HttpsUtils;
+
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 
 /**
- * Created by Administrator on 2017/3/13.
+ * Created by wangjingyun on 2017/3/13.
  */
 
 public class CommonOkHttpClient {
@@ -31,12 +36,26 @@ public class CommonOkHttpClient {
                 return true;
             }
         });
+        //支持ssl协议
+        builder.sslSocketFactory(HttpsUtils.initSSLSocketFactory());
 
-
-
-               okHttpClient=builder.build();
+        okHttpClient=builder.build();
 
     }
+
+    /**
+     * 发送具体的请求
+     * @param request
+     * @param callback
+     * @return
+     */
+     public static Call sendRequest(Request request, Callback callback){
+
+         Call call = okHttpClient.newCall(request);
+         call.enqueue(callback);
+
+         return call;
+     }
 
 
 }
