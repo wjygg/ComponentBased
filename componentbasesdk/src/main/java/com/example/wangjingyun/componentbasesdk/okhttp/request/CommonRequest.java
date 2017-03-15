@@ -8,6 +8,8 @@ import okhttp3.RequestBody;
 
 
 /**
+ *
+ * blog.csdn.net/itachi85/article/details/51190687  okhttp3参考
  * Created by Administrator on 2017/3/13.
  */
 
