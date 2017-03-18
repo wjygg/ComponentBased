@@ -12,9 +12,9 @@ public class OkHttpException extends Exception{
     //错误码
     private int ecode;
     //错误 类
-    private Object emsg;
+    private String emsg;
 
-    public OkHttpException(int ecode,Object emsg){
+    public OkHttpException(int ecode,String emsg){
 
         this.ecode=ecode;
         this.emsg=emsg;
@@ -24,7 +24,7 @@ public class OkHttpException extends Exception{
         return ecode;
     }
 
-    public Object getEmsg() {
+    public String getEmsg() {
         return emsg;
     }
 }
