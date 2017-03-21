@@ -1,7 +1,7 @@
 package com.example.wangjingyun.componentbased.activity.base;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
@@ -13,15 +13,12 @@ import butterknife.ButterKnife;
 public  abstract class BaseActivity extends AppCompatActivity {
 
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         ButterKnife.inject(this);
         initDatas();
     }
-
-
-
 
     public abstract int getLayoutId();
 

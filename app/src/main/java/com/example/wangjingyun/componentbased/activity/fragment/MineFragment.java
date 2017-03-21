@@ -1,5 +1,6 @@
 package com.example.wangjingyun.componentbased.activity.fragment;
 
+import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.activity.base.BaseFragment;
 
 /**
@@ -17,7 +18,7 @@ public class MineFragment extends BaseFragment {
     }
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.fragment_mine_layout;
     }
 
     @Override

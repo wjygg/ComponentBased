@@ -1,5 +1,6 @@
 package com.example.wangjingyun.componentbased.activity.fragment;
 
+import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.activity.base.BaseFragment;
 
 /**
@@ -17,11 +18,23 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.fragment_home_layout;
     }
 
     @Override
     public void initDatas() {
 
+        /*CommonOkHttpClient.sendRequest(CommonRequest.createPostRequest("www.imooc.com",null),new CommonJsonCallback
+                (new DisposeDataHandler(new DisposeDataListener() {
+            @Override
+            public void onSuccess(Object responseObj) {
+
+            }
+
+            @Override
+            public void onFailure(Object reasonObj) {
+
+            }
+        })));*/
     }
 }

@@ -3,4 +3,17 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="white">#FFFFFF</color>
+    <color name="orange">#FF9900</color>
+    <color name="secondary_text">#8a000000</color>
+    <color name="white_80">#FAFAFA</color>
+    <color name="font_normal">#555555</color>
+    <color name="card_view_background">@color/white</color>
+    <color name="black_alpha_45">#71000000</color>
+    <color name="pink_text_color">#fb7299</color>
+    <color name="window_background">#eaeaea</color>
+    <color name="main_background">#EAEAEA</color>
+    <color name="pink_30">#FD7071</color>
+    <color name="blue_30">#20C1FD</color>
+    <color name="black_alpha_30">#48000000</color>
 </resources>
