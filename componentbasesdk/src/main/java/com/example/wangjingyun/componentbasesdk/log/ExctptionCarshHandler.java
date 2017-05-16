@@ -1,4 +1,4 @@
-package log;
+package com.example.wangjingyun.componentbasesdk.log;
 
 import android.content.Context;
 import android.content.SharedPreferences;

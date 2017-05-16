@@ -10,12 +10,13 @@ import com.example.wangjingyun.componentbased.activity.base.BaseFragment;
 public class MineFragment extends BaseFragment {
 
 
-    public static MineFragment getInstance(){
+    public static MineFragment getInstance() {
 
-        MineFragment fragment=new MineFragment();
+        MineFragment fragment = new MineFragment();
 
         return fragment;
     }
+
     @Override
     public int getLayoutId() {
         return R.layout.fragment_mine_layout;
@@ -23,6 +24,7 @@ public class MineFragment extends BaseFragment {
 
     @Override
     public void initDatas() {
+
 
     }
 }

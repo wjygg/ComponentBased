@@ -1,4 +1,4 @@
-package ioc;
+package com.example.wangjingyun.componentbasesdk.ioc;
 
 import android.app.Activity;
 import android.content.Context;

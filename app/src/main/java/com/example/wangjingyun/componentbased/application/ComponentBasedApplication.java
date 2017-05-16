@@ -2,7 +2,8 @@ package com.example.wangjingyun.componentbased.application;
 
 import android.app.Application;
 
-import log.ExctptionCarshHandler;
+import com.example.wangjingyun.componentbasesdk.log.ExctptionCarshHandler;
+
 
 /**
  * 组件化 application

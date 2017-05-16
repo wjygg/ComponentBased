@@ -1,10 +1,12 @@
-package ioc;
+package com.example.wangjingyun.componentbasesdk.ioc;
 
 import android.app.Activity;
 import android.view.View;
 
 /**
- * Created by Administrator on 2017/5/7.
+ *
+ *  Created by Administrator on 2017/5/7.
+ *
  */
 
 public class ViewFilter {
