@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<declare-styleable name="QQView">
+    <!--左圆弧的颜色-->
+    <attr name="QQViewInnerColor" format="color"></attr>
+    <!--右圆弧的颜色-->
+    <attr name="QQViewOutnerColor" format="color"></attr>
+    <!--圆弧的宽度-->
+    <attr name="QQViewBorderWidth" format="dimension"></attr>
+    <!--字体的颜色-->
+    <attr name="QQViewTextColor" format="color"></attr>
+    <!--字体的大小-->
+    <attr name="QQViewTextSize" format="dimension"></attr>
+</declare-styleable>
+
+<declare-styleable name="TestTextView">
+
+    <attr name="TestTextViewText" format="string"></attr>
+    <attr name="TestTextViewTextSize" format="dimension"></attr>
+    <attr name="TestTextViewTextColor" format="color"></attr>
+</declare-styleable>
+
+
+
+
+
+
+
+
+</resources>
