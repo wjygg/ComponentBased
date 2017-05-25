@@ -81,7 +81,7 @@ public class TestTextView extends View {
             //获取字符串的宽度
             paint.getTextBounds(testTextText,0,testTextText.length(),bounds);
             //字符串的长度赋值给宽度
-            widthSize=bounds.width();
+            widthSize=bounds.width()+getPaddingLeft()+getPaddingRight();
         }
 
         //高度包裹的时候
@@ -91,7 +91,7 @@ public class TestTextView extends View {
             //获取字符串的宽度
             paint.getTextBounds(testTextText,0,testTextText.length(),bounds);
             //字符串的长度赋值给宽度
-            heightSize=bounds.height();
+            heightSize=bounds.height()+getPaddingBottom()+getPaddingTop();
         }
 
         setMeasuredDimension(widthSize,heightSize);
@@ -102,6 +102,14 @@ public class TestTextView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
 
+        //获取绘制字体的 baseline
+
+        Paint.FontMetricsInt fontMetricsInt= paint.getFontMetricsInt();
+        //(fontMetricsInt.bottom-fontMetricsInt.top)/2 字体高度的一半
+        int dy=(fontMetricsInt.bottom-fontMetricsInt.top)/2-fontMetricsInt.bottom;
+        //getHeight()/2 控件的一半
+        int baseline=getHeight()/2+dy;
+        canvas.drawText(testTextText,getPaddingLeft(),baseline,paint);
 
     }
 }
