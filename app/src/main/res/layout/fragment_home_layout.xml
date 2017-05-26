@@ -18,9 +18,10 @@
         app:TestTextViewText="hello word"
         app:TestTextViewTextColor="@color/orange"
         app:TestTextViewTextSize="18sp"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        >
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/blue_30"
+        android:id="@+id/testTextView">
 
 
     </com.example.wangjingyun.componentbased.widget.TestTextView>

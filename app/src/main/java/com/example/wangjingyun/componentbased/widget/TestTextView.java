@@ -110,6 +110,5 @@ public class TestTextView extends View {
         //getHeight()/2 控件的一半
         int baseline=getHeight()/2+dy;
         canvas.drawText(testTextText,getPaddingLeft(),baseline,paint);
-
     }
 }

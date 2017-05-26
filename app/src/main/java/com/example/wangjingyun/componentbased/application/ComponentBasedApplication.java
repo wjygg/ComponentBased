@@ -1,6 +1,8 @@
 package com.example.wangjingyun.componentbased.application;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import com.example.wangjingyun.componentbasesdk.log.ExctptionCarshHandler;
 
@@ -16,12 +18,20 @@ public class ComponentBasedApplication extends Application {
 
 
     @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+
+        MultiDex.install(this);
+
+    }
+
+    @Override
     public void onCreate() {
         super.onCreate();
 
         application=this;
         //崩溃信息
-        ExctptionCarshHandler.getInstance().init(this);;
+        ExctptionCarshHandler.getInstance().init(this);
 
     }
     public static ComponentBasedApplication getInstance(){
