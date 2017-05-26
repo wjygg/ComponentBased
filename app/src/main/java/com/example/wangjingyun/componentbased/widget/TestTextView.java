@@ -81,14 +81,14 @@ public class TestTextView extends View {
             //获取字符串的宽度
             paint.getTextBounds(testTextText,0,testTextText.length(),bounds);
             //字符串的长度赋值给宽度
-            widthSize=bounds.width()+getPaddingLeft()+getPaddingRight();
+            widthSize= (int) (paint.measureText(testTextText)+getPaddingLeft()+getPaddingRight());
         }
 
         //高度包裹的时候
         if(heightMode==MeasureSpec.AT_MOST){
 
             Rect bounds=new Rect();
-            //获取字符串的宽度
+            //获取字符串的高度
             paint.getTextBounds(testTextText,0,testTextText.length(),bounds);
             //字符串的长度赋值给宽度
             heightSize=bounds.height()+getPaddingBottom()+getPaddingTop();
@@ -109,6 +109,15 @@ public class TestTextView extends View {
         int dy=(fontMetricsInt.bottom-fontMetricsInt.top)/2-fontMetricsInt.bottom;
         //getHeight()/2 控件的一半
         int baseline=getHeight()/2+dy;
-        canvas.drawText(testTextText,getPaddingLeft(),baseline,paint);
+
+
+
+        Rect bounds=new Rect();
+        //获取字符串的宽度
+        paint.getTextBounds(testTextText,0,testTextText.length(),bounds);
+        //x偏移量
+        int x= (int) (getWidth()/2-paint.measureText(testTextText)/2);
+
+        canvas.drawText(testTextText,x,baseline,paint);
     }
 }

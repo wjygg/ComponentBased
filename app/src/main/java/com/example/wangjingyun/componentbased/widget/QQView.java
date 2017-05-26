@@ -55,5 +55,4 @@ public class QQView extends View {
         setMeasuredDimension(mWidth>mHeight?mHeight:mWidth,mWidth>mHeight?mHeight:mWidth);
     }
 
-
 }
