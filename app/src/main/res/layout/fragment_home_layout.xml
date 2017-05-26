@@ -4,26 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--<com.example.wangjingyun.componentbased.widget.QQView
-        qqview:QQViewTextSize="30dp"
-        qqview:QQViewInnerColor="@color/orange"
-        qqview:QQViewOutnerColor="@color/blue_30"
-        qqview:QQViewTextColor="@color/orange"
-        qqview:QQViewBorderWidth="20dp"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        ></com.example.wangjingyun.componentbased.widget.QQView>-->
+    <com.example.wangjingyun.componentbased.widget.QQView
+        app:QQViewTextSize="100px"
+        app:QQViewInnerColor="@color/orange"
+        app:QQViewOutnerColor="@color/blue_30"
+        app:QQViewTextColor="@color/orange"
+        app:QQViewText="5000"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/QQView"></com.example.wangjingyun.componentbased.widget.QQView>
 
-    <com.example.wangjingyun.componentbased.widget.TestTextView
-        app:TestTextViewText="hello word"
-        app:TestTextViewTextColor="@color/orange"
-        app:TestTextViewTextSize="18sp"
-        android:padding="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/blue_30"
-        android:id="@+id/testTextView">
+    <!-- <com.example.wangjingyun.componentbased.widget.TestTextView
+         app:TestTextViewText="hello word"
+         app:TestTextViewTextColor="@color/orange"
+         app:TestTextViewTextSize="18sp"
+         android:padding="10dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:background="@color/blue_30"
+         android:id="@+id/testTextView">
 
 
-    </com.example.wangjingyun.componentbased.widget.TestTextView>
+     </com.example.wangjingyun.componentbased.widget.TestTextView>-->
 </LinearLayout>

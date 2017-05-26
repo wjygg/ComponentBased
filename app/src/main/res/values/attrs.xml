@@ -11,6 +11,8 @@
     <attr name="QQViewTextColor" format="color"></attr>
     <!--字体的大小-->
     <attr name="QQViewTextSize" format="dimension"></attr>
+    <!--字体-->
+    <attr name="QQViewText" format="string"></attr>
 </declare-styleable>
 
 <declare-styleable name="TestTextView">

@@ -112,6 +112,9 @@ public class TestTextView extends View {
 
 
 
+
+
+
         Rect bounds=new Rect();
         //获取字符串的宽度
         paint.getTextBounds(testTextText,0,testTextText.length(),bounds);
