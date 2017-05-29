@@ -31,6 +31,10 @@ public class QQView extends View {
     private String QQViewText;
 
     private Paint paint,textPaint,innerPaint;
+
+    private float currentInt=0;
+
+    private float maxInt=0;
     public QQView(Context context) {
         this(context,null);
     }
@@ -82,11 +86,27 @@ public class QQView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        int mWidth=MeasureSpec.getSize(widthMeasureSpec);
+        int mWidth=getMeasureSpecLength(widthMeasureSpec);
 
-        int mHeight=MeasureSpec.getSize(heightMeasureSpec);
+        int mHeight=getMeasureSpecLength(heightMeasureSpec);
 
-        setMeasuredDimension(mWidth>mHeight?mHeight:mWidth,mWidth>mHeight?mHeight:mWidth);
+        setMeasuredDimension(mWidth,mHeight);
+
+
+
+    }
+    private int getMeasureSpecLength(int measureSpec){
+
+        int size=0;
+        int measureSpecMode = MeasureSpec.getMode(measureSpec);
+        int measureSpecSize = MeasureSpec.getSize(measureSpec);
+
+        if(measureSpecMode==MeasureSpec.EXACTLY){
+            size= measureSpecSize;
+        }else{
+            size=300;
+        }
+        return  size;
     }
 
 
@@ -105,20 +125,23 @@ public class QQView extends View {
 
         //画内圆弧
 
-        canvas.drawArc(rectF,135,180,false,innerPaint);
+        canvas.drawArc(rectF,135,(int)(currentInt/maxInt*270),false,innerPaint);
 
         //画文字
         Paint.FontMetricsInt fontMetricsInt = textPaint.getFontMetricsInt();
         int dy=(fontMetricsInt.bottom-fontMetricsInt.top)/2-fontMetricsInt.bottom;
         int baseLine=getHeight()/2+dy;
-        int x= (int) (getWidth()/2-textPaint.measureText(QQViewText)/2);
-        canvas.drawText(QQViewText,x,baseLine,textPaint);
+        int x= (int) (getWidth()/2-textPaint.measureText(String.valueOf((int)(currentInt)))/2);
+        canvas.drawText(String.valueOf((int)(currentInt)),x,baseLine,textPaint);
     }
 
 
-    public void setCurrent(){
+    public synchronized  void setCurrent(float currentInt,float maxInt){
 
+        this.currentInt=currentInt;
+        this.maxInt=maxInt;
 
+        invalidate();
 
     }
 }
