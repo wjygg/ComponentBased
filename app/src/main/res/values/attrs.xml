@@ -25,7 +25,14 @@
 
 
 
+<declare-styleable name="SlidingDiscolorationTextView">
 
+
+    <attr name="SlidingChangeColor" format="color"></attr>
+    <attr name="SlidingColor" format="color"></attr>
+    <attr name="SlidingTextSize" format="dimension"></attr>
+    <attr name="SlidingText" format="string"></attr>
+</declare-styleable>
 
 
 

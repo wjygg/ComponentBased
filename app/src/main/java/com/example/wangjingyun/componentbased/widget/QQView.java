@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.example.wangjingyun.componentbased.R;
 
+
 /**
  * 自定义qq计步器
  * Created by wangjingyun on 2017/5/21.
@@ -107,8 +108,8 @@ public class QQView extends View {
             size=300;
         }
         return  size;
-    }
 
+    }
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -141,7 +142,9 @@ public class QQView extends View {
         this.currentInt=currentInt;
         this.maxInt=maxInt;
 
-        invalidate();
 
-    }
+        invalidate();
+     }
 }
+
+
