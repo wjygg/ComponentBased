@@ -27,7 +27,10 @@ public class SlidingDiscolorationTextView extends View{
 
     private Paint slidingPaint,slidingChangePaint;
 
+    //当前进度 0-1；
     private float currentThis;
+
+    private TRUN trun;
 
     public SlidingDiscolorationTextView(Context context) {
         this(context,null);
@@ -110,11 +113,36 @@ public class SlidingDiscolorationTextView extends View{
 
     @Override
     protected void onDraw(Canvas canvas) {
-        //绘制不变色文字
+        //当前实际进度
+        float currentWidth=currentThis*getWidth();
 
         canvas.save();
 
-        canvas.clipRect(0,0,100,getHeight());
+        //左边往右边滑动
+        if (trun==TRUN.LEFT_TORIGHT) {
+
+            //绘制变色
+            canvasText(canvas,0,currentWidth,slidingChangePaint);
+
+            //绘制不变色
+            canvasText(canvas,currentWidth,getWidth(),slidingPaint);
+
+
+        }else{
+
+           //绘制不变色
+            canvasText(canvas,0,currentWidth,slidingPaint);
+            //绘制变色
+            canvasText(canvas,currentWidth,getWidth(),slidingChangePaint);
+        }
+
+
+    }
+
+
+    private  void canvasText(Canvas canvas,float start,float end,Paint paint){
+
+        canvas.clipRect(start,0,end,getHeight());
 
         int x= getWidth()/2-(int) slidingPaint.measureText(SlidingText)/2;
 
@@ -124,13 +152,26 @@ public class SlidingDiscolorationTextView extends View{
 
         int baseLine=getHeight()/2+dy;
 
-        canvas.drawText(SlidingText,x,baseLine,slidingPaint);
+        canvas.drawText(SlidingText,x,baseLine,paint);
 
         canvas.restore();
 
-        canvas.clipRect(100,0,getWidth(),getHeight());
+    }
 
-        canvas.drawText(SlidingText,x,baseLine,slidingChangePaint);
+    public enum TRUN{
+
+        LEFT_TORIGHT,RIGHT_TOLEFT
 
     }
+
+    public void setCurrentThis(float currentThis){
+
+        this.currentThis=currentThis;
+
+        trun=TRUN.LEFT_TORIGHT;
+
+        invalidate();
+    }
+
+
 }

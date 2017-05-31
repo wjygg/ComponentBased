@@ -15,8 +15,8 @@ import butterknife.InjectView;
 
 public class HomeFragment extends BaseFragment {
 
-    @InjectView(R.id.QQView)
-    public QQView qqView;
+     @InjectView(R.id.QQView)
+     QQView qqView;
 
     private Handler handler=new Handler(){
 

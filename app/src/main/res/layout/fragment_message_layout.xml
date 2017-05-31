@@ -8,8 +8,8 @@
         app:SlidingChangeColor="@color/orange"
         app:SlidingColor="@color/black_alpha_30"
         app:SlidingText="Hello Word"
-        app:SlidingTextSize="30px"
-        android:layout_width="200px"
+        app:SlidingTextSize="100px"
+        android:layout_width="500px"
         android:layout_height="100px"
         android:id="@+id/slidingDiscolorationTextView"></com.example.wangjingyun.componentbased.widget.SlidingDiscolorationTextView>
 </LinearLayout>

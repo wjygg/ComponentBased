@@ -87,16 +87,6 @@ public class QQView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-<<<<<<< Updated upstream
-        int mWidth=getMeasureSpecLength(widthMeasureSpec);
-
-        int mHeight=getMeasureSpecLength(heightMeasureSpec);
-
-        setMeasuredDimension(mWidth,mHeight);
-
-
-
-=======
         setMeasuredDimension(getMeasuredLength(widthMeasureSpec),getMeasuredLength(heightMeasureSpec));
     }
 
@@ -118,23 +108,7 @@ public class QQView extends View {
         }
 
         return size;
->>>>>>> Stashed changes
     }
-    private int getMeasureSpecLength(int measureSpec){
-
-        int size=0;
-        int measureSpecMode = MeasureSpec.getMode(measureSpec);
-        int measureSpecSize = MeasureSpec.getSize(measureSpec);
-
-        if(measureSpecMode==MeasureSpec.EXACTLY){
-            size= measureSpecSize;
-        }else{
-            size=300;
-        }
-        return  size;
-
-    }
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -159,23 +133,11 @@ public class QQView extends View {
         int x= (int) (getWidth()/2-textPaint.measureText(String.valueOf((int)(currentInt)))/2);
         canvas.drawText(String.valueOf((int)(currentInt)),x,baseLine,textPaint);
     }
-
-<<<<<<< Updated upstream
-
     public synchronized  void setCurrent(float currentInt,float maxInt){
-=======
- }
->>>>>>> Stashed changes
 
         this.currentInt=currentInt;
         this.maxInt=maxInt;
-
-<<<<<<< Updated upstream
-
         invalidate();
-     }
+ }
 }
 
-
-=======
->>>>>>> Stashed changes

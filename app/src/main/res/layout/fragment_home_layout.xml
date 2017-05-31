@@ -10,30 +10,12 @@
         app:QQViewOutnerColor="@color/blue_30"
         app:QQViewTextColor="@color/orange"
         app:QQViewText="5000"
-<<<<<<< Updated upstream
-        android:layout_width="400px"
-        android:layout_height="400px"
-=======
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
->>>>>>> Stashed changes
         android:id="@+id/QQView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"></com.example.wangjingyun.componentbased.widget.QQView>
+        android:layout_width="300px"
+        android:layout_height="300px"
+       ></com.example.wangjingyun.componentbased.widget.QQView>
 
 
-    <!--<com.example.wangjingyun.componentbased.widget.TestTextView
-        app:TestTextViewText="hello word"
-        app:TestTextViewTextColor="@color/orange"
-        app:TestTextViewTextSize="18sp"
-        android:padding="10dp"
-        android:layout_centerInParent="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/blue_30"
-        android:id="@+id/testTextView">
 
-    </com.example.wangjingyun.componentbased.widget.TestTextView>-->
 </RelativeLayout>
 

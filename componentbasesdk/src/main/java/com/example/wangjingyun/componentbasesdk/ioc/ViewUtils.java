@@ -77,10 +77,13 @@ public class ViewUtils {
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }
+                }else {
+                    throw new RuntimeException("Invalid @ViewInject for "
+                            + clazz.getSimpleName() + "." + field.getName());
                 }
 
-            }
 
+            }
 
         }
 

@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.wangjingyun.componentbasesdk.ioc.ViewUtils;
+
 import butterknife.ButterKnife;
 
 /**
@@ -24,6 +26,8 @@ public abstract  class BaseFragment extends Fragment {
         View  view=inflater.inflate(getLayoutId(),null);
 
         ButterKnife.inject(this,view);
+
+        ViewUtils.Inject(view,this);
 
         return view;
     }
