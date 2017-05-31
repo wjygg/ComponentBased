@@ -10,8 +10,13 @@
         app:QQViewOutnerColor="@color/blue_30"
         app:QQViewTextColor="@color/orange"
         app:QQViewText="5000"
+<<<<<<< Updated upstream
         android:layout_width="400px"
         android:layout_height="400px"
+=======
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+>>>>>>> Stashed changes
         android:id="@+id/QQView"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"

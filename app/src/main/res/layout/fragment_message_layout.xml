@@ -11,6 +11,5 @@
         app:SlidingTextSize="30px"
         android:layout_width="200px"
         android:layout_height="100px"
-        android:background="@color/orange"
         android:id="@+id/slidingDiscolorationTextView"></com.example.wangjingyun.componentbased.widget.SlidingDiscolorationTextView>
 </LinearLayout>

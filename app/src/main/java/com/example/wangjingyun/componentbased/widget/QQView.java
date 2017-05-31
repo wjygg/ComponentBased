@@ -87,6 +87,7 @@ public class QQView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
+<<<<<<< Updated upstream
         int mWidth=getMeasureSpecLength(widthMeasureSpec);
 
         int mHeight=getMeasureSpecLength(heightMeasureSpec);
@@ -95,6 +96,29 @@ public class QQView extends View {
 
 
 
+=======
+        setMeasuredDimension(getMeasuredLength(widthMeasureSpec),getMeasuredLength(heightMeasureSpec));
+    }
+
+    //根据mode 判断 设置控件大小
+    private int getMeasuredLength(int measureSpec){
+        int size=0;
+
+        int specMode = MeasureSpec.getMode(measureSpec);
+        int spceSize = MeasureSpec.getSize(measureSpec);
+
+        if(specMode==MeasureSpec.EXACTLY){
+
+            size=spceSize;
+
+        }else{
+
+            size=300;
+
+        }
+
+        return size;
+>>>>>>> Stashed changes
     }
     private int getMeasureSpecLength(int measureSpec){
 
@@ -136,15 +160,22 @@ public class QQView extends View {
         canvas.drawText(String.valueOf((int)(currentInt)),x,baseLine,textPaint);
     }
 
+<<<<<<< Updated upstream
 
     public synchronized  void setCurrent(float currentInt,float maxInt){
+=======
+ }
+>>>>>>> Stashed changes
 
         this.currentInt=currentInt;
         this.maxInt=maxInt;
 
+<<<<<<< Updated upstream
 
         invalidate();
      }
 }
 
 
+=======
+>>>>>>> Stashed changes
