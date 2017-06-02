@@ -1,5 +1,6 @@
 package com.example.wangjingyun.componentbased.activity.fragment;
 
+import android.animation.ValueAnimator;
 import android.os.Handler;
 import android.os.Message;
 
@@ -18,17 +19,6 @@ public class MessageFragment extends BaseFragment {
     @InjectView(R.id.slidingDiscolorationTextView)
     SlidingDiscolorationTextView slidingDiscolorationTextView;
 
-    private Handler handler=new Handler(){
-
-
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-
-            slidingDiscolorationTextView.setCurrentThis((float)msg.obj);
-
-        }
-    };
     public static MessageFragment getInstance(){
 
         MessageFragment fragment=new MessageFragment();
@@ -44,26 +34,20 @@ public class MessageFragment extends BaseFragment {
     @Override
     public void initDatas() {
 
-        new Thread(){
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(1.0f, 0.0f);
 
+        valueAnimator.setDuration(2000);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
-            public void run() {
-                super.run();
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                float currentValues=(float)valueAnimator.getAnimatedValue();
 
-                for(float i =  0.1f; i<=1f; i++){
-
-                    Message msg=new Message();
-                    msg.obj=i;
-                    handler.sendMessage(msg);
-                    try {
-                        sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                }
+                slidingDiscolorationTextView.setCurrentThis(currentValues);
             }
-        }.start();
+        });
+
+        valueAnimator.start();
+
     }
 
 }

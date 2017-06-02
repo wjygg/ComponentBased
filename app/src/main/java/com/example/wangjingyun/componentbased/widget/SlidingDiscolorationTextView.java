@@ -168,7 +168,7 @@ public class SlidingDiscolorationTextView extends View{
 
         this.currentThis=currentThis;
 
-        trun=TRUN.LEFT_TORIGHT;
+        trun=TRUN.RIGHT_TOLEFT;
 
         invalidate();
     }
