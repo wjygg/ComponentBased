@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.example.wangjingyun.componentbased.R;
@@ -32,6 +33,7 @@ public class SlidingLettersView extends View {
 
     private String [] letters=new String[]{"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 
+    private  int position=0;
     public SlidingLettersView(Context context) {
         this(context,null);
     }
@@ -103,10 +105,37 @@ public class SlidingLettersView extends View {
 
             int baseline=averageValue*i+averageValue/2+dy;
 
-            canvas.drawText(letters[i],x,baseline,slidingLettersTextInnerPaint);
+            if(i==position){
+
+                canvas.drawText(letters[i],x,baseline,slidingLettersTextOutnerPaint);
+            }else{
+
+                canvas.drawText(letters[i],x,baseline,slidingLettersTextInnerPaint);
+            }
+
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        //一个的高度
+        int averageValue=(getHeight()-getPaddingTop()-getPaddingBottom())/letters.length;
+
+        switch (event.getAction()){
+
+            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_MOVE:
+            float currentY=event.getY();
+
+            position= (int) (currentY/averageValue);
+
+            case MotionEvent.ACTION_UP:
+
+
         }
 
-
-
+        invalidate();
+        return true;
     }
 }
