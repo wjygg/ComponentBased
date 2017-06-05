@@ -35,5 +35,11 @@
 </declare-styleable>
 
 
+    <declare-styleable name="SlidingLettersView">
+        
+        <attr name="SlidingLettersTextSize" format="dimension"></attr>
+        <attr name="SlidingLettersTextInnerColor" format="color"></attr>
+        <attr name="SlidingLettersTextOutnerColor" format="color"></attr>
+    </declare-styleable>
 
 </resources>

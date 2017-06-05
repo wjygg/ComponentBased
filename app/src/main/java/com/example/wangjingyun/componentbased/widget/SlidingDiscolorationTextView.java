@@ -23,14 +23,14 @@ public class SlidingDiscolorationTextView extends View{
 
     private String SlidingText;
 
-    private int SlidingTextSize=15;
+    private int SlidingTextSize=50;
 
     private Paint slidingPaint,slidingChangePaint;
 
     //当前进度 0-1；
-    private float currentThis;
+    private float currentThis=0;
 
-    private TRUN trun;
+    private TRUN trun=TRUN.LEFT_TORIGHT;
 
     public SlidingDiscolorationTextView(Context context) {
         this(context,null);
@@ -136,10 +136,7 @@ public class SlidingDiscolorationTextView extends View{
             canvasText(canvas,currentWidth,getWidth(),slidingChangePaint);
         }
 
-
     }
-
-
     private  void canvasText(Canvas canvas,float start,float end,Paint paint){
 
         canvas.clipRect(start,0,end,getHeight());
@@ -163,15 +160,42 @@ public class SlidingDiscolorationTextView extends View{
         LEFT_TORIGHT,RIGHT_TOLEFT
 
     }
-
-    public void setCurrentThis(float currentThis){
+    //设置滑动进度 朝向
+    public void setCurrentThis(float currentThis,TRUN trun){
 
         this.currentThis=currentThis;
 
-        trun=TRUN.RIGHT_TOLEFT;
+        this.trun=trun;
 
         invalidate();
     }
+
+    //设置变化的颜色
+    public void setSlidingChangeColor(int SlidingChangeColor){
+
+        this.SlidingChangeColor=SlidingChangeColor;
+
+    }
+    //设置默认颜色
+    public void setSlidingColor(int SlidingColor){
+
+        this.SlidingColor=SlidingColor;
+
+    }
+
+    public void setSlidingText(String SlidingText){
+
+        this.SlidingText=SlidingText;
+
+    }
+
+    public void setSlidingTextSize(int SlidingTextSize){
+
+        this.SlidingTextSize=SlidingTextSize;
+
+    }
+
+
 
 
 }
