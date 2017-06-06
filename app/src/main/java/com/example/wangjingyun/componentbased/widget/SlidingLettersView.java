@@ -34,6 +34,8 @@ public class SlidingLettersView extends View {
     private String [] letters=new String[]{"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 
     private  int position=0;
+    private MoveUpListener listener;
+
     public SlidingLettersView(Context context) {
         this(context,null);
     }
@@ -124,18 +126,42 @@ public class SlidingLettersView extends View {
 
         switch (event.getAction()){
 
-            case MotionEvent.ACTION_DOWN:
+         //   case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_MOVE:
             float currentY=event.getY();
 
             position= (int) (currentY/averageValue);
 
+                if(listener!=null){
+
+                    listener.moveUp(letters[position],true);
+                }
+
+            break;
             case MotionEvent.ACTION_UP:
 
+                if(listener!=null){
+
+                    listener.moveUp(letters[position],false);
+                }
+                break;
 
         }
 
         invalidate();
         return true;
+    }
+
+
+
+    public void setMoveUpListener(MoveUpListener moveUpListener){
+
+        this.listener=listener;
+    }
+
+    public interface MoveUpListener{
+
+        void moveUp(String result,boolean flag);
+
     }
 }
