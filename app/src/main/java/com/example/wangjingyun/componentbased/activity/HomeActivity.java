@@ -2,7 +2,6 @@ package com.example.wangjingyun.componentbased.activity;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.wangjingyun.componentbased.R;
@@ -10,6 +9,7 @@ import com.example.wangjingyun.componentbased.activity.base.BaseActivity;
 import com.example.wangjingyun.componentbased.activity.fragment.HomeFragment;
 import com.example.wangjingyun.componentbased.activity.fragment.MessageFragment;
 import com.example.wangjingyun.componentbased.activity.fragment.MineFragment;
+import com.example.wangjingyun.componentbasesdk.ioc.ViewById;
 import com.example.wangjingyun.componentbasesdk.log.ExctptionCarshHandler;
 
 import java.io.File;
@@ -17,7 +17,7 @@ import java.io.FileInputStream;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
-import ioc.ViewById;
+
 
 public class HomeActivity extends BaseActivity {
 

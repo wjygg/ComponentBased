@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.wangjingyun.componentbasesdk.ioc.ViewUtils;
+
 import butterknife.ButterKnife;
-import ioc.ViewUtils;
+
 
 /**
  * Created by Administrator on 2017/3/11.
