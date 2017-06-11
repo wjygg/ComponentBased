@@ -1,5 +1,6 @@
 package com.example.wangjingyun.componentbased.activity.fragment;
 
+import android.Manifest;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
@@ -32,6 +33,21 @@ public class MineFragment extends BaseFragment {
     @Override
     public void initDatas() {
 
+       if(hasPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)){
+
+           readSd();
+
+       }else{
+
+           requestPermission(READ_EXTERNAL_CODE, Manifest.permission.READ_EXTERNAL_STORAGE);
+       }
+
+
+    }
+
+    @Override
+    public void readSd() {
+
         String fileLocation = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "1.jpg";
 
         String fileLocation1 = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "2.jpg";
@@ -39,6 +55,6 @@ public class MineFragment extends BaseFragment {
         Bitmap bitmap = BitmapFactory.decodeFile(fileLocation);
 
         ImageUtil.compressImage(bitmap,30,fileLocation1);
-
     }
+
 }
