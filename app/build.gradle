@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "25.0.0"
     defaultConfig {
         applicationId "com.example.wangjingyun.componentbased"
         minSdkVersion 14
@@ -31,7 +31,7 @@ android {
 
     task ndkBuild(type: Exec) {
 
-        commandLine "D:\\Users\\Administrator\\AppData\\Local\\Android\\sdk\\ndk-bundle\\ndk-build.cmd",
+        commandLine "D:\\Android\\sdk\\ndk-bundle\\ndk-build.cmd",
                 'NDK_PROJECT_PATH=build/intermediates/ndk',
                 'NDK_LIBS_OUT=libs',
                 'APP_BUILD_SCRIPT=jni/Android.mk',

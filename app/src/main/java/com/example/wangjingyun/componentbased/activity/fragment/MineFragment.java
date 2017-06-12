@@ -1,8 +1,11 @@
 package com.example.wangjingyun.componentbased.activity.fragment;
 
+import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 
 import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.activity.base.BaseFragment;
@@ -36,9 +39,17 @@ public class MineFragment extends BaseFragment {
 
         String fileLocation1 = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "2.jpg";
 
-        Bitmap bitmap = BitmapFactory.decodeFile(fileLocation);
+        File file=new File(fileLocation);
+        if(file.exists()){
 
-        ImageUtil.compressImage(bitmap,30,fileLocation1);
+            Bitmap bitmap = BitmapFactory.decodeFile(fileLocation);
+
+            ImageUtil.compressImage(bitmap,30,fileLocation1);
+
+
+        }
 
     }
+
+
 }
