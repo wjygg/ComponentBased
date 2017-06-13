@@ -1,12 +1,9 @@
 package com.example.wangjingyun.componentbased.activity.fragment;
 
-import android.app.Activity;
-import android.content.pm.PackageManager;
+import android.Manifest;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
-import android.support.v4.app.ActivityCompat;
-
 import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.activity.base.BaseFragment;
 import com.example.wangjingyun.componentbased.utils.ImageUtil;
@@ -35,14 +32,39 @@ public class MineFragment extends BaseFragment {
     @Override
     public void initDatas() {
 
+        //判断权限
+       if(hasPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)){
+
+           readSd();
+
+       }else{
+
+           requestPermission(READ_EXTERNAL_CODE, Manifest.permission.READ_EXTERNAL_STORAGE);
+       }
+
+
+    }
+
+    @Override
+    public void readSd() {
+
         String fileLocation = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "1.jpg";
 
         String fileLocation1 = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "2.jpg";
 
         File file=new File(fileLocation);
         if(file.exists()){
+            Bitmap bitmap=null;
+            try{
 
-            Bitmap bitmap = BitmapFactory.decodeFile(fileLocation);
+
+                bitmap = BitmapFactory.decodeFile(fileLocation);
+
+            }catch (Exception e){
+
+                e.getMessage();
+            }
+
 
             ImageUtil.compressImage(bitmap,30,fileLocation1);
 
@@ -50,6 +72,6 @@ public class MineFragment extends BaseFragment {
         }
 
     }
-
-
 }
+
+

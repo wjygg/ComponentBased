@@ -5,7 +5,9 @@ import android.os.Message;
 
 import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.activity.base.BaseFragment;
+import com.example.wangjingyun.componentbased.widget.CircularScaleDiagramView;
 import com.example.wangjingyun.componentbased.widget.QQView;
+import com.example.wangjingyun.componentbasesdk.ioc.ViewById;
 
 import butterknife.InjectView;
 
@@ -18,6 +20,9 @@ public class HomeFragment extends BaseFragment {
      @InjectView(R.id.QQView)
      QQView qqView;
 
+    @ViewById(R.id.circularScaleDiagramView)
+    CircularScaleDiagramView circularScaleDiagramView;
+
     private Handler handler=new Handler(){
 
 
@@ -26,6 +31,8 @@ public class HomeFragment extends BaseFragment {
             super.handleMessage(msg);
 
             qqView.setCurrent(msg.arg1,100);
+
+            circularScaleDiagramView.setCurrent(msg.arg1);
 
         }
     };

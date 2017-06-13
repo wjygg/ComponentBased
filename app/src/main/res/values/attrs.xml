@@ -42,4 +42,20 @@
         <attr name="SlidingLettersTextOutnerColor" format="color"></attr>
     </declare-styleable>
 
+    <!--自定义圆形比例控件-->
+    <declare-styleable name="CircularScaleDiagramView">
+        <!--中间字体-->
+        <attr name="CircularScaleDiagramViewText" format="string"></attr>
+        <!--字体大小-->
+        <attr name="CircularScaleDiagramViewTextSize" format="dimension"></attr>
+        <!--字体颜色-->
+        <attr name="CircularScaleDiagramViewTextColor" format="color"></attr>
+        <!--内部圆颜色-->
+        <attr name="CircularScaleDiagramViewCircleColor" format="color"></attr>
+        <!--圆弧颜色-->
+        <attr name="CircularScaleDiagramViewArcColor" format="color"></attr>
+        <!--圆弧宽度-->
+        <attr name="CircularScaleDiagramViewArcWidth" format="dimension"></attr>
+    </declare-styleable>
+
 </resources>
