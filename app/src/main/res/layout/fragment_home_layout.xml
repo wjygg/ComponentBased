@@ -17,10 +17,10 @@
        ></com.example.wangjingyun.componentbased.widget.QQView>
 
     <com.example.wangjingyun.componentbased.widget.CircularScaleDiagramView
-        android:layout_width="wrap_content"
+        android:layout_width="400px"
         app:CircularScaleDiagramViewArcWidth="20px"
         app:CircularScaleDiagramViewArcColor="@color/blue_30"
-        android:layout_height="wrap_content"
+        android:layout_height="400px"
         app:CircularScaleDiagramViewText="50"
         app:CircularScaleDiagramViewTextColor="@color/white"
         app:CircularScaleDiagramViewCircleColor="@color/orange"
