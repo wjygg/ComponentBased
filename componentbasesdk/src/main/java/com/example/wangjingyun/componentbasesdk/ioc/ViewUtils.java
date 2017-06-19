@@ -165,7 +165,7 @@ public class ViewUtils {
                 //所有修饰符方法 都可以调用
                 method.setAccessible(true);
                 //执行方法名方法
-                method.invoke(object, view);
+                method.invoke(object);
 
             } catch (Exception e) {
                 e.printStackTrace();
