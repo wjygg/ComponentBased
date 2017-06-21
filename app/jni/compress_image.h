@@ -6,7 +6,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-JNIEXPORT jint JNICALL Java_com_hc_essay_library_util_ImageUtil_compressBitmap(JNIEnv*,
+JNIEXPORT jint JNICALL Java_com_example_wangjingyun_componentbased_utils_ImageUtil_compressBitmap(JNIEnv*,
 		jclass, jobject , int , jstring);
 
 #ifdef __cplusplus

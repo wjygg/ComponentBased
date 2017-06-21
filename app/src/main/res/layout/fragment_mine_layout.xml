@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="right"
     android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/button"
+        android:text="压缩图片"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 
     <com.example.wangjingyun.componentbased.widget.SlidingLettersView
 
-        android:layout_gravity="right"
+        android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:paddingLeft="30px"
@@ -16,4 +22,6 @@
         app:SlidingLettersTextOutnerColor="@color/orange"
         app:SlidingLettersTextSize="50px"
         ></com.example.wangjingyun.componentbased.widget.SlidingLettersView>
-</LinearLayout>
+
+
+</RelativeLayout>

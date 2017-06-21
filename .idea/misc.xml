@@ -59,9 +59,12 @@
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
+<<<<<<< HEAD
   <component name="SvnBranchConfigurationManager">
     <option name="mySupportsUserInfoFilter" value="true" />
   </component>
+=======
+>>>>>>> 7129439f5107fce121a55726116a97d3132d5171
   <component name="masterDetails">
     <states>
       <state key="Copyright.UI">
