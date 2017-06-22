@@ -78,6 +78,7 @@ public abstract  class BaseFragment extends Fragment {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         switch (requestCode){
 
@@ -88,12 +89,12 @@ public abstract  class BaseFragment extends Fragment {
                     readSd();
                 }else{
 
-                   pleaseRequestPermission();
+                    pleaseRequestPermission();
                 }
                 break;
         }
-
     }
+
     //请申请权限
     public void pleaseRequestPermission() {
 

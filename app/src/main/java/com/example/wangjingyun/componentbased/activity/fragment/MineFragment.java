@@ -75,7 +75,7 @@ public class MineFragment extends BaseFragment {
              // 获取相机返回的数据，并转换为Bitmap图片格式，这是缩略图
             Bitmap bitmap = (Bitmap) bundle.get("data");
 
-            ImageUtil.compressImage(bitmap,70,fileLocation1);
+            ImageUtil.compressBitmap(bitmap,70,fileLocation1);
 
        }
     }

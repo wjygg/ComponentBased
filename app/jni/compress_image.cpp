@@ -110,7 +110,7 @@ int generateJPEG(BYTE *data, int w, int h, int quality,
 
 // 函数的实现  AS  1.5如果没代码提示 AS2.2   VS去写好 Unity3D
 // java 什么思想  C就是什么思想
-jint Java_com_hc_essay_library_util_ImageUtil_compressBitmap(JNIEnv *env,
+jint Java_com_example_wangjingyun_componentbased_utils_ImageUtil_compressBitmap(JNIEnv *env,
                                                              jclass thiz, jobject bitmap,
                                                              int quality,
                                                              jstring fileNameStr) {
@@ -177,7 +177,7 @@ jint Java_com_hc_essay_library_util_ImageUtil_compressBitmap(JNIEnv *env,
 
     // 2.调用第三方的提供好的方法   赋值的
     int result = generateJPEG(tempData, bitmap_width, bitmap_height, quality, file_name, true);
-
+    LOGE("tempData = %s", tempData);
     // 3.一定要回收内存
     free(tempData);
     env->ReleaseStringUTFChars(fileNameStr, file_name);
