@@ -3,11 +3,11 @@ package com.example.wangjingyun.componentbased.activity.fragment;
 import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.activity.base.BaseFragment;
@@ -75,8 +75,15 @@ public class MineFragment extends BaseFragment {
              // 获取相机返回的数据，并转换为Bitmap图片格式，这是缩略图
             Bitmap bitmap = (Bitmap) bundle.get("data");
 
+
             ImageUtil.compressBitmap(bitmap,70,fileLocation1);
 
+            File file=new File(fileLocation1);
+
+
+            int result=ImageUtil.compressBitmap(bitmap,70, Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator +file.getName());
+
+            Toast.makeText(getActivity(),result+"",Toast.LENGTH_LONG).show();
        }
     }
 

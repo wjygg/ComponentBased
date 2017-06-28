@@ -177,7 +177,11 @@ jint Java_com_example_wangjingyun_componentbased_utils_ImageUtil_compressBitmap(
 
     // 2.调用第三方的提供好的方法   赋值的
     int result = generateJPEG(tempData, bitmap_width, bitmap_height, quality, file_name, true);
+<<<<<<< HEAD
     LOGE("tempData = %s", tempData);
+=======
+    LOGE("resultData = %s",tempData  bitmap_width  bitmap_height quality file_name);
+>>>>>>> 8ef04018051f5f0aa5a1ef7ea04ecef99a25cf6a
     // 3.一定要回收内存
     free(tempData);
     env->ReleaseStringUTFChars(fileNameStr, file_name);
