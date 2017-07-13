@@ -23,15 +23,11 @@ public class RequestCenter {
 
     /**
      * 登录网络请求
-     * @param userName 用户名
-     * @param passWord 密码
      * @param listener 请求监听
      */
-    public static  void Login(String userName,String passWord,DisposeDataListener listener){
+    public static  void Login(DisposeDataListener listener){
 
         RequestParams params=new RequestParams();
-        params.put("md",userName);
-        params.put("passWord",passWord);
         RequestCenter.postRequest(HttpConstants.PRODUCT_LIST,params,listener,null);
 
     }

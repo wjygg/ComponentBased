@@ -2,12 +2,15 @@ package com.example.wangjingyun.componentbased.activity.fragment;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.activity.base.BaseFragment;
+import com.example.wangjingyun.componentbased.network.RequestCenter;
 import com.example.wangjingyun.componentbased.widget.CircularScaleDiagramView;
 import com.example.wangjingyun.componentbased.widget.QQView;
 import com.example.wangjingyun.componentbasesdk.ioc.ViewById;
+import com.example.wangjingyun.componentbasesdk.okhttp.listener.DisposeDataListener;
 
 import butterknife.InjectView;
 
@@ -51,6 +54,20 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void initDatas() {
 
+        RequestCenter.Login(new DisposeDataListener() {
+            @Override
+            public void onSuccess(Object responseObj) {
+
+                Log.d("homefragment",responseObj+"");
+            }
+
+            @Override
+            public void onFailure(Object reasonObj) {
+
+                Log.d("homefragment",reasonObj+"");
+            }
+        });
+
         new Thread(){
 
             @Override
@@ -72,6 +89,5 @@ public class HomeFragment extends BaseFragment {
                 }
             }
         }.start();
-
     }
 }

@@ -2,6 +2,7 @@ package com.example.wangjingyun.componentbasesdk.okhttp.response;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import com.example.wangjingyun.componentbasesdk.okhttp.exception.OkHttpException;
 import com.example.wangjingyun.componentbasesdk.okhttp.listener.DisposeDataHandler;
@@ -48,6 +49,8 @@ public class CommonJsonCallback implements Callback {
     }
     @Override
     public void onFailure(final Call call, final IOException e) {
+
+        Log.e("okHttp3",e.getMessage());
 
         mHandler.post(new Runnable() {
             @Override

@@ -25,6 +25,8 @@ import static android.app.Activity.RESULT_OK;
 
 public class MineFragment extends BaseFragment {
 
+    String fileLocation = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "1.jpg";
+
     String fileLocation1 = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "2.jpg";
 
     @ViewById(R.id.button)
@@ -75,15 +77,11 @@ public class MineFragment extends BaseFragment {
              // 获取相机返回的数据，并转换为Bitmap图片格式，这是缩略图
             Bitmap bitmap = (Bitmap) bundle.get("data");
 
+             ;
 
-            ImageUtil.compressBitmap(bitmap,70,fileLocation1);
-
-            File file=new File(fileLocation1);
+            ImageUtil.compressBitmap(ImageUtil.decodeFile(fileLocation),30,fileLocation1);
 
 
-            int result=ImageUtil.compressBitmap(bitmap,70, Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator +file.getName());
-
-            Toast.makeText(getActivity(),result+"",Toast.LENGTH_LONG).show();
        }
     }
 
