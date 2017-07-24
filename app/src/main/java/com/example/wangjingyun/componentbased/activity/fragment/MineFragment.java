@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.widget.Button;
 import android.widget.Toast;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.activity.base.BaseFragment;
 import com.example.wangjingyun.componentbased.utils.ImageUtil;
+import com.example.wangjingyun.componentbased.widget.WithCity;
+import com.example.wangjingyun.componentbasesdk.ioc.CheckNet;
 import com.example.wangjingyun.componentbasesdk.ioc.OnClick;
 import com.example.wangjingyun.componentbasesdk.ioc.ViewById;
 
@@ -32,6 +35,9 @@ public class MineFragment extends BaseFragment {
     @ViewById(R.id.button)
     Button button;
 
+    @ViewById(R.id.withcity)
+    WithCity withCity;
+
     public static MineFragment getInstance() {
 
         MineFragment fragment = new MineFragment();
@@ -46,6 +52,25 @@ public class MineFragment extends BaseFragment {
 
     @Override
     public void initDatas() {
+
+
+    }
+
+    @OnClick(R.id.withcity)
+    @CheckNet
+    public void onClickCity(){
+
+        final Handler handler=new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                withCity.setCurrentType();
+
+                handler.postDelayed(this,1000);
+            }
+        },1000);
+
 
 
     }

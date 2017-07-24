@@ -23,5 +23,11 @@
         app:SlidingLettersTextSize="50px"
         ></com.example.wangjingyun.componentbased.widget.SlidingLettersView>
 
+<com.example.wangjingyun.componentbased.widget.WithCity
 
+    android:id="@+id/withcity"
+    android:layout_centerInParent="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    ></com.example.wangjingyun.componentbased.widget.WithCity>
 </RelativeLayout>
