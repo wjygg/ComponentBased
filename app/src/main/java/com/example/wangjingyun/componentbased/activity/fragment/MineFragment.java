@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.activity.base.BaseFragment;
 import com.example.wangjingyun.componentbased.utils.ImageUtil;
 import com.example.wangjingyun.componentbased.widget.WithCity;
+import com.example.wangjingyun.componentbased.widget.WithCityLoading;
 import com.example.wangjingyun.componentbasesdk.ioc.CheckNet;
 import com.example.wangjingyun.componentbasesdk.ioc.OnClick;
 import com.example.wangjingyun.componentbasesdk.ioc.ViewById;
@@ -35,8 +37,8 @@ public class MineFragment extends BaseFragment {
     @ViewById(R.id.button)
     Button button;
 
-    @ViewById(R.id.withcity)
-    WithCity withCity;
+    @ViewById(R.id.withcityloading)
+    WithCityLoading withcityloading;
 
     public static MineFragment getInstance() {
 
@@ -56,11 +58,11 @@ public class MineFragment extends BaseFragment {
 
     }
 
-    @OnClick(R.id.withcity)
+    @OnClick(R.id.withcityloading)
     @CheckNet
     public void onClickCity(){
 
-        final Handler handler=new Handler();
+       /* final Handler handler=new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -69,9 +71,9 @@ public class MineFragment extends BaseFragment {
 
                 handler.postDelayed(this,1000);
             }
-        },1000);
+        },1000);*/
 
-
+        withcityloading.setVisibility(View.GONE);
 
     }
 

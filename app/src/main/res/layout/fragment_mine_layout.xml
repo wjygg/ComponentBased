@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
     <com.example.wangjingyun.componentbased.widget.WithCityLoading
+        android:id="@+id/withcityloading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

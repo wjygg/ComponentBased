@@ -4,12 +4,16 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.wangjingyun.componentbased.R;
@@ -23,6 +27,11 @@ import com.example.wangjingyun.componentbased.R;
 public class WithCityLoading extends LinearLayout {
 
     private WithCity withCity;
+
+    private ImageView withimage;
+
+    private boolean flag=true;
+
     public WithCityLoading(Context context) {
         this(context,null);
     }
@@ -43,12 +52,19 @@ public class WithCityLoading extends LinearLayout {
 
         withCity= (WithCity) findViewById(R.id.withcity);
 
-        beginAnimator(context);
+        withimage= (ImageView) findViewById(R.id.withimage);
+
+        downAnimator(context);
 
     }
 
-    private void beginAnimator(Context context) {
+    private void downAnimator(final Context context) {
 
+        if(flag==false){
+
+            return;
+        }
+        Log.e("downAnimator","downAnimator");
         ObjectAnimator translationY = ObjectAnimator.ofFloat(withCity, "translationY", 0, Dp2Px(context, 70));
         translationY.setInterpolator(new AccelerateInterpolator());
         translationY.addListener(new AnimatorListener() {
@@ -61,9 +77,33 @@ public class WithCityLoading extends LinearLayout {
             public void onAnimationEnd(Animator animation) {
 
                 withCity.setCurrentType();
+                //上抛
+                upAnimator(context);
+                //阴影变化
+
+
+
             }
         });
+        //下方控件
 
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(withimage, "scaleX", 0.2f, 1f);
+
+        AnimatorSet animatorSet=new AnimatorSet();
+        animatorSet.play(translationY).with(scaleX);
+        animatorSet.setDuration(500);
+        animatorSet.start();
+
+    }
+
+    public void upAnimator(final Context context){
+
+        if(flag==false){
+
+            return;
+        }
+
+        Log.e("upAnimator","upAnimator");
 
         ObjectAnimator translationY1 = ObjectAnimator.ofFloat(withCity, "translationY", Dp2Px(context, 70),0 );
         translationY1.setInterpolator(new DecelerateInterpolator());
@@ -76,16 +116,32 @@ public class WithCityLoading extends LinearLayout {
             @Override
             public void onAnimationEnd(Animator animation) {
 
+                downAnimator(context);
 
             }
         });
 
+        //旋转动画
+        ObjectAnimator rotationY = ObjectAnimator.ofFloat(withCity, "rotation", 0, 135);
+
+        //下方控件
+
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(withimage, "scaleX", 1f, 0.2f);
+
         AnimatorSet animatorSet=new AnimatorSet();
-        animatorSet.setDuration(1000);
-        animatorSet.playSequentially(translationY,translationY1);
+        animatorSet.play(translationY1).with(rotationY).with(scaleX);
+        animatorSet.setDuration(500);
         animatorSet.start();
     }
 
+    @Override
+    public void setVisibility(int visibility) {
+
+       super.setVisibility(View.INVISIBLE);
+        //停止动画
+        flag=false;
+
+    }
 
     public int Dp2Px(Context context, float dp) {
 
