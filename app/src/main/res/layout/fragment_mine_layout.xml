@@ -4,6 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent">
 
+    <com.example.wangjingyun.componentbased.widget.WithCityLoading
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <Button
         android:id="@+id/button"
         android:text="压缩图片"
@@ -23,11 +27,5 @@
         app:SlidingLettersTextSize="50px"
         ></com.example.wangjingyun.componentbased.widget.SlidingLettersView>
 
-<com.example.wangjingyun.componentbased.widget.WithCity
 
-    android:id="@+id/withcity"
-    android:layout_centerInParent="true"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    ></com.example.wangjingyun.componentbased.widget.WithCity>
 </RelativeLayout>
