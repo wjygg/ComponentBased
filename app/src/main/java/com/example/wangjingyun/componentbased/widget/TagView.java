@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,6 @@ public class TagView extends ViewGroup{
     public TagView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
-
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -220,4 +220,34 @@ public class TagView extends ViewGroup{
     public LayoutParams generateLayoutParams(AttributeSet attrs) {
         return new MarginLayoutParams(getContext(),attrs);
     }
+
+    public void setAdater(BaseAdapter adapter){
+
+        //移除所有控件
+        removeAllViews();
+
+        if(adapter==null){
+            throw new RuntimeException("BaseAdapter空指针异常");
+        }
+        for(int i=0;i<adapter.getCount();i++){
+
+            View child = adapter.getView(i,this);
+
+            addView(child);
+
+        }
+
+    }
+
+    //adater设计模式
+    public abstract static class BaseAdapter{
+
+        public abstract int getCount();
+
+        public abstract View getView(int count,TagView parents);
+
+
+    }
+
+
 }
