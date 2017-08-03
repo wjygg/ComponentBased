@@ -46,7 +46,7 @@ public class WithCityLoading extends LinearLayout {
         initLayout(context);
     }
 
-    private void initLayout(Context context) {
+    private void initLayout(final Context context) {
 
         LayoutInflater.from(context).inflate(R.layout.loading_layout,this);
 
@@ -54,7 +54,14 @@ public class WithCityLoading extends LinearLayout {
 
         withimage= (ImageView) findViewById(R.id.withimage);
 
-        downAnimator(context);
+        post(new Runnable() {
+            @Override
+            public void run() {
+
+                downAnimator(context);
+            }
+        });
+
 
     }
 

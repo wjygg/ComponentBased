@@ -2,6 +2,7 @@ package com.example.wangjingyun.componentbased.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -248,6 +249,5 @@ public class TagView extends ViewGroup{
 
 
     }
-
 
 }
