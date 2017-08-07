@@ -7,12 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.activity.base.BaseFragment;
 import com.example.wangjingyun.componentbased.network.RequestCenter;
 import com.example.wangjingyun.componentbased.widget.CircularScaleDiagramView;
 import com.example.wangjingyun.componentbased.widget.QQView;
+import com.example.wangjingyun.componentbased.widget.SwitchTab;
 import com.example.wangjingyun.componentbased.widget.TagView;
 import com.example.wangjingyun.componentbasesdk.ioc.ViewById;
 import com.example.wangjingyun.componentbasesdk.okhttp.listener.DisposeDataListener;
@@ -26,7 +28,7 @@ import butterknife.InjectView;
  * Created by Administrator on 2017/3/11.
  */
 
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment{
 
      @InjectView(R.id.QQView)
      QQView qqView;
@@ -36,6 +38,9 @@ public class HomeFragment extends BaseFragment {
 
     @ViewById(R.id.tagview)
     TagView tagview;
+
+    @ViewById(R.id.switchtab)
+    SwitchTab switchTab;
 
     List<String> strings=new ArrayList<>();
 
@@ -129,5 +134,15 @@ public class HomeFragment extends BaseFragment {
                 return textview;
             }
         });
+
+        switchTab.setSwitchTabClickListener(new SwitchTab.SwitchTabClick() {
+            @Override
+            public void tabClick(String result) {
+
+                Toast.makeText(getActivity(),result,Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
+
 }
