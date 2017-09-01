@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="horizontal"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent">
+
+    <com.example.wangjingyun.componentbased.widget.bannerview.BannerView
+        android:id="@+id/bannerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ></com.example.wangjingyun.componentbased.widget.bannerview.BannerView>
 
     <com.example.wangjingyun.componentbased.widget.WithCityLoading
         android:id="@+id/withcityloading"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="match_parent"/>
 
     <Button
@@ -15,9 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-
     <com.example.wangjingyun.componentbased.widget.SlidingLettersView
-
+        android:visibility="gone"
         android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -29,4 +36,4 @@
         ></com.example.wangjingyun.componentbased.widget.SlidingLettersView>
 
 
-</RelativeLayout>
+</LinearLayout>

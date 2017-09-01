@@ -36,5 +36,7 @@ dependencies {
     //fastjson
     compile 'com.alibaba:fastjson:1.1.54.android'
 
+    //通用的 recycleview
+    compile 'com.github.wjygg:CommonRecycleView:0.0.5'
 
 }
