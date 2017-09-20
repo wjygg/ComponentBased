@@ -195,7 +195,4 @@ public class SlidingDiscolorationTextView extends View{
 
     }
 
-
-
-
 }

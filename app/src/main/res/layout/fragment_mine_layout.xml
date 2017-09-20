@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent">
 
     <com.example.wangjingyun.componentbased.widget.bannerview.BannerView
         android:id="@+id/bannerview"
         android:layout_width="match_parent"
+        app:BannerViewWidth="1"
+        app:BannerViewHeight="5"
         android:layout_height="wrap_content"
         ></com.example.wangjingyun.componentbased.widget.bannerview.BannerView>
 
@@ -20,6 +22,7 @@
     <Button
         android:id="@+id/button"
         android:text="压缩图片"
+        android:background="@android:color/transparent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -35,5 +38,15 @@
         app:SlidingLettersTextSize="50px"
         ></com.example.wangjingyun.componentbased.widget.SlidingLettersView>
 
+<Button
+    android:text="写入"
+    android:id="@+id/btn_write"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
 
+    <Button
+        android:id="@+id/btn_delete"
+        android:text="删除"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>

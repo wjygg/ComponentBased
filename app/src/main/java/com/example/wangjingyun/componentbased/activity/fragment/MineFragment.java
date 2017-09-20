@@ -25,6 +25,8 @@ import com.example.wangjingyun.componentbasesdk.ioc.OnClick;
 import com.example.wangjingyun.componentbasesdk.ioc.ViewById;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +51,12 @@ public class MineFragment extends BaseFragment {
     @ViewById(R.id.bannerview)
     BannerView bannerView;
 
+    @ViewById(R.id.btn_write)
+    Button btn_write;
+
+    @ViewById(R.id.btn_delete)
+    Button btn_delete;
+
     public static MineFragment getInstance() {
 
         MineFragment fragment = new MineFragment();
@@ -69,7 +77,6 @@ public class MineFragment extends BaseFragment {
             public View getView(int position) {
 
                 ImageView imageView=new ImageView(getActivity());
-                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
                 Glide.with(getActivity()).load("http://img2.3lian.com/2014/f6/173/d/51.jpg").into(imageView);
 
                 return imageView;
@@ -85,9 +92,43 @@ public class MineFragment extends BaseFragment {
 
                 return "第"+position+"页内容";
             }
+
+            @Override
+            public void bannerClick(int position) {
+                //点击事件
+                Toast.makeText(getActivity(),position+"",Toast.LENGTH_SHORT).show();
+
+            }
         });
         bannerView.startCarousel();
 
+    }
+    private String str="cesidijfidjfic";
+    private String writeLocation=Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator+"commontext.txt";
+    @OnClick(R.id.btn_write)
+    public void setBtn_write(){
+
+        File file=new File(writeLocation);
+            try {
+                if(!file.exists()){
+                    file.createNewFile();
+                }
+                FileOutputStream fos = new FileOutputStream(file);
+                byte[] bytes = str.getBytes();
+                fos.write(bytes);
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+    }
+    @OnClick(R.id.btn_delete)
+    public void setBtn_delete(){
+
+        File file=new File(writeLocation);
+        if(file.exists()){
+
+            file.delete();
+        }
     }
 
     @OnClick(R.id.withcityloading)

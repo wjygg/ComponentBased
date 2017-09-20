@@ -58,4 +58,11 @@
         <attr name="CircularScaleDiagramViewArcWidth" format="dimension"></attr>
     </declare-styleable>
 
+    <declare-styleable name="BannerView">
+        <!--宽度比例-->
+        <attr name="BannerViewWidth" format="float"></attr>
+        <!--高度比例-->
+        <attr name="BannerViewHeight" format="float"></attr>
+
+    </declare-styleable>
 </resources>

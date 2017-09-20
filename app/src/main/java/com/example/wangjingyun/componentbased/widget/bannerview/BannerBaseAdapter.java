@@ -12,6 +12,10 @@ public abstract class BannerBaseAdapter {
 
     public abstract int getCount();
 
-    public abstract String getString(int position);
+    public String getString(int position) {
+        return "";
+    }
+
+    public abstract void bannerClick(int position);
 
 }

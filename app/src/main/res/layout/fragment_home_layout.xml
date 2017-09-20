@@ -12,16 +12,16 @@
         app:QQViewTextColor="@color/orange"
         app:QQViewText="5000"
         android:id="@+id/QQView"
-        android:layout_width="300px"
-        android:layout_height="300px"
+        android:layout_width="150px"
+        android:layout_height="150px"
        ></com.example.wangjingyun.componentbased.widget.QQView>
 
     <com.example.wangjingyun.componentbased.widget.CircularScaleDiagramView
-        android:layout_width="400px"
+        android:layout_width="150px"
         app:CircularScaleDiagramViewArcWidth="20px"
         app:CircularScaleDiagramViewArcColor="@color/blue_30"
-        android:layout_height="400px"
-        app:CircularScaleDiagramViewText="50"
+        android:layout_height="150px"
+        app:CircularScaleDiagramViewText="20"
         app:CircularScaleDiagramViewTextColor="@color/white"
         app:CircularScaleDiagramViewCircleColor="@color/orange"
         app:CircularScaleDiagramViewTextSize="100px"
@@ -41,5 +41,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         ></com.example.wangjingyun.componentbased.widget.SwitchTab>
+
+    <com.example.wangjingyun.componentbased.widget.VDHLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        >
+
+
+        <TextView
+            android:background="@color/blue_30"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:background="@color/blue_30"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:background="@color/blue_30"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+    </com.example.wangjingyun.componentbased.widget.VDHLayout>
 </LinearLayout>
 
