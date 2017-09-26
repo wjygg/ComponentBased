@@ -39,9 +39,6 @@ public class HomeFragment extends BaseFragment{
     @ViewById(R.id.tagview)
     TagView tagview;
 
-    @ViewById(R.id.switchtab)
-    SwitchTab switchTab;
-
     List<String> strings=new ArrayList<>();
 
     private Handler handler=new Handler(){
@@ -135,13 +132,6 @@ public class HomeFragment extends BaseFragment{
             }
         });
 
-        switchTab.setSwitchTabClickListener(new SwitchTab.SwitchTabClick() {
-            @Override
-            public void tabClick(String result) {
-
-                Toast.makeText(getActivity(),result,Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
 

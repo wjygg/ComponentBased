@@ -1,85 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<com.example.wangjingyun.componentbased.widget.QQFiveView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:QQFiveViewMenuSize="200px"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
 
     >
-<FrameLayout
-    android:id="@+id/frame_layout"
-    android:layout_weight="1"
-    android:layout_width="match_parent"
-    android:layout_height="0dp">
-
-</FrameLayout>
-    <View
-        android:background="@color/black_alpha_45"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        ></View>
     <LinearLayout
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-      <LinearLayout
-          android:id="@+id/home_fragment"
-          android:orientation="vertical"
-          android:layout_weight="1"
-          android:layout_width="0dp"
-          android:gravity="center"
-          android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-          <ImageView
-              android:src="@mipmap/comui_tab_home_selected"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content" />
-          <TextView
-              android:text="首页"
-              android:textSize="16sp"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content" />
+        <include layout="@layout/main_menu_layout"></include>
 
-      </LinearLayout>
-        <LinearLayout
-            android:id="@+id/message_fragment"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:gravity="center"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:src="@mipmap/comui_tab_message_selected"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="消息"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/mine_fragment"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:gravity="center"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:src="@mipmap/comui_tab_person_selected"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="我的"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
+        <include layout="@layout/main_content_layout"></include>
     </LinearLayout>
-</LinearLayout>
+
+</com.example.wangjingyun.componentbased.widget.QQFiveView>

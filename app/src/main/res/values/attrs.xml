@@ -65,4 +65,9 @@
         <attr name="BannerViewHeight" format="float"></attr>
 
     </declare-styleable>
+
+    <declare-styleable name="QQFiveView">
+
+        <attr name="QQFiveViewMenuSize" format="dimension"/>
+    </declare-styleable>
 </resources>

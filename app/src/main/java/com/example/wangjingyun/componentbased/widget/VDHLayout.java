@@ -29,6 +29,7 @@ public class VDHLayout extends LinearLayout{
     public VDHLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
+        int count=getChildCount();
         viewDragHelper= ViewDragHelper.create(this,1.0f,new ViewDragHelperCallBack());
     }
 
@@ -95,4 +96,21 @@ public class VDHLayout extends LinearLayout{
     }
 
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+
+        int count=getChildCount();
+        int count1=getChildCount();
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+    }
 }

@@ -1,11 +1,13 @@
 package com.example.wangjingyun.componentbased.activity.fragment;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -13,8 +15,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.coremedia.iso.boxes.Container;
 import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.activity.base.BaseFragment;
+import com.example.wangjingyun.componentbased.utils.CompositeVideo;
 import com.example.wangjingyun.componentbased.utils.ImageUtil;
 import com.example.wangjingyun.componentbased.widget.WithCity;
 import com.example.wangjingyun.componentbased.widget.WithCityLoading;
@@ -23,6 +27,10 @@ import com.example.wangjingyun.componentbased.widget.bannerview.BannerView;
 import com.example.wangjingyun.componentbasesdk.ioc.CheckNet;
 import com.example.wangjingyun.componentbasesdk.ioc.OnClick;
 import com.example.wangjingyun.componentbasesdk.ioc.ViewById;
+import com.googlecode.mp4parser.authoring.Movie;
+import com.googlecode.mp4parser.authoring.Track;
+import com.googlecode.mp4parser.authoring.builder.DefaultMp4Builder;
+import com.googlecode.mp4parser.authoring.container.mp4.MovieCreator;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -56,6 +64,28 @@ public class MineFragment extends BaseFragment {
 
     @ViewById(R.id.btn_delete)
     Button btn_delete;
+
+    @ViewById(R.id.btn_compressedvideo)
+    Button btn_compressedvideo;
+
+    ProgressDialog dialog;
+    String mp4Datas2 = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "33.mp4";
+    private Handler mHandler=new Handler();
+    private Runnable runnable=new Runnable() {
+        @Override
+        public void run() {
+
+            mHandler.postDelayed(this,1000);
+
+            File file=new File(mp4Datas2);
+
+            if(file.exists()){
+
+                mHandler.removeCallbacks(this);
+                dialog.dismiss();
+            }
+        }
+    };
 
     public static MineFragment getInstance() {
 
@@ -129,6 +159,35 @@ public class MineFragment extends BaseFragment {
 
             file.delete();
         }
+    }
+
+    /**
+     * 视频合成
+     */
+    @OnClick(R.id.btn_compressedvideo)
+    public void comPressVideo(){
+
+        dialog=new ProgressDialog(getActivity());
+        dialog.show();
+        mHandler.postDelayed(runnable,1000);
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                String mp4Datas = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "11.mp4";
+                String mp4Datas1 = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "22.mp4";
+                String mp4Datas2 = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "33.mp4";
+                String[] videoUris = new String[]{
+                        mp4Datas,
+                        mp4Datas1
+                };
+                //自定义视频拼接类
+                CompositeVideo myVideoSplicing = new CompositeVideo(getActivity(), videoUris,mp4Datas2);
+                myVideoSplicing.videoSplice();
+
+
+            }
+        }.start();
     }
 
     @OnClick(R.id.withcityloading)
