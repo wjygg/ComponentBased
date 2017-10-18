@@ -35,6 +35,12 @@
         >
     </com.example.wangjingyun.componentbased.widget.TagView>
 
+    <com.example.wangjingyun.componentbased.widget.DialControlView
+        android:id="@+id/dialcontrolview"
+        android:layout_width="400px"
+        android:layout_height="400px"
+        ></com.example.wangjingyun.componentbased.widget.DialControlView>
+
     <com.example.wangjingyun.componentbased.widget.VDHLayout
         android:layout_width="match_parent"
         android:orientation="vertical"

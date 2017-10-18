@@ -2,6 +2,7 @@ package com.example.wangjingyun.componentbased.activity;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.view.MotionEvent;
 import android.widget.LinearLayout;
 
 import com.example.wangjingyun.componentbased.R;
@@ -146,5 +147,16 @@ public class HomeActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        super.onAttachFragment(fragment);
+        //未被销毁的fragment 给fragment 重新 赋值
+        if (homeFragment == null && fragment instanceof HomeFragment)
+            homeFragment = (HomeFragment) fragment;
+        if (messageFragment == null && fragment instanceof MessageFragment)
+            messageFragment = (MessageFragment) fragment;
+        if (mineFragment == null && fragment instanceof MineFragment)
+            mineFragment = (MineFragment) fragment;
+    }
 
 }

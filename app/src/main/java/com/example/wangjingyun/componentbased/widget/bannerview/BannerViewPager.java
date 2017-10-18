@@ -9,8 +9,12 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import java.lang.reflect.Field;
 
@@ -91,14 +95,32 @@ public class BannerViewPager extends ViewPager{
 
    }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        Log.e("tagbannerdispatchTouch",ev.getAction()+"");
+        //不拦截 本事件 可以事件分发到 viewpager
+        getParent().requestDisallowInterceptTouchEvent(true);
+        return super.dispatchTouchEvent(ev);
+    }
 
-   private class BannerAdapter extends PagerAdapter{
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        Log.e("tagbannerdispatchTouch",ev.getAction()+"");
+        return super.onInterceptTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        Log.e("tagbannerdispatchTouch",ev.getAction()+"");
+        return super.onTouchEvent(ev);
+    }
+
+    private class BannerAdapter extends PagerAdapter{
 
        @Override
        public int getCount() {
            return Integer.MAX_VALUE;
        }
-
        @Override
        public boolean isViewFromObject(View view, Object object) {
            return view==object;

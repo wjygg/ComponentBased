@@ -33,6 +33,11 @@ public class VDHLayout extends LinearLayout{
         viewDragHelper= ViewDragHelper.create(this,1.0f,new ViewDragHelperCallBack());
     }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        getParent().requestDisallowInterceptTouchEvent(true);
+        return super.dispatchTouchEvent(ev);
+    }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
