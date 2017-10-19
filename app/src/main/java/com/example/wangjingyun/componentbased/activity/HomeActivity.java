@@ -1,8 +1,10 @@
 package com.example.wangjingyun.componentbased.activity;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.MotionEvent;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.wangjingyun.componentbased.R;
@@ -31,6 +33,8 @@ public class HomeActivity extends BaseActivity {
     @InjectView(R.id.mine_fragment)
     LinearLayout mine_fragment;
 
+    @ViewById(R.id.btn_homepage)
+    Button btn_homepage;
     private HomeFragment homeFragment;
     private MessageFragment messageFragment;
     private MineFragment mineFragment;
@@ -70,6 +74,12 @@ public class HomeActivity extends BaseActivity {
         fragmentTransaction.add(R.id.frame_layout, homeFragment)
                 .commit();
 
+    }
+
+    @com.example.wangjingyun.componentbasesdk.ioc.OnClick(R.id.btn_homepage)
+    public void clickBtnHomePage(){
+
+        startActivity(new Intent(HomeActivity.this,CarHomeActivity.class));
     }
 
     @OnClick(R.id.home_fragment)
@@ -158,5 +168,7 @@ public class HomeActivity extends BaseActivity {
         if (mineFragment == null && fragment instanceof MineFragment)
             mineFragment = (MineFragment) fragment;
     }
+
+
 
 }
