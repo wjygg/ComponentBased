@@ -6,16 +6,21 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.activity.base.BaseFragment;
+import com.example.wangjingyun.componentbased.entity.TriangleTypeEntity;
 import com.example.wangjingyun.componentbased.network.RequestCenter;
 import com.example.wangjingyun.componentbased.widget.CircularScaleDiagramView;
+import com.example.wangjingyun.componentbased.widget.LinnearScrowView;
 import com.example.wangjingyun.componentbased.widget.QQView;
 import com.example.wangjingyun.componentbased.widget.SwitchTab;
 import com.example.wangjingyun.componentbased.widget.TagView;
+import com.example.wangjingyun.componentbased.widget.TriangleTypeView;
 import com.example.wangjingyun.componentbasesdk.ioc.ViewById;
 import com.example.wangjingyun.componentbasesdk.okhttp.listener.DisposeDataListener;
 
@@ -59,7 +64,6 @@ public class HomeFragment extends BaseFragment{
 
         return fragment;
     }
-
     @Override
     public int getLayoutId() {
         return R.layout.fragment_home_layout;
@@ -133,6 +137,5 @@ public class HomeFragment extends BaseFragment{
         });
 
     }
-
 
 }

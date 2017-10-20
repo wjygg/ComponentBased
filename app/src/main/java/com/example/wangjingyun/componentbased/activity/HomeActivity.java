@@ -12,6 +12,7 @@ import com.example.wangjingyun.componentbased.activity.base.BaseActivity;
 import com.example.wangjingyun.componentbased.activity.fragment.HomeFragment;
 import com.example.wangjingyun.componentbased.activity.fragment.MessageFragment;
 import com.example.wangjingyun.componentbased.activity.fragment.MineFragment;
+import com.example.wangjingyun.componentbased.widget.TriangleTypeView;
 import com.example.wangjingyun.componentbasesdk.ioc.ViewById;
 import com.example.wangjingyun.componentbasesdk.log.ExctptionCarshHandler;
 
@@ -35,6 +36,8 @@ public class HomeActivity extends BaseActivity {
 
     @ViewById(R.id.btn_homepage)
     Button btn_homepage;
+
+
     private HomeFragment homeFragment;
     private MessageFragment messageFragment;
     private MineFragment mineFragment;
