@@ -1,5 +1,6 @@
 package com.example.wangjingyun.componentbased.activity.fragment;
 
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.activity.base.BaseFragment;
 import com.example.wangjingyun.componentbased.network.RequestCenter;
+import com.example.wangjingyun.componentbased.utils.StatusBarUtils;
 import com.example.wangjingyun.componentbased.widget.CircularScaleDiagramView;
 import com.example.wangjingyun.componentbased.widget.QQView;
 import com.example.wangjingyun.componentbased.widget.TagView;
@@ -56,6 +58,13 @@ public class HomeFragment extends BaseFragment{
 
         return fragment;
     }
+
+    @Override
+    public void setStatusBar(View view) {
+        super.setStatusBar(view);
+        StatusBarUtils.setFragmentStatusBarColor(getActivity(),view,Color.BLUE);
+    }
+
     @Override
     public int getLayoutId() {
         return R.layout.fragment_home_layout;

@@ -46,7 +46,6 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     public void setStatusBar() {
-        //设置activity全屏  状态栏透明
         StatusBarUtils.setStatusBarTransParent(HomeActivity.this);
     }
 

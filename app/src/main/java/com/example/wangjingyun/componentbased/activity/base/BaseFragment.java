@@ -30,8 +30,8 @@ public abstract  class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-        View  view=inflater.inflate(getLayoutId(),null);
-
+        View  view= (ViewGroup) inflater.inflate(getLayoutId(),null);
+        setStatusBar(view);
         ButterKnife.inject(this,view);
 
         ViewUtils.Inject(view,this);
@@ -39,12 +39,14 @@ public abstract  class BaseFragment extends Fragment {
         return view;
     }
 
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initDatas();
     }
 
+    public void setStatusBar(View view){}
 
     public abstract int getLayoutId();
 

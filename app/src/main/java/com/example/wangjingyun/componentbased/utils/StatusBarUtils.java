@@ -1,14 +1,18 @@
 package com.example.wangjingyun.componentbased.utils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.example.wangjingyun.componentbased.R;
 
@@ -55,11 +59,11 @@ public class StatusBarUtils {
             //phonewindow-  decorView  - contentView - 根布局
             ViewGroup contentView = (ViewGroup) activity.findViewById(android.R.id.content);
             //设置contentview的padding值
-           // contentView.setPadding(0,getStatusHeight(activity),0,0);
+            contentView.setPadding(0,getStatusHeight(activity),0,0);
             //根布局
-            View childAt = contentView.getChildAt(0);
+          //  View childAt = contentView.getChildAt(0);
             //设置为true 空余出 状态栏的值 类似padding
-            childAt.setFitsSystemWindows(true);
+           // childAt.setFitsSystemWindows(true);
 
            // childAt.setPadding(0,getStatusHeight(activity),0,0);
 
@@ -79,12 +83,12 @@ public class StatusBarUtils {
             activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
 
             //判断有虚拟键 把底部tab顶上去
-          /*  if(checkDeviceHasNavigationBar(activity)){
+            if(checkDeviceHasNavigationBar(activity)){
 
                 ViewGroup contentView= (ViewGroup) activity.findViewById(android.R.id.content);
                 contentView.setPadding(0,0,0,getDeviceHasNavigationBar(activity));
 
-            }*/
+            }
         }
 
         //sdk 4.4-5.0以下
@@ -103,6 +107,21 @@ public class StatusBarUtils {
         }
     }
 
+
+    public static  void setFragmentStatusBarColor(Activity activity,View layout, int color){
+
+
+        View view=new View(activity);
+        view.setBackgroundColor(color);
+        ViewGroup.LayoutParams params=new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,getStatusHeight(activity));
+        view.setLayoutParams(params);
+
+        //添加进 decorView
+        if(layout instanceof LinearLayout)
+        ((LinearLayout) layout).addView(view);
+        if(layout instanceof RelativeLayout)
+        ((RelativeLayout) layout).addView(view);
+    }
 
     /**
      * 获取状态栏高度
