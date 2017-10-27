@@ -83,7 +83,7 @@ public class TriangleTypeView extends View {
         //名字文字宽度
         int nameSize= (int) stringPaint.measureText(name);
 
-         width=Math.max(timeSize,nameSize)+100;
+        width=Math.max(timeSize,nameSize)+100;
 
         if(heightMode==MeasureSpec.AT_MOST){
             //高度是包裹的时候默认200px

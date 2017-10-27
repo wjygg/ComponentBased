@@ -1,6 +1,7 @@
 package com.example.wangjingyun.componentbased.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.MotionEvent;
@@ -12,6 +13,7 @@ import com.example.wangjingyun.componentbased.activity.base.BaseActivity;
 import com.example.wangjingyun.componentbased.activity.fragment.HomeFragment;
 import com.example.wangjingyun.componentbased.activity.fragment.MessageFragment;
 import com.example.wangjingyun.componentbased.activity.fragment.MineFragment;
+import com.example.wangjingyun.componentbased.utils.StatusBarUtils;
 import com.example.wangjingyun.componentbased.widget.TriangleTypeView;
 import com.example.wangjingyun.componentbasesdk.ioc.ViewById;
 import com.example.wangjingyun.componentbasesdk.log.ExctptionCarshHandler;
@@ -41,6 +43,12 @@ public class HomeActivity extends BaseActivity {
     private HomeFragment homeFragment;
     private MessageFragment messageFragment;
     private MineFragment mineFragment;
+
+    @Override
+    public void setStatusBar() {
+        //设置状态栏颜色
+        StatusBarUtils.setStatusBarUtils(HomeActivity.this, Color.WHITE);
+    }
 
     @Override
     public int getLayoutId() {
@@ -82,7 +90,9 @@ public class HomeActivity extends BaseActivity {
     @com.example.wangjingyun.componentbasesdk.ioc.OnClick(R.id.btn_homepage)
     public void clickBtnHomePage(){
 
-        startActivity(new Intent(HomeActivity.this,CarHomeActivity.class));
+      //  startActivity(new Intent(HomeActivity.this,CarHomeActivity.class));
+
+        startActivity(new Intent(HomeActivity.this,VDHActivity.class));
     }
 
     @OnClick(R.id.home_fragment)

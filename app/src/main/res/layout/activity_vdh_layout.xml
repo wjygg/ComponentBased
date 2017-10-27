@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.wangjingyun.componentbased.widget.CarHomeView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="测试沉浸式状态栏"
+        android:background="@color/blue_30"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+    <ListView
+        android:id="@+id/listview"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+
+
+</com.example.wangjingyun.componentbased.widget.CarHomeView>
