@@ -46,8 +46,8 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     public void setStatusBar() {
-        //设置状态栏颜色
-        StatusBarUtils.setStatusBarUtils(HomeActivity.this, Color.WHITE);
+        //设置activity全屏  状态栏透明
+        StatusBarUtils.setStatusBarTransParent(HomeActivity.this);
     }
 
     @Override

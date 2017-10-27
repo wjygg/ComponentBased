@@ -12,6 +12,8 @@ import android.view.WindowManager;
 
 import com.example.wangjingyun.componentbased.R;
 
+import java.lang.reflect.Method;
+
 /**
  * 沉浸式状态栏
  * Created by Administrator on 2017/10/26.
@@ -20,6 +22,11 @@ import com.example.wangjingyun.componentbased.R;
 public class StatusBarUtils {
 
 
+    /**
+     * 设置状态栏 变色
+     * @param activity
+     * @param color
+     */
     public static void setStatusBarUtils(Activity activity, int color){
 
 
@@ -61,6 +68,42 @@ public class StatusBarUtils {
 
     }
 
+    //设置activity全屏
+    public static void setStatusBarTransParent(Activity activity){
+
+        //5.0以上
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+            //状态栏和虚拟键全屏（华为虚拟键覆盖在底部tab上）
+            View decorView = activity.getWindow().getDecorView();
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
+
+            //判断有虚拟键 把底部tab顶上去
+          /*  if(checkDeviceHasNavigationBar(activity)){
+
+                ViewGroup contentView= (ViewGroup) activity.findViewById(android.R.id.content);
+                contentView.setPadding(0,0,0,getDeviceHasNavigationBar(activity));
+
+            }*/
+        }
+
+        //sdk 4.4-5.0以下
+        else if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT) {
+
+            //电量存在  状态栏和虚拟键全屏（华为虚拟键覆盖在底部tab）
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            //判断有虚拟键 把底部tab顶上去
+           /* if(checkDeviceHasNavigationBar(activity)){
+
+                ViewGroup contentView= (ViewGroup) activity.findViewById(android.R.id.content);
+                contentView.setPadding(0,0,0,getDeviceHasNavigationBar(activity));
+
+            }*/
+
+        }
+    }
+
+
     /**
      * 获取状态栏高度
      * @param activity
@@ -73,24 +116,44 @@ public class StatusBarUtils {
         return resources.getDimensionPixelOffset(resourcesID);
     }
 
-    //设置activity全屏
-    public static void setStatusBarTransParent(Activity activity){
+    /**
+     * 获取 华为虚拟键的高度
+     * @param activity
+     * @return
+     */
+    public static  int getDeviceHasNavigationBar(Activity activity){
 
-        //5.0以上
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
-
-            View decorView = activity.getWindow().getDecorView();
-            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-            activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
-        }
-
-        //sdk 4.4-5.0以下
-        else if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT) {
-
-            //电量存在  全屏
-            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
+        Resources res = activity.getResources();
+        int id = res.getIdentifier("navigation_bar_height", "dimen", "android");
+        return res.getDimensionPixelOffset(id);
     }
 
+    /**
+     * 反射判断是否存在华为虚拟键 NavigationBar
+     * @param context
+     * @return
+     */
+    public static boolean checkDeviceHasNavigationBar(Activity context) {
+        boolean hasNavigationBar = false;
+        Resources rs = context.getResources();
+        int id = rs.getIdentifier("config_showNavigationBar", "bool", "android");
+        if (id > 0) {
+            hasNavigationBar = rs.getBoolean(id);
+        }
+        try {
+            Class systemPropertiesClass = Class.forName("android.os.SystemProperties");
+            Method m = systemPropertiesClass.getMethod("get", String.class);
+            String navBarOverride = (String) m.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
+            if ("1".equals(navBarOverride)) {
+                hasNavigationBar = false;
+            } else if ("0".equals(navBarOverride)) {
+                hasNavigationBar = true;
+            }
+        } catch (Exception e) {
+
+        }
+        return hasNavigationBar;
+
+    }
 
 }
