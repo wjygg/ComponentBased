@@ -18,10 +18,10 @@
 
 
     <com.example.wangjingyun.componentbased.widget.CircularScaleDiagramView
-        android:layout_width="100px"
+        android:layout_width="200px"
         app:CircularScaleDiagramViewArcWidth="20px"
         app:CircularScaleDiagramViewArcColor="@color/blue_30"
-        android:layout_height="100px"
+        android:layout_height="200px"
         app:CircularScaleDiagramViewText="20"
         app:CircularScaleDiagramViewTextColor="@color/white"
         app:CircularScaleDiagramViewCircleColor="@color/orange"

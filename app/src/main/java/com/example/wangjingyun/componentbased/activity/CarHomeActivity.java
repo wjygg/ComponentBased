@@ -1,13 +1,11 @@
 package com.example.wangjingyun.componentbased.activity;
 
-import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
 import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.activity.base.BaseActivity;
 import com.example.wangjingyun.componentbased.entity.TriangleTypeEntity;
-import com.example.wangjingyun.componentbased.widget.LinnearScrowView;
 import com.example.wangjingyun.componentbased.widget.TriangleTypeView;
 import com.example.wangjingyun.componentbasesdk.ioc.ViewById;
 
