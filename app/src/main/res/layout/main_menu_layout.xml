@@ -4,17 +4,10 @@
     android:orientation="vertical"
     android:background="@color/white"
     android:layout_height="match_parent">
-
-    <TextView
-    android:layout_marginLeft="10dp"
-    android:layout_marginTop="10dp"
-    android:background="@color/blue_30"
-    android:layout_width="50dp"
-    android:layout_height="50dp" />
     <TextView
         android:id="@+id/btn_homepage"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:text="ViewDragHelper"
         android:textSize="17sp"
         android:textColor="@color/black_alpha_30"
@@ -23,7 +16,7 @@
     <TextView
         android:id="@+id/drow_down"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:text="下拉选择菜单"
         android:textSize="17sp"
         android:gravity="center"
@@ -32,13 +25,13 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:id="@+id/tv_drag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="首页"
+        android:text="拖拽控件"
         android:textColor="@color/black_alpha_30"
         android:textSize="17sp" />
 

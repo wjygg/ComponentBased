@@ -43,6 +43,9 @@ public class HomeActivity extends BaseActivity {
     @ViewById(R.id.drow_down)
     TextView drow_down;
 
+    @ViewById(R.id.tv_drag)
+    TextView tv_drag;
+
     private HomeFragment homeFragment;
     private MessageFragment messageFragment;
     private MineFragment mineFragment;
@@ -101,6 +104,12 @@ public class HomeActivity extends BaseActivity {
     public void drowDown(){
         startActivity(new Intent(HomeActivity.this,DropDownActivity.class));
 
+    }
+
+    @com.example.wangjingyun.componentbasesdk.ioc.OnClick(R.id.tv_drag)
+    public void dragView(){
+
+        startActivity(new Intent(HomeActivity.this,DragCntrolActivity.class));
     }
     @OnClick(R.id.home_fragment)
     public void clickHomeFragment() {

@@ -42,6 +42,7 @@ public class DropDownActivity extends BaseActivity {
             public View getTabView(Context context, int position, ViewGroup parent) {
                 TextView textView=new TextView(context);
                 textView.setText(datas[position]);
+                textView.setTextSize(25);
                 return textView;
             }
 
