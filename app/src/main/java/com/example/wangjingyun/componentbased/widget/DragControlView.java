@@ -1,10 +1,12 @@
 package com.example.wangjingyun.componentbased.widget;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PixelFormat;
 import android.graphics.PointF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -12,6 +14,9 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
+
+import com.example.wangjingyun.componentbased.utils.StatusBarUtils;
 
 /**
  * 拖拽贝塞尔曲线
@@ -23,20 +28,15 @@ public class DragControlView extends View{
     // 两个圆的圆形
     private PointF mFixationPoint, mDragPoint;
 
-    private Paint paint;
-
-    //固定圆x
-    private float fixedCircleX;
-    //固定圆y
-    private float fixedCircleY;
-    //拖动圆x
-    private float dragCircleX;
-    //拖动圆y
-    private float dragCircleY;
+    private Paint paint,textPaint;
 
     private float fixedCircleRadius=17;
 
     private float dragCircleRadius=24;
+
+    private Context context;
+
+
 
     public DragControlView(Context context) {
         this(context,null);
@@ -48,6 +48,7 @@ public class DragControlView extends View{
 
     public DragControlView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        this.context=context;
         initPaint();
     }
 
@@ -59,19 +60,64 @@ public class DragControlView extends View{
         paint.setStyle(Paint.Style.FILL);
         paint.setDither(true);
 
+        textPaint=new Paint();
+        textPaint.setTextSize(12);
+        textPaint.setColor(Color.WHITE);
+        textPaint.setAntiAlias(true);
+        textPaint.setStyle(Paint.Style.FILL);
+
+
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        setMeasuredDimension(getMeasuredDimension(widthMeasureSpec),getMeasuredDimension(heightMeasureSpec));
+    }
+
+
+    private int getMeasuredDimension(int measureSpec){
+
+        int newWidth=0;
+
+        int size=MeasureSpec.getSize(measureSpec);
+        int mode = MeasureSpec.getMode(measureSpec);
+
+        if(mode==MeasureSpec.AT_MOST){
+            newWidth=100;
+        }else{
+            newWidth=size;
+        }
+
+        return newWidth;
+
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+
+        //获取绘制字体的 baseline
+
+        Paint.FontMetricsInt fontMetricsInt= paint.getFontMetricsInt();
+        //(fontMetricsInt.bottom-fontMetricsInt.top)/2 字体高度的一半
+        int dy=(fontMetricsInt.bottom-fontMetricsInt.top)/2-fontMetricsInt.bottom;
+        //getHeight()/2 控件的一半
+        int baseline=getHeight()/2+dy;
+        //x偏移量
+        int xLine= (int) (getWidth()/2-paint.measureText("17")/2);
+        canvas.drawText("17",xLine,baseline,textPaint);
+
         if (mDragPoint == null || mFixationPoint == null) {
             return;
         }
 
-        //绘制拖动圆
+        //绘制bagview
         canvas.drawCircle(mDragPoint.x,mDragPoint.y,dragCircleRadius,paint);
 
-
+        //文字居中
         float y=mDragPoint.y-mFixationPoint.y;
         float x=mDragPoint.x-mFixationPoint.x;
 
@@ -121,43 +167,21 @@ public class DragControlView extends View{
 
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
 
-        switch (event.getAction()){
-
-            case MotionEvent.ACTION_DOWN:
-                fixedCircleX=event.getX();
-                fixedCircleY=event.getY();
-                initPoint(fixedCircleX,fixedCircleY);
-                break;
-
-            case MotionEvent.ACTION_MOVE:
-
-                dragCircleX=event.getX();
-                dragCircleY=event.getY();
-                updateDragPoint(dragCircleX, dragCircleY);
-                break;
-
-            case MotionEvent.ACTION_UP:
-                break;
-
-        }
-        invalidate();
-
-        return true;
-    }
-
-    private void updateDragPoint(float moveX, float moveY) {
+    public void updateDragPoint(float moveX, float moveY) {
         mDragPoint.x = moveX;
         mDragPoint.y = moveY;
     }
 
-    private void initPoint(float downX, float downY){
+    public void initPoint(float downX, float downY){
         mFixationPoint = new PointF(downX, downY);
         mDragPoint = new PointF(downX, downY);
     }
 
+    @Override
+    public void setOnTouchListener(OnTouchListener l) {
+        super.setOnTouchListener(l);
+    }
 
     /**
      * @param context 上下文
@@ -168,5 +192,54 @@ public class DragControlView extends View{
 
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,values, context.getResources().getDisplayMetrics());
 
+    }
+
+    public static class DragViewListener implements OnTouchListener{
+
+        private  WindowManager wmManager;
+
+        private Context context;
+
+        private DragControlView dragControlView;
+
+        public DragViewListener(Context context){
+
+            this.context=context;
+        }
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+
+            switch (event.getAction()){
+                case MotionEvent.ACTION_DOWN:
+                    //隐藏自己
+                    v.setVisibility(INVISIBLE);
+                    //将自己放到windowsmanger上
+                    wmManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+                    WindowManager.LayoutParams wmParams = new WindowManager.LayoutParams();
+                    wmParams.format= PixelFormat.TRANSLUCENT;
+                    dragControlView=new DragControlView(context);
+                    float fixedCircleX=event.getRawX();
+                    float fixedCircleY=event.getRawY()- StatusBarUtils.getStatusHeight(context);
+                    dragControlView.initPoint(fixedCircleX,fixedCircleY);
+                    wmManager.addView(dragControlView,wmParams);
+
+                    break;
+                case MotionEvent.ACTION_MOVE:
+
+                    float dragCircleX=event.getRawX();
+                    float dragCircleY=event.getRawY();
+                    dragControlView.updateDragPoint(dragCircleX, dragCircleY);
+
+                    break;
+                case MotionEvent.ACTION_UP:
+                    //windowmanager 移除view
+                    wmManager.removeView(dragControlView);
+                    break;
+
+            }
+            dragControlView.invalidate();
+            return true;
+        }
     }
 }

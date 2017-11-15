@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.wangjingyun.componentbased.widget.BouquetPraiseView
+    android:id="@+id/bouquetpraiseview"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
     <com.example.wangjingyun.componentbased.widget.DragControlView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/dragcontrolview"
+        android:background="@color/blue_30"
+        android:layout_width="40px"
+        android:layout_centerInParent="true"
+        android:layout_height="40px"
         ></com.example.wangjingyun.componentbased.widget.DragControlView>
-</LinearLayout>
+
+    <TextView
+        android:id="@+id/textview"
+        android:textSize="30sp"
+        android:text="花束"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</com.example.wangjingyun.componentbased.widget.BouquetPraiseView>

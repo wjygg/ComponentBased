@@ -83,12 +83,12 @@ public class StatusBarUtils {
             activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
 
             //判断有虚拟键 把底部tab顶上去
-            if(checkDeviceHasNavigationBar(activity)){
+           /* if(checkDeviceHasNavigationBar(activity)){
 
                 ViewGroup contentView= (ViewGroup) activity.findViewById(android.R.id.content);
                 contentView.setPadding(0,0,0,getDeviceHasNavigationBar(activity));
 
-            }
+            }*/
         }
 
         //sdk 4.4-5.0以下
@@ -128,7 +128,14 @@ public class StatusBarUtils {
      * @param activity
      * @return
      */
-    private static int getStatusHeight(Activity activity){
+    public static int getStatusHeight(Activity activity){
+
+        Resources resources=activity.getResources();
+        int resourcesID=resources.getIdentifier("status_bar_height","dimen","android");
+        return resources.getDimensionPixelOffset(resourcesID);
+    }
+
+    public static int getStatusHeight(Context activity){
 
         Resources resources=activity.getResources();
         int resourcesID=resources.getIdentifier("status_bar_height","dimen","android");
