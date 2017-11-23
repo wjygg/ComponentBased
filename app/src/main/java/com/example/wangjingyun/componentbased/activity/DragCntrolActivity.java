@@ -2,12 +2,14 @@ package com.example.wangjingyun.componentbased.activity;
 
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.activity.base.BaseActivity;
 import com.example.wangjingyun.componentbased.dialog.BaseDialog;
+import com.example.wangjingyun.componentbased.dialog.titlebar.BaseTitleBar;
 import com.example.wangjingyun.componentbased.utils.StatusBarUtils;
 import com.example.wangjingyun.componentbased.widget.BouquetPraiseView;
 import com.example.wangjingyun.componentbased.widget.DragControlView;
@@ -34,6 +36,13 @@ public class DragCntrolActivity extends BaseActivity{
     @ViewById(R.id.dialog)
     TextView dialog;
 
+    @Override
+    public void initTitle() {
+        BaseTitleBar baseTitleBar=new BaseTitleBar.Builder(DragCntrolActivity.this,(ViewGroup)findViewById(R.id.ll_ly))
+                .setAlignText(R.id.tv_align,"测试").setAlignTextColor(R.id.tv_align,R.color.white).setBackGround(R.color.pink_text_color)
+                .builder();
+
+    }
 
     @Override
     public int getLayoutId() {
