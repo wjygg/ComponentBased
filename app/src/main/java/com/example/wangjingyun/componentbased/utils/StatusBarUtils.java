@@ -25,7 +25,6 @@ import java.lang.reflect.Method;
 
 public class StatusBarUtils {
 
-
     /**
      * 设置状态栏 变色
      * @param activity

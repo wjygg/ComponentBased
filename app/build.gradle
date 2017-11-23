@@ -27,7 +27,7 @@ android {
         }
     }
 
-    task ndkBuild(type: Exec) {
+ /*   task ndkBuild(type: Exec) {
 
         commandLine "D:\\Android\\sdk\\ndk-bundle\\ndk-build.cmd",
                 'NDK_PROJECT_PATH=build/intermediates/ndk',
@@ -40,7 +40,7 @@ android {
 
     tasks.withType(JavaCompile) {
         compileTask -> compileTask.dependsOn ndkBuild
-    }
+    }*/
 }
 
 dependencies {

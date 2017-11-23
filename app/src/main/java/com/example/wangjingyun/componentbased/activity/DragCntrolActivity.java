@@ -1,10 +1,13 @@
 package com.example.wangjingyun.componentbased.activity;
 
+import android.view.Gravity;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.activity.base.BaseActivity;
+import com.example.wangjingyun.componentbased.dialog.BaseDialog;
 import com.example.wangjingyun.componentbased.utils.StatusBarUtils;
 import com.example.wangjingyun.componentbased.widget.BouquetPraiseView;
 import com.example.wangjingyun.componentbased.widget.DragControlView;
@@ -28,6 +31,9 @@ public class DragCntrolActivity extends BaseActivity{
     @ViewById(R.id.textview)
     TextView textview;
 
+    @ViewById(R.id.dialog)
+    TextView dialog;
+
 
     @Override
     public int getLayoutId() {
@@ -40,11 +46,24 @@ public class DragCntrolActivity extends BaseActivity{
         dragcontrolview.setOnTouchListener(new DragControlView.DragViewListener(DragCntrolActivity.this));
     }
 
-
     @OnClick(R.id.textview)
     public void setTextview(){
 
         bouquetpraiseview.addView();
+    }
+
+    @OnClick(R.id.dialog)
+    public void clickDialog(){
+        BaseDialog baseDialog = new BaseDialog.Builder(DragCntrolActivity.this, R.style.DialogTheme).setView(R.layout.dialog_dragcntrol_layout)
+               .setOnClickListener(R.id.textview, new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+                       Toast.makeText(DragCntrolActivity.this,((TextView)v).getText().toString(),Toast.LENGTH_SHORT).show();
+                   }
+               }).setText(R.id.textview,"测试").setGravity(Gravity.TOP).builder();
+
+        baseDialog.show();
+
     }
 
 }
