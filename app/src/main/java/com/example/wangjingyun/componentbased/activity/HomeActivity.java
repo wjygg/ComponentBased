@@ -1,17 +1,21 @@
 package com.example.wangjingyun.componentbased.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.activity.base.BaseActivity;
 import com.example.wangjingyun.componentbased.activity.fragment.HomeFragment;
 import com.example.wangjingyun.componentbased.activity.fragment.MessageFragment;
 import com.example.wangjingyun.componentbased.activity.fragment.MineFragment;
+import com.example.wangjingyun.componentbased.utils.StatusBarUtils;
+import com.example.wangjingyun.componentbased.widget.TriangleTypeView;
 import com.example.wangjingyun.componentbasesdk.ioc.ViewById;
 import com.example.wangjingyun.componentbasesdk.log.ExctptionCarshHandler;
 
@@ -34,10 +38,22 @@ public class HomeActivity extends BaseActivity {
     LinearLayout mine_fragment;
 
     @ViewById(R.id.btn_homepage)
-    Button btn_homepage;
+    TextView btn_homepage;
+
+    @ViewById(R.id.drow_down)
+    TextView drow_down;
+
+    @ViewById(R.id.tv_drag)
+    TextView tv_drag;
+
     private HomeFragment homeFragment;
     private MessageFragment messageFragment;
     private MineFragment mineFragment;
+
+    @Override
+    public void setStatusBar() {
+        StatusBarUtils.setStatusBarTransParent(HomeActivity.this);
+    }
 
     @Override
     public int getLayoutId() {
@@ -79,9 +95,22 @@ public class HomeActivity extends BaseActivity {
     @com.example.wangjingyun.componentbasesdk.ioc.OnClick(R.id.btn_homepage)
     public void clickBtnHomePage(){
 
-        startActivity(new Intent(HomeActivity.this,CarHomeActivity.class));
+      //  startActivity(new Intent(HomeActivity.this,CarHomeActivity.class));
+
+        startActivity(new Intent(HomeActivity.this,VDHActivity.class));
     }
 
+    @com.example.wangjingyun.componentbasesdk.ioc.OnClick(R.id.drow_down)
+    public void drowDown(){
+        startActivity(new Intent(HomeActivity.this,DropDownActivity.class));
+
+    }
+
+    @com.example.wangjingyun.componentbasesdk.ioc.OnClick(R.id.tv_drag)
+    public void dragView(){
+
+        startActivity(new Intent(HomeActivity.this,DragCntrolActivity.class));
+    }
     @OnClick(R.id.home_fragment)
     public void clickHomeFragment() {
 

@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.example.wangjingyun.componentbasesdk.ioc.ViewUtils;
 
@@ -27,15 +28,25 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //状态栏的颜色
+        setStatusBar();
         setContentView(getLayoutId());
         ButterKnife.inject(this);
         ViewUtils.Inject(this);
+        //设置头部
+        initTitle();
         initDatas();
     }
+
+
 
     public abstract int getLayoutId();
 
     public abstract void initDatas();
+
+    public void setStatusBar(){}
+
+    public void initTitle(){}
 
     //判断 6.0权限
     public boolean hasPermission(Context context, String ... permissions){

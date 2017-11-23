@@ -16,6 +16,7 @@
         android:layout_height="200px"
        ></com.example.wangjingyun.componentbased.widget.QQView>
 
+
     <com.example.wangjingyun.componentbased.widget.CircularScaleDiagramView
         android:layout_width="200px"
         app:CircularScaleDiagramViewArcWidth="20px"
@@ -26,7 +27,6 @@
         app:CircularScaleDiagramViewCircleColor="@color/orange"
         app:CircularScaleDiagramViewTextSize="100px"
         android:id="@+id/circularScaleDiagramView" />
-
 
     <com.example.wangjingyun.componentbased.widget.TagView
         android:id="@+id/tagview"

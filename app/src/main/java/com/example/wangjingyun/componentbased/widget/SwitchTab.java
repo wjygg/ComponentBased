@@ -106,7 +106,6 @@ public class SwitchTab extends LinearLayout {
     public  int px2dip(Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue/scale + 0.5f);
-
     }
 
     public int px2sp(Context context, float pxValue) {
