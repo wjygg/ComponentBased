@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.activity.base.BaseActivity;
@@ -37,8 +38,13 @@ public class HomeActivity extends BaseActivity {
     LinearLayout mine_fragment;
 
     @ViewById(R.id.btn_homepage)
-    Button btn_homepage;
+    TextView btn_homepage;
 
+    @ViewById(R.id.drow_down)
+    TextView drow_down;
+
+    @ViewById(R.id.tv_drag)
+    TextView tv_drag;
 
     private HomeFragment homeFragment;
     private MessageFragment messageFragment;
@@ -94,6 +100,17 @@ public class HomeActivity extends BaseActivity {
         startActivity(new Intent(HomeActivity.this,VDHActivity.class));
     }
 
+    @com.example.wangjingyun.componentbasesdk.ioc.OnClick(R.id.drow_down)
+    public void drowDown(){
+        startActivity(new Intent(HomeActivity.this,DropDownActivity.class));
+
+    }
+
+    @com.example.wangjingyun.componentbasesdk.ioc.OnClick(R.id.tv_drag)
+    public void dragView(){
+
+        startActivity(new Intent(HomeActivity.this,DragCntrolActivity.class));
+    }
     @OnClick(R.id.home_fragment)
     public void clickHomeFragment() {
 

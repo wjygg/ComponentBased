@@ -18,4 +18,5 @@
     <color name="black_alpha_30">#48000000</color>
     <!-- 半透明 -->
     <color name="translucent">#b0000000</color>
+    <color name="translucentcolor">#88888888</color>
 </resources>

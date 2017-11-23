@@ -174,7 +174,7 @@ public class TagView extends ViewGroup{
             }
         }
 
-            // 记录最后一行  
+            //记录最后一行
                 mHeight.add(lineHeight);
                 mAllViews.add(views);
 

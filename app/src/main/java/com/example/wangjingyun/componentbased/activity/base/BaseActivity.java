@@ -33,14 +33,20 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(getLayoutId());
         ButterKnife.inject(this);
         ViewUtils.Inject(this);
+        //设置头部
+        initTitle();
         initDatas();
     }
+
+
 
     public abstract int getLayoutId();
 
     public abstract void initDatas();
 
     public void setStatusBar(){}
+
+    public void initTitle(){}
 
     //判断 6.0权限
     public boolean hasPermission(Context context, String ... permissions){
