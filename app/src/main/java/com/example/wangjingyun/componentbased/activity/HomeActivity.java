@@ -46,6 +46,9 @@ public class HomeActivity extends BaseActivity {
     @ViewById(R.id.tv_drag)
     TextView tv_drag;
 
+    @ViewById(R.id.tv_fish)
+    TextView tv_fish;
+
     private HomeFragment homeFragment;
     private MessageFragment messageFragment;
     private MineFragment mineFragment;
@@ -89,7 +92,6 @@ public class HomeActivity extends BaseActivity {
         homeFragment = HomeFragment.getInstance();
         fragmentTransaction.add(R.id.frame_layout, homeFragment)
                 .commit();
-
     }
 
     @com.example.wangjingyun.componentbasesdk.ioc.OnClick(R.id.btn_homepage)
@@ -111,6 +113,13 @@ public class HomeActivity extends BaseActivity {
 
         startActivity(new Intent(HomeActivity.this,DragCntrolActivity.class));
     }
+
+    @com.example.wangjingyun.componentbasesdk.ioc.OnClick(R.id.tv_fish)
+    public void fish(){
+
+        startActivity(new Intent(HomeActivity.this,OddFishViewActivity.class));
+    }
+
     @OnClick(R.id.home_fragment)
     public void clickHomeFragment() {
 

@@ -44,21 +44,22 @@ public class StatusBarUtils {
 
             //电量存在  全屏
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            //获取 decorView 布局 添加一个布局
+            //获取 decorView 里面的LinearLayout布局 添加一个布局
             ViewGroup decorView = (ViewGroup) activity.getWindow().getDecorView();
+            LinearLayout linearLayout= (LinearLayout) decorView.getChildAt(0);
 
             View view=new View(activity);
             view.setBackgroundColor(color);
             ViewGroup.LayoutParams params=new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,getStatusHeight(activity));
             view.setLayoutParams(params);
 
-            //添加进 decorView
-            decorView.addView(view);
+            //添加进 LinearLayout
+            linearLayout.addView(view,0);
 
             //phonewindow-  decorView  - contentView - 根布局
-            ViewGroup contentView = (ViewGroup) activity.findViewById(android.R.id.content);
+          //  ViewGroup contentView = (ViewGroup) activity.findViewById(android.R.id.content);
             //设置contentview的padding值
-            contentView.setPadding(0,getStatusHeight(activity),0,0);
+         //   contentView.setPadding(0,getStatusHeight(activity),0,0);
             //根布局
           //  View childAt = contentView.getChildAt(0);
             //设置为true 空余出 状态栏的值 类似padding

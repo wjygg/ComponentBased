@@ -76,7 +76,7 @@ public class CarHomeView extends FrameLayout {
                 super.onViewReleased(releasedChild, xvel, yvel);
 
                 if(releasedChild==childView){
-
+                    //判断 上层布局距离头部距离
                     if(childView.getTop()<measuredChildHeight/2){
                         //关闭
                         boolean close = close();

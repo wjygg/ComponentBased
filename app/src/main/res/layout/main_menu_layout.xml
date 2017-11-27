@@ -34,5 +34,15 @@
         android:text="拖拽控件"
         android:textColor="@color/black_alpha_30"
         android:textSize="17sp" />
+    <TextView
+        android:id="@+id/tv_fish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="奇鱼"
+        android:textColor="@color/black_alpha_30"
+        android:textSize="17sp" />
 
 </LinearLayout>

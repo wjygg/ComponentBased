@@ -1,5 +1,7 @@
 package com.example.wangjingyun.componentbased.activity;
 
+import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,9 +38,17 @@ public class DragCntrolActivity extends BaseActivity{
     @ViewById(R.id.dialog)
     TextView dialog;
 
+
+    @Override
+    public void setStatusBar() {
+        super.setStatusBar();
+
+        StatusBarUtils.setStatusBarUtils(DragCntrolActivity.this, ContextCompat.getColor(DragCntrolActivity.this,R.color.pink_text_color));
+    }
+
     @Override
     public void initTitle() {
-        BaseTitleBar baseTitleBar=new BaseTitleBar.Builder(DragCntrolActivity.this,(ViewGroup)findViewById(R.id.ll_ly))
+        BaseTitleBar baseTitleBar=new BaseTitleBar.Builder(DragCntrolActivity.this)
                 .setAlignText(R.id.tv_align,"测试").setAlignTextColor(R.id.tv_align,R.color.white).setBackGround(R.color.pink_text_color)
                 .builder();
 

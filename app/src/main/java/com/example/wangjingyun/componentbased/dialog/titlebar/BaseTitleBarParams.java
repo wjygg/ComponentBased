@@ -14,8 +14,6 @@ public class BaseTitleBarParams {
 
     public Context context;
 
-    public ViewGroup viewGroup;
-
     public int backGroundColor;
 
     public SparseArray<String> stringSparseArray=new SparseArray<>();
@@ -28,9 +26,9 @@ public class BaseTitleBarParams {
     //点击事件
     public SparseArray<View.OnClickListener> clickSparseArray=new SparseArray<>();
 
-    public BaseTitleBarParams(Context context,ViewGroup viewGroup){
+    public BaseTitleBarParams(Context context){
 
-        this.context=context;this.viewGroup=viewGroup;
+        this.context=context;
 
     }
 }

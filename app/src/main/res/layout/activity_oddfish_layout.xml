@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.wangjingyun.componentbased.widget.OddFishView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycleview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <TextView
+       android:text="这是半透明头部"
+        android:gravity="center"
+        android:background="@color/translucentcolor"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:text="ScrollView内部内容1"
+                android:gravity="center"
+                android:background="@color/font_normal"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"/>
+
+            <TextView
+                android:text="ScrollView内部内容2"
+                android:gravity="center"
+                android:background="@color/font_normal"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"/>
+
+            <TextView
+                android:text="ScrollView内部内容3"
+                android:gravity="center"
+                android:background="@color/font_normal"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"/>
+
+
+            <TextView
+                android:text="ScrollView内部内容4"
+                android:gravity="center"
+                android:background="@color/font_normal"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:layout_gravity="bottom"
+        android:text="这是底部按钮"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+</com.example.wangjingyun.componentbased.widget.OddFishView>

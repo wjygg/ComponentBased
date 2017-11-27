@@ -17,6 +17,9 @@ import butterknife.ButterKnife;
 
 
 /**
+ *
+ * http://www.gcssloop.com/customview/CoordinateSystem 安卓自定义控件
+ *http://blog.csdn.net/harvic880925/article/details/50995268 安卓自定义控件
  * Created by Administrator on 2017/3/11.
  *
  */
@@ -28,9 +31,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(getLayoutId());
         //状态栏的颜色
         setStatusBar();
-        setContentView(getLayoutId());
         ButterKnife.inject(this);
         ViewUtils.Inject(this);
         //设置头部

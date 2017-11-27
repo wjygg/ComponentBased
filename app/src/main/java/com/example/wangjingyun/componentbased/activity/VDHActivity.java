@@ -34,7 +34,6 @@ public class VDHActivity extends BaseActivity {
         super.setStatusBar();
         //设置activity全屏
         StatusBarUtils.setStatusBarUtils(VDHActivity.this, Color.BLUE);
-
     }
 
     @Override

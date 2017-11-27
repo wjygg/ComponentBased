@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -36,11 +37,14 @@ public class BaseTitleBar {
 
     private void initView(){
 
-       //设置布局
-       view= LayoutInflater.from(baseTitleBarParams.context).inflate(R.layout.bar_basetitle_layout,baseTitleBarParams.viewGroup,false);
+        //decorView 是framelayout 包含系统布局 LinearLayout 包含  framelayout id contentview 加载自己布局
+        ViewGroup decorView = (ViewGroup) ((Activity) baseTitleBarParams.context).getWindow().getDecorView();
 
-       baseTitleBarParams.viewGroup.addView(view,0);
+        LinearLayout childAt = (LinearLayout) decorView.getChildAt(0);
 
+        view= LayoutInflater.from(baseTitleBarParams.context).inflate(R.layout.bar_basetitle_layout,childAt,false);
+
+        childAt.addView(view,1);
     }
 
     private void initEvent(){
@@ -121,16 +125,9 @@ public class BaseTitleBar {
 
         public Builder(Context context){
 
-            this(context,null);
-        }
-
-        public Builder(Context context,ViewGroup viewGroup){
-
             this.context=context;
 
-            baseTitleBarParams=new BaseTitleBarParams(context,viewGroup);
-
-            baseTitleBarParams.context=context;
+            baseTitleBarParams=new BaseTitleBarParams(context);
         }
 
         /**
