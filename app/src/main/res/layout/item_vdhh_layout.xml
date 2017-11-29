@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/textview"
         tools:text="测试"
-        android:background="@color/blue_30"
+        android:background="@color/black_alpha_30"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="100dp" />

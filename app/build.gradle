@@ -59,4 +59,6 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.5.2'
     //视频合成
     compile files('libs/isoviewer-1.0-RC-27.jar')
+    //recycelview
+    compile 'com.github.wjygg:CommonRecycleView:0.0.3'
 }
