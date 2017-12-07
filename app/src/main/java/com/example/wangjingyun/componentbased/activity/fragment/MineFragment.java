@@ -127,7 +127,6 @@ public class MineFragment extends BaseFragment {
             public void bannerClick(int position) {
                 //点击事件
                 Toast.makeText(getActivity(),position+"",Toast.LENGTH_SHORT).show();
-
             }
         });
         bannerView.startCarousel();

@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">ComponentBased</string>
+    <string name="text">前言
+
+本文同步发布到我的掘金专栏Material Design之 AppbarLayout 开发实践总结
+
+前一篇文章是Material Design 系列的第一篇文章，讲了Toolbar 的使用，《Material Design 之 Toolbar 开发实践总结》，还没看过的同学可以去看一下，这篇是Material Design 系列的第二篇文章，这次我们讲AppbarLayout。一说到AppbarLayout,那么我们必然会说到另外两个与AppbarLayout经常一起使用的View，那就是 CoordinatorLayout和CollapsingToolbarLayout。这三个View在一起使用的功能非常强大，可以实现很多炫酷的UI和动画效果。本篇文章将分别介绍三个view的一些功能和属性，最将三个View结合在一起使用实现炫酷的UI效果。
+
+正文
+
+1, CoordinatorLayout
+
+第一次接触CoordinatorLayout 你可能有这些疑问，CoordinatorLayout 到底是个什么玩意儿呢？它到底能帮我们做什么？我们要了解它，肯定是先看官方文档了。文档的第一句话就非常醒目：** CoordinatorLayout is a super-powered  FrameLayout **,非常明了，CoordinatorLayout 继承于ViewGroup,它就是一个超级强大Framelayout。CoordinatorLayout的作用就是协调子View。它有两种使用场景：
+
+
+1,作为 一个应用顶层的装饰布局，也就是一个Activity Layout 的最外一层布局。
+
+2，As a container for a specific interaction with one or more child views，作为一个或多个有特定响应动作的容器。
+
+
+CoordinatorLayout 可以协调子View，而这些子View 的具体响应动作是通过 behavior 来指定的。如果你有特定的需求，你就需要自己定义一个特定的 Behavior,Google 也给我们定义了一些常用的Behavior，如后面要用的到的 appbar_scrolling_view_behavior ，用于协调 AppbarLayout 与 ScrollView 滑动的Behavior，如下：
+
+
+作者：依然范特稀西
+链接：http://www.jianshu.com/p/ac56f11e7ce1
+來源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</string>
 </resources>

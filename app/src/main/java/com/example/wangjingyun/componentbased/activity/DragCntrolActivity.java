@@ -12,9 +12,12 @@ import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.activity.base.BaseActivity;
 import com.example.wangjingyun.componentbased.dialog.BaseDialog;
 import com.example.wangjingyun.componentbased.dialog.titlebar.BaseTitleBar;
+import com.example.wangjingyun.componentbased.entity.TriangleTypeEntity;
+import com.example.wangjingyun.componentbased.network.HttpCallBackEntity;
 import com.example.wangjingyun.componentbased.utils.StatusBarUtils;
 import com.example.wangjingyun.componentbased.widget.BouquetPraiseView;
 import com.example.wangjingyun.componentbased.widget.DragControlView;
+import com.example.wangjingyun.componentbasesdk.http.HttpUtils;
 import com.example.wangjingyun.componentbasesdk.ioc.OnClick;
 import com.example.wangjingyun.componentbasesdk.ioc.ViewById;
 
@@ -61,6 +64,18 @@ public class DragCntrolActivity extends BaseActivity{
 
     @Override
     public void initDatas() {
+
+        HttpUtils.with(DragCntrolActivity.this).url("").execute(new HttpCallBackEntity<TriangleTypeEntity>() {
+            @Override
+            public void onSuccess(TriangleTypeEntity triangleTypeEntity) {
+
+            }
+
+            @Override
+            public void onError(Exception e) {
+
+            }
+        });
 
         dragcontrolview.setOnTouchListener(new DragControlView.DragViewListener(DragCntrolActivity.this));
     }
