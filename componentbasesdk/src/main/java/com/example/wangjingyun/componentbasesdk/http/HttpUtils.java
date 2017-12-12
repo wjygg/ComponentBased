@@ -13,8 +13,8 @@ import java.util.Map;
 public class HttpUtils {
     // 上下文
     private Context mContext;
-    // 网络访问引擎
-    private static OkHttpEngine mHttpEngine = new OkHttpEngine();
+    // 网络访问引擎 多态
+    private static HttpEngine mHttpEngine = new OkHttpEngine();
     // 接口地址
     private String mUrl;
     // 请求参数
@@ -39,6 +39,12 @@ public class HttpUtils {
         this.mContext = context;
         mParams = new HashMap<>();
     }
+
+    // 可以在Application中配置HttpEngine
+    public static void initEngine(HttpEngine httpEngine){
+          mHttpEngine = httpEngine;
+    }
+
 
     public static HttpUtils with(Context context) {
         return new HttpUtils(context);

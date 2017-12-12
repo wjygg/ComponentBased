@@ -49,6 +49,9 @@ public class HomeActivity extends BaseActivity {
     @ViewById(R.id.tv_fish)
     TextView tv_fish;
 
+    @ViewById(R.id.tv_appbar)
+    TextView tv_appbar;
+
     private HomeFragment homeFragment;
     private MessageFragment messageFragment;
     private MineFragment mineFragment;
@@ -119,6 +122,16 @@ public class HomeActivity extends BaseActivity {
 
         startActivity(new Intent(HomeActivity.this,OddFishViewActivity.class));
     }
+
+    @com.example.wangjingyun.componentbasesdk.ioc.OnClick(R.id.tv_appbar)
+    public void appbar(){
+
+
+        startActivity(new Intent(HomeActivity.this,AppBarActivity.class));
+
+    }
+
+
 
     @OnClick(R.id.home_fragment)
     public void clickHomeFragment() {
