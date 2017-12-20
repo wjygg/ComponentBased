@@ -5,22 +5,24 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.v7.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <android.support.v7.widget.Toolbar
-                app:title="ToolBar"
+            <ImageView
+                android:src="@mipmap/pl_red"
                 app:layout_scrollFlags="scroll"
                 android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"></android.support.v7.widget.Toolbar>
+                android:layout_height="200dp" />
 
-        </android.support.v7.widget.Toolbar>
-
+        <TextView
+            android:text="Toolbar"
+            android:gravity="center"
+            android:background="@color/pink_text_color"
+            android:layout_width="match_parent"
+            android:layout_height="56dp" />
     </android.support.design.widget.AppBarLayout>
 
 <android.support.v4.widget.NestedScrollView
@@ -33,5 +35,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </android.support.v4.widget.NestedScrollView>
+
 
 </android.support.design.widget.CoordinatorLayout>

@@ -2,6 +2,8 @@ package com.example.wangjingyun.componentbasesdk.http;
 
 import android.content.Context;
 
+import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,6 +21,8 @@ public interface  HttpEngine {
     // 取消请求
     // 下载文件
     // 上传文件
+    public void sendMultipart(Context context, String url, Map<String, Object> params, HttpCallBack httpCallBack, boolean cache);
     // https添加安全证书
+
 
 }

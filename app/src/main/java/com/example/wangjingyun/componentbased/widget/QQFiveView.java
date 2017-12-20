@@ -3,6 +3,7 @@ package com.example.wangjingyun.componentbased.widget;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.transition.AutoTransition;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -119,9 +120,10 @@ public class QQFiveView extends HorizontalScrollView{
 
         if(flag){
             flag=false;
-            //默认关闭 x代表屏幕外的x轴距离 y代表屏幕外y轴的距离
+            //默认关闭 x代表屏幕外的x轴距离 y代表屏幕外y轴的距离 移动的是相框
             scrollTo(childAt.getChildAt(0).getWidth(),0);
         }
+
 
     }
 

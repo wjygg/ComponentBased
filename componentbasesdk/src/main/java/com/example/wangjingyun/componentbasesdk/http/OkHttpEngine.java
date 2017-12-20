@@ -4,12 +4,17 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
+import okhttp3.Headers;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -123,4 +128,61 @@ public class OkHttpEngine implements HttpEngine {
         });
 
     }
+
+    private static final MediaType FILE_TYPE = MediaType.parse("application/octet-stream");
+    /**
+     * 上传文件
+     * @param context
+     * @param url
+     * @param params
+     * @param httpCallBack
+     * @param cache
+     */
+    @Override
+    public void sendMultipart(Context context, String url, Map<String, Object> params, final HttpCallBack httpCallBack, boolean cache) {
+
+
+        MultipartBody.Builder requestBody = new MultipartBody.Builder();
+        requestBody.setType(MultipartBody.FORM);
+        if (params != null) {
+
+            for (Map.Entry<String, Object> entry :params.entrySet()) {
+                if (entry.getValue() instanceof File) {
+
+                    requestBody.addFormDataPart(entry.getKey(),((File) entry.getValue()).getName(),RequestBody.create(FILE_TYPE, (File) entry.getValue()));
+
+                } else if (entry.getValue() instanceof String) {
+
+                    requestBody.addFormDataPart(entry.getKey(),(String) entry.getValue());
+                }
+            }
+        }
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(requestBody.build())
+                .build();
+
+        mOkHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                httpCallBack.onError(e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String resultJson = response.body().string();
+                // 当然有的时候还需要不同的些许处理
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        httpCallBack.onSucceed(resultJson);
+                    }
+                });
+            }
+        });
+
+    }
+
+
 }
