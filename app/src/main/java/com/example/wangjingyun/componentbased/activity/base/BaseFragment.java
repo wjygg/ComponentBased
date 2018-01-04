@@ -32,7 +32,7 @@ public abstract  class BaseFragment extends Fragment {
 
         View  view= (ViewGroup) inflater.inflate(getLayoutId(),null);
         setStatusBar(view);
-        ButterKnife.inject(this,view);
+        ButterKnife.bind(this,view);
 
         ViewUtils.Inject(view,this);
 
@@ -74,10 +74,7 @@ public abstract  class BaseFragment extends Fragment {
 
             readSd();
         }
-
-
     }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

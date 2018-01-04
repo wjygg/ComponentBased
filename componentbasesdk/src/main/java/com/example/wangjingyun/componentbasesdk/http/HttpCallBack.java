@@ -8,6 +8,6 @@ public interface HttpCallBack {
 
     public void onError(Exception e);
 
-    public void onSucceed(String result);
+    public void onSucceed(Object result);
 
 }

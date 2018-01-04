@@ -25,13 +25,7 @@ import java.util.List;
 
 public class OddFishViewActivity extends BaseActivity{
 
-    @ViewById(R.id.recycleview)
-    TestRecycleView recyclerView;
 
-    private List<String> datas=new ArrayList<>();
-
-    @ViewById(R.id.tv_text)
-    TextView tv_text;
     @Override
     public int getLayoutId() {
         return R.layout.activity_oddfish_layout;
@@ -40,30 +34,8 @@ public class OddFishViewActivity extends BaseActivity{
     @Override
     public void initDatas() {
 
-        for(int i=0;i<=20;i++){
-
-            datas.add("sssssssss");
-        }
-
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(OddFishViewActivity.this,LinearLayoutManager.VERTICAL,false));
-
-        recyclerView.setAdapter(new CommonRecycleViewAdapter<String>(OddFishViewActivity.this, datas, R.layout.item_vdh_layout) {
-            @Override
-            public void convert(CommonViewHolder commonViewHolder, int i, String s) {
-
-
-                commonViewHolder.setText(R.id.textview,s);
-
-            }
-        });
 
     }
 
-    @OnClick(R.id.tv_text)
-    public void getClick(){
-
-        Toast.makeText(this,"dd",Toast.LENGTH_LONG).show();
-    }
 
 }

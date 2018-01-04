@@ -18,9 +18,9 @@ public abstract class HttpCallBackEntity<T> implements HttpCallBack{
 
 
     @Override
-    public void onSucceed(String result) {
+    public void onSucceed(Object result) {
         //Class<T> t t的字节码对象 T t T类型的t 对象
-        T t = (T) JSONObject.parseObject(result, analyticData(this).getClass());
+        T t = (T) JSONObject.parseObject((String)result, analyticData(this).getClass());
 
         onSuccess(t);
     }

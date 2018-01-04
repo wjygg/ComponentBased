@@ -21,7 +21,7 @@ import com.example.wangjingyun.componentbasesdk.okhttp.listener.DisposeDataListe
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.InjectView;
+
 
 /**
  * Created by Administrator on 2017/3/11.
@@ -29,7 +29,7 @@ import butterknife.InjectView;
 
 public class HomeFragment extends BaseFragment{
 
-     @InjectView(R.id.QQView)
+     @ViewById(R.id.QQView)
      QQView qqView;
 
     @ViewById(R.id.circularScaleDiagramView)

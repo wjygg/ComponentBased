@@ -18,6 +18,8 @@ public class HttpUtils {
     private static HttpEngine mHttpEngine = new OkHttpEngine();
     // 接口地址
     private String mUrl;
+    //下载文件路径
+    private String downLoadFilsUrl;
     // 请求参数
     private Map<String, String> mParams;
     //上传文件
@@ -28,6 +30,9 @@ public class HttpUtils {
     private final int POST_REQUEST = 0x0022;
     //上传文件
     private final int UPLOAD_FILES = 0x0033;
+    //下载文件
+    private final int DOWNLOAD_FILES = 0x0044;
+
     // 请求的方式
     private int mRequestMethod = GET_REQUEST;
 
@@ -81,6 +86,16 @@ public class HttpUtils {
     }
 
     /**
+     * 保存路径
+     * @param url
+     * @return
+     */
+    public HttpUtils downLoadFilsUrl(String url) {
+        downLoadFilsUrl = url;
+        return this;
+    }
+
+    /**
      * get
      * @return
      */
@@ -105,6 +120,15 @@ public class HttpUtils {
         return this;
     }
 
+    /**
+     * 下载文件
+     * @return
+     */
+    public HttpUtils downLoadFiles(){
+        mRequestMethod=DOWNLOAD_FILES;
+        return this;
+    }
+
     // 执行方法
     public void execute(HttpCallBack httpCallBack) {
         if (TextUtils.isEmpty(mUrl)) {
@@ -122,7 +146,14 @@ public class HttpUtils {
         if(mRequestMethod==UPLOAD_FILES){
             mHttpEngine.sendMultipart(mContext,mUrl,fileParams,httpCallBack,false);
         }
+    }
 
+    // 下载进度执行方法
+    public void execute(HttpCallBackProgress httpCallBackProgress) {
+
+        if(mRequestMethod==DOWNLOAD_FILES){
+            mHttpEngine.downLoadFiles(mContext,mUrl,downLoadFilsUrl,httpCallBackProgress);
+        }
     }
 
 

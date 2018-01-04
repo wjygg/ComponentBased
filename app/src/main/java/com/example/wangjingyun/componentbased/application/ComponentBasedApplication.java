@@ -3,7 +3,12 @@ package com.example.wangjingyun.componentbased.application;
 import android.app.Application;
 import android.content.Context;
 
+import com.example.wangjingyun.componentbased.network.Constants;
 import com.example.wangjingyun.componentbasesdk.log.ExctptionCarshHandler;
+
+import java.io.File;
+
+import static com.example.wangjingyun.componentbased.network.Constants.COMPRESSIMG;
 
 
 /**
@@ -30,7 +35,23 @@ public class ComponentBasedApplication extends Application {
         //崩溃信息
         ExctptionCarshHandler.getInstance().init(this);
 
+        //创建文件夹
+        mkdirsFiles();
+
     }
+
+    private void mkdirsFiles() {
+
+        //创建压缩图片文件夹
+        File CompressFiles=new File(Constants.COMPRESSIMG);
+
+        if(!CompressFiles.exists()){
+
+            CompressFiles.mkdirs();
+        }
+
+    }
+
     public static ComponentBasedApplication getInstance(){
 
 

@@ -35,7 +35,6 @@ import java.util.List;
 
 
 
-import butterknife.InjectView;
 
 
 
@@ -49,10 +48,10 @@ import butterknife.InjectView;
 
 public class MessageFragment extends BaseFragment {
 
-    @InjectView(R.id.ll_message)
+    @ViewById(R.id.ll_message)
     LinearLayout ll_message;
 
-    @InjectView(R.id.viewpager)
+    @ViewById(R.id.viewpager)
     ViewPager viewPager;
 
     @ViewById(R.id.horizontablayout)

@@ -18,8 +18,10 @@ import com.bumptech.glide.Glide;
 import com.coremedia.iso.boxes.Container;
 import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.activity.base.BaseFragment;
+import com.example.wangjingyun.componentbased.utils.BitmapUtils;
 import com.example.wangjingyun.componentbased.utils.CompositeVideo;
 import com.example.wangjingyun.componentbased.utils.ImageUtil;
+import com.example.wangjingyun.componentbased.utils.ThreadPoolManagerUtils;
 import com.example.wangjingyun.componentbased.widget.WithCity;
 import com.example.wangjingyun.componentbased.widget.WithCityLoading;
 import com.example.wangjingyun.componentbased.widget.bannerview.BannerBaseAdapter;
@@ -234,7 +236,7 @@ public class MineFragment extends BaseFragment {
            Bundle bundle = data.getExtras();
              // 获取相机返回的数据，并转换为Bitmap图片格式，这是缩略图
             Bitmap bitmap = (Bitmap) bundle.get("data");
-            ImageUtil.compressBitmap(ImageUtil.decodeFile(fileLocation),30,fileLocation1);
+        //    ImageUtil.compressBitmap(ImageUtil.decodeFile(fileLocation),30,fileLocation1);
 
 
        }

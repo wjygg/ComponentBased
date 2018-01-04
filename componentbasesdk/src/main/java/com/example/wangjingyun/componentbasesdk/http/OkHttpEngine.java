@@ -3,9 +3,12 @@ package com.example.wangjingyun.componentbasesdk.http;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -28,7 +31,31 @@ public class OkHttpEngine implements HttpEngine {
 
     private static OkHttpClient mOkHttpClient = new OkHttpClient();
 
-    private Handler handler=new Handler(Looper.getMainLooper());
+    protected final String EMPTY_MSG = "下载文件为null";
+
+    private static final int PROGRESS_MESSAGE = 0x01;
+
+    private HttpCallBackProgress httpCallBackProgress;
+
+    private Handler handler=new Handler(Looper.getMainLooper()){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case PROGRESS_MESSAGE:
+                    httpCallBackProgress.onProgress((int) msg.obj);
+                    break;
+            }
+        }
+    };
+
+    /**
+     * post请求
+     * @param context
+     * @param url
+     * @param urlParams
+     * @param httpCallBack
+     * @param cache
+     */
     @Override
     public void post(final Context context, String url, Map<String, String> urlParams, final HttpCallBack httpCallBack, final boolean cache) {
 
@@ -94,6 +121,14 @@ public class OkHttpEngine implements HttpEngine {
         });
     }
 
+    /**
+     * get请求
+     * @param context
+     * @param url
+     * @param urlParams
+     * @param httpCallBack
+     * @param cache
+     */
     @Override
     public void get(Context context, String url, Map<String, String> urlParams, final HttpCallBack httpCallBack, boolean cache) {
         StringBuilder stringBuilder=new StringBuilder(url).append("?");
@@ -111,7 +146,7 @@ public class OkHttpEngine implements HttpEngine {
         mOkHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                httpCallBack.onError(e);
+                executeError(httpCallBack, e);
             }
 
             @Override
@@ -129,7 +164,95 @@ public class OkHttpEngine implements HttpEngine {
 
     }
 
-    private static final MediaType FILE_TYPE = MediaType.parse("application/octet-stream");
+    /**
+     * 下载文件
+     * @param context 上下文
+     * @param url 文件地址
+     * @param  httpCallBackProgress 回调
+     */
+    @Override
+    public void downLoadFiles(Context context, String url,final String saveFileDir,final HttpCallBackProgress httpCallBackProgress) {
+
+        this.httpCallBackProgress=httpCallBackProgress;
+
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+
+        mOkHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+                executeError(httpCallBackProgress, e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                final File file = handleResponse(response,saveFileDir);
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (file != null) {
+                            httpCallBackProgress.onSucceed(file);
+                        } else {
+                            httpCallBackProgress.onError(new Exception(EMPTY_MSG));
+                        }
+                    }
+                });
+
+            }
+        });
+    }
+
+
+    private File handleResponse(Response response,String saveFileDir){
+
+        if (response == null) {
+            return null;
+        }
+
+        InputStream inputStream = null;
+        File file = null;
+        FileOutputStream fos = null;
+        byte[] buffer = new byte[2048];
+        int length;
+        int currentLength = 0;
+        double sumLength;
+        try {
+            file = new File(saveFileDir);
+            fos = new FileOutputStream(file);
+            inputStream = response.body().byteStream();
+            sumLength = (double) response.body().contentLength();
+
+            while ((length = inputStream.read(buffer)) != -1) {
+                fos.write(buffer, 0, length);
+                currentLength += length;
+                int mProgress = (int) (currentLength / sumLength * 100);
+                handler.obtainMessage(PROGRESS_MESSAGE, mProgress).sendToTarget();
+            }
+            fos.flush();
+        } catch (Exception e) {
+            file = null;
+        } finally {
+            try {
+                if (fos != null) {
+                    fos.close();
+                }
+                if (inputStream != null) {
+
+                    inputStream.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return file;
+
+    }
+
+
+
     /**
      * 上传文件
      * @param context
@@ -138,6 +261,8 @@ public class OkHttpEngine implements HttpEngine {
      * @param httpCallBack
      * @param cache
      */
+    private static final MediaType FILE_TYPE = MediaType.parse("application/octet-stream");
+
     @Override
     public void sendMultipart(Context context, String url, Map<String, Object> params, final HttpCallBack httpCallBack, boolean cache) {
 
@@ -166,7 +291,7 @@ public class OkHttpEngine implements HttpEngine {
         mOkHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                httpCallBack.onError(e);
+                executeError(httpCallBack, e);
             }
 
             @Override

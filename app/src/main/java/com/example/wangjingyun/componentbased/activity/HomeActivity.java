@@ -22,7 +22,7 @@ import com.example.wangjingyun.componentbasesdk.log.ExctptionCarshHandler;
 import java.io.File;
 import java.io.FileInputStream;
 
-import butterknife.InjectView;
+import butterknife.Bind;
 import butterknife.OnClick;
 
 
@@ -31,10 +31,10 @@ public class HomeActivity extends BaseActivity {
    @ViewById(R.id.home_fragment)
     LinearLayout home_fragment;
 
-    @InjectView(R.id.message_fragment)
+    @Bind(R.id.message_fragment)
     LinearLayout message_fragment;
 
-    @InjectView(R.id.mine_fragment)
+    @Bind(R.id.mine_fragment)
     LinearLayout mine_fragment;
 
     @ViewById(R.id.btn_homepage)
