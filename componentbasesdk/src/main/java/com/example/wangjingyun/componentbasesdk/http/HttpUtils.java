@@ -129,6 +129,14 @@ public class HttpUtils {
         return this;
     }
 
+    /**
+     * 取消所有请求
+     * @return
+     */
+    public void cancelAll(){
+        mHttpEngine.cancelAll();
+    }
+
     // 执行方法
     public void execute(HttpCallBack httpCallBack) {
         if (TextUtils.isEmpty(mUrl)) {

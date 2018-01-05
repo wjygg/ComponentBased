@@ -1,6 +1,7 @@
 package com.example.wangjingyun.componentbased.activity;
 
 import android.graphics.Color;
+import android.os.Environment;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Gravity;
@@ -19,9 +20,12 @@ import com.example.wangjingyun.componentbased.utils.StatusBarUtils;
 import com.example.wangjingyun.componentbased.widget.BouquetPraiseView;
 import com.example.wangjingyun.componentbased.widget.DragControlView;
 import com.example.wangjingyun.componentbasesdk.http.HttpCallBack;
+import com.example.wangjingyun.componentbasesdk.http.HttpCallBackProgress;
 import com.example.wangjingyun.componentbasesdk.http.HttpUtils;
 import com.example.wangjingyun.componentbasesdk.ioc.OnClick;
 import com.example.wangjingyun.componentbasesdk.ioc.ViewById;
+
+import java.io.File;
 
 /**
  *
@@ -42,7 +46,7 @@ public class DragCntrolActivity extends BaseActivity{
 
     @ViewById(R.id.dialog)
     TextView dialog;
-
+    private String strDir= Environment.getExternalStorageDirectory()+"/imooc/imooc.apk";
 
     @Override
     public void setStatusBar() {
@@ -67,33 +71,27 @@ public class DragCntrolActivity extends BaseActivity{
     @Override
     public void initDatas() {
 
-       /* HttpUtils.with(DragCntrolActivity.this).url("").execute(new HttpCallBackEntity<TriangleTypeEntity>() {
-            @Override
-            public void onSuccess(TriangleTypeEntity triangleTypeEntity) {
+       HttpUtils.with(DragCntrolActivity.this).url("http://www.imooc.com/mobile/mukewang.apk").downLoadFilsUrl(strDir)
+               .downLoadFiles().execute(new HttpCallBackProgress() {
+           @Override
+           public void onProgress(int progress) {
 
-            }
+               Log.d("onprogress",progress+"");
+           }
 
-            @Override
-            public void onError(Exception e) {
+           @Override
+           public void onError(Exception e) {
 
-            }
-        });*/
+               Log.d("onprogresstag",e.getMessage());
+           }
 
-       HttpUtils.with(DragCntrolActivity.this).url("http://www.8huasheng.com:8091/rest/query/agentbyouid").
-               addParams("ouid","2517F31E5752D7F655DCE5674231A0E761945A1105952DB4B02959BEBD8D6A13").post()
-               .execute(new HttpCallBack() {
-                   @Override
-                   public void onError(Exception e) {
+           @Override
+           public void onSucceed(Object result) {
 
-                   }
+               Log.d("onprogresstag","下载成功");
+           }
+       });
 
-                   @Override
-                   public void onSucceed(String result) {
-
-                       Log.d("tag",result);
-                       Log.d("tag",result);
-                   }
-               });
 
         dragcontrolview.setOnTouchListener(new DragControlView.DragViewListener(DragCntrolActivity.this));
     }

@@ -165,6 +165,19 @@ public class OkHttpEngine implements HttpEngine {
     }
 
     /**
+     * 取消所有请求
+     */
+    @Override
+    public void cancelAll() {
+
+        if(mOkHttpClient!=null){
+
+            mOkHttpClient.dispatcher().cancelAll();
+        }
+
+    }
+
+    /**
      * 下载文件
      * @param context 上下文
      * @param url 文件地址
@@ -217,10 +230,14 @@ public class OkHttpEngine implements HttpEngine {
         FileOutputStream fos = null;
         byte[] buffer = new byte[2048];
         int length;
-        int currentLength = 0;
+        Long currentLength = 0L;
         double sumLength;
         try {
+
+            Long filesLength=checkLocalFilePath(saveFileDir);
+            currentLength=filesLength;
             file = new File(saveFileDir);
+
             fos = new FileOutputStream(file);
             inputStream = response.body().byteStream();
             sumLength = (double) response.body().contentLength();
@@ -228,8 +245,13 @@ public class OkHttpEngine implements HttpEngine {
             while ((length = inputStream.read(buffer)) != -1) {
                 fos.write(buffer, 0, length);
                 currentLength += length;
-                int mProgress = (int) (currentLength / sumLength * 100);
-                handler.obtainMessage(PROGRESS_MESSAGE, mProgress).sendToTarget();
+
+                int mProgress = (int) (currentLength * 1.0f / sumLength * 100);
+
+                //5%进度 发一次
+             //   if(mProgress%5==0){
+                    handler.obtainMessage(PROGRESS_MESSAGE, mProgress).sendToTarget();
+              //  }
             }
             fos.flush();
         } catch (Exception e) {
@@ -249,6 +271,32 @@ public class OkHttpEngine implements HttpEngine {
         }
         return file;
 
+    }
+
+
+    private Long checkLocalFilePath(String localFilePath) {
+
+        //文件不存在下载
+        File path = new File(localFilePath.substring(0,
+                localFilePath.lastIndexOf("/") + 1));
+        File file = new File(localFilePath);
+        if (!path.exists()) {
+            path.mkdirs();
+        }
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+
+            //文件存在返回长度
+
+            return file.length();
+        }
+
+        return 0L;
     }
 
 
