@@ -85,6 +85,8 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <service android:name=".service.compressbitmap.CompressBitmapService"></service>
+
     </application>
 
 </manifest>

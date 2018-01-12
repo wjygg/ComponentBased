@@ -21,7 +21,6 @@ import com.example.wangjingyun.componentbased.activity.base.BaseFragment;
 import com.example.wangjingyun.componentbased.utils.BitmapUtils;
 import com.example.wangjingyun.componentbased.utils.CompositeVideo;
 import com.example.wangjingyun.componentbased.utils.ImageUtil;
-import com.example.wangjingyun.componentbased.utils.ThreadPoolManagerUtils;
 import com.example.wangjingyun.componentbased.widget.WithCity;
 import com.example.wangjingyun.componentbased.widget.WithCityLoading;
 import com.example.wangjingyun.componentbased.widget.bannerview.BannerBaseAdapter;
