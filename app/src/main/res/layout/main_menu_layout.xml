@@ -56,4 +56,16 @@
         android:textColor="@color/black_alpha_30"
         android:textSize="17sp" />
 
+
+    <TextView
+        android:id="@+id/viewpager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="viewpager嵌套viewpager"
+        android:textColor="@color/black_alpha_30"
+        android:textSize="17sp" />
+
 </LinearLayout>

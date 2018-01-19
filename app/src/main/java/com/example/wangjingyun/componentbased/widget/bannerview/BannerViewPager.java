@@ -56,6 +56,9 @@ public class BannerViewPager extends ViewPager{
 
     }
 
+
+
+
     /**
      * 设置速率
      */
@@ -96,22 +99,22 @@ public class BannerViewPager extends ViewPager{
    }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        Log.e("tagbannerdispatchTouch",ev.getAction()+"");
-        //不拦截 本事件 可以事件分发到 viewpager
-        getParent().requestDisallowInterceptTouchEvent(true);
-        return super.dispatchTouchEvent(ev);
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Log.e("tagbannerdispatchTouch",ev.getAction()+"");
-        return super.onInterceptTouchEvent(ev);
-    }
-
-    @Override
     public boolean onTouchEvent(MotionEvent ev) {
         Log.e("tagbannerdispatchTouch",ev.getAction()+"");
+
+        switch (ev.getAction()){
+
+            case MotionEvent.ACTION_DOWN:
+
+                handler.removeCallbacks(runnable);
+
+                break;
+
+            case MotionEvent.ACTION_MOVE:
+                //继续 轮播
+                startCarousel();
+                break;
+        }
         return super.onTouchEvent(ev);
     }
 

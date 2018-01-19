@@ -8,7 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 
 public interface IDaoSupport<T> {
 
-    void insert(T t);
+    Long insert(T t) throws IllegalAccessException;
 
     void init(SQLiteDatabase mSqLiteDatabase ,Class<T> tClass);
+
+
 }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize">
+
+        <ImageView
+            android:id="@+id/bar_net"
+            android:layout_width="55dp"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/bar_music"
+            android:background="@drawable/actionbar_disco"
+            android:clickable="true" />
+
+        <ImageView
+            android:id="@+id/bar_music"
+            android:layout_width="55dp"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@drawable/actionbar_music"
+            android:clickable="true" />
+
+        <ImageView
+            android:id="@+id/bar_friends"
+            android:layout_width="55dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/bar_music"
+            android:background="@drawable/actionbar_friends"
+            android:clickable="true" />
+
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

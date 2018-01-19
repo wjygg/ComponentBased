@@ -130,7 +130,7 @@ public class MineFragment extends BaseFragment {
                 Toast.makeText(getActivity(),position+"",Toast.LENGTH_SHORT).show();
             }
         });
-        bannerView.startCarousel();
+            bannerView.startCarousel();
 
     }
     private String str="cesidijfidjfic";

@@ -52,6 +52,9 @@ public class HomeActivity extends BaseActivity {
     @ViewById(R.id.tv_appbar)
     TextView tv_appbar;
 
+    @ViewById(R.id.viewpager)
+    TextView viewpager;
+
     private HomeFragment homeFragment;
     private MessageFragment messageFragment;
     private MineFragment mineFragment;
@@ -131,9 +134,16 @@ public class HomeActivity extends BaseActivity {
 
     }
 
+    @com.example.wangjingyun.componentbasesdk.ioc.OnClick(R.id.viewpager)
+    public void setViewpager(){
+
+        startActivity(new Intent(HomeActivity.this,ViewPagerActivity.class));
+
+    }
 
 
-    @OnClick(R.id.home_fragment)
+
+    @OnClick(R.id.mine_fragment)
     public void clickHomeFragment() {
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -178,7 +188,7 @@ public class HomeActivity extends BaseActivity {
 
     }
 
-    @OnClick(R.id.mine_fragment)
+    @OnClick(R.id.home_fragment)
     public void clickMineFragment() {
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
