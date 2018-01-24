@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ public abstract  class BaseFragment extends Fragment {
 
     //sd卡 读权限
     public static final int READ_EXTERNAL_CODE =0x001;
+    public static final int WRITE_EXTERNAL_CODE =0x002;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -72,12 +74,11 @@ public abstract  class BaseFragment extends Fragment {
             requestPermissions(permissions,requestCode);
         }else{
 
-            readSd();
+            implementPermission();
         }
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         switch (requestCode){
 
@@ -85,21 +86,38 @@ public abstract  class BaseFragment extends Fragment {
 
                 if(grantResults.length>0&&grantResults[0]==PackageManager.PERMISSION_GRANTED){
 
-                    readSd();
+                    implementPermission();
+                }else{
+
+                    pleaseRequestPermission();
+                }
+                break;
+
+            case WRITE_EXTERNAL_CODE:
+
+                if(grantResults.length>0&&grantResults[0]==PackageManager.PERMISSION_GRANTED){
+
+                    implementPermission();
                 }else{
 
                     pleaseRequestPermission();
                 }
                 break;
         }
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+
     }
 
     //请申请权限
     public void pleaseRequestPermission() {
 
         Toast.makeText(getActivity(),"请申请权限",Toast.LENGTH_SHORT).show();
+
+        getActivity().finish();
     }
 
-    //执行 读sd卡权限
-    public void readSd(){};
+    //执行权限
+    public void  implementPermission(){};
 }

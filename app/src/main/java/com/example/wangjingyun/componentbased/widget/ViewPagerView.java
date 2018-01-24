@@ -1,6 +1,7 @@
 package com.example.wangjingyun.componentbased.widget;
 
 import android.content.Context;
+import android.graphics.PointF;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -11,9 +12,8 @@ import android.view.MotionEvent;
 
 public class ViewPagerView extends ViewPager{
 
-
-    private float downX ;    //按下时 的X坐标
-    private float downY ;    //按下时 的Y坐标
+    // new 一个点记录坐标
+    private PointF pointF=new PointF();
 
     public ViewPagerView(Context context) {
         super(context);
@@ -33,16 +33,16 @@ public class ViewPagerView extends ViewPager{
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 //将按下时的坐标存储
-                downX = x;
-                downY = y;
+                pointF.x = x;
+                pointF.y = y;
                 getParent().requestDisallowInterceptTouchEvent(true);
                 break;
             case MotionEvent.ACTION_MOVE:
                 curPosition = this.getCurrentItem();
                 int count = this.getAdapter().getCount();
 
-                float dx= x-downX;
-                float dy = y-downY;
+                float dx= x-pointF.x;
+                float dy = y-pointF.y;
 
                 //通过距离差判断方向
                 int orientation = getOrientation(dx, dy);

@@ -242,7 +242,7 @@ public class MineFragment extends BaseFragment {
     }
 
     @Override
-    public void readSd() {
+    public void implementPermission() {
 
         //调用系统相册 5.0
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

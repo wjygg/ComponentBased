@@ -88,6 +88,9 @@ public abstract class BaseActivity extends AppCompatActivity {
             break;
         }
 
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+
     }
     //执行 读sd卡权限
     public void readSd(){};

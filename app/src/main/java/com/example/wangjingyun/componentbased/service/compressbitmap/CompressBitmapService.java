@@ -35,9 +35,7 @@ public class CompressBitmapService extends Service {
         Intent intent=new Intent(ACTION_COMPRESS_BROADCAST);
         intent.putExtra(ACTION_COMPRESS_FLAG,COMPRESS_BEGIN);
         sendBroadcast(intent);
-
     }
-
 
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
