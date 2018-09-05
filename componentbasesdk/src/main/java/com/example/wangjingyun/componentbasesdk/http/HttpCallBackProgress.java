@@ -7,5 +7,5 @@ package com.example.wangjingyun.componentbasesdk.http;
 public interface HttpCallBackProgress extends HttpCallBack {
 
     //下载进度
-    public void onProgress(int  progress);
+    public void onProgress(int progress);
 }

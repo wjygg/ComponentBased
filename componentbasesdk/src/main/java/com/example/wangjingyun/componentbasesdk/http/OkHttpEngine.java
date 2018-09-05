@@ -9,13 +9,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
-import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -29,8 +28,18 @@ import okhttp3.Response;
 
 public class OkHttpEngine implements HttpEngine {
 
-    private static OkHttpClient mOkHttpClient = new OkHttpClient();
+    private static OkHttpClient mOkHttpClient =null;
 
+    private static final int TIME_OUT=10;//超时参数
+
+    static {
+        OkHttpClient.Builder builder=new OkHttpClient.Builder();
+        builder.connectTimeout(TIME_OUT, TimeUnit.SECONDS);
+        builder.writeTimeout(TIME_OUT, TimeUnit.SECONDS);
+        builder.readTimeout(TIME_OUT, TimeUnit.SECONDS);
+
+        mOkHttpClient=builder.build();
+    }
     protected final String EMPTY_MSG = "下载文件为null";
 
     private static final int PROGRESS_MESSAGE = 0x01;
@@ -47,101 +56,82 @@ public class OkHttpEngine implements HttpEngine {
             }
         }
     };
-
     /**
      * post请求
      * @param context
      * @param url
      * @param urlParams
      * @param httpCallBack
-     * @param cache
      */
     @Override
-    public void post(final Context context, String url, Map<String, String> urlParams, final HttpCallBack httpCallBack, final boolean cache) {
+    public void post(final Context context, String url, Map<String, String> urlParams,Map<String, String> headParams, final HttpCallBack httpCallBack) {
 
         FormBody.Builder frombody = new FormBody.Builder();
 
         if(urlParams!=null){
-
             for(Map.Entry<String, String> entry:urlParams.entrySet()){
-
-                frombody.add(entry.getKey(), entry.getValue());
+                    frombody.add(entry.getKey(), entry.getValue());
             }
         }
         RequestBody requestBody = frombody.build();
-        Request request = new Request.Builder()
+        Request.Builder build = new Request.Builder()
                 .url(url)
                 .tag(context)
-                .post(requestBody)
-                .build();
+                .post(requestBody);
+
+        if(headParams!=null){
+            for(Map.Entry<String, String> entry:headParams.entrySet()){
+                build.addHeader(entry.getKey(), entry.getValue());
+            }
+        }
+        Request request = build.build();
 
         mOkHttpClient.newCall(request).enqueue(
                 new Callback() {
                     @Override
                     public void onFailure(Call call, final IOException e) {
+
                         executeError(httpCallBack, e);
                     }
 
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         String resultJson = response.body().string();
-                        executeSuccessMethod(httpCallBack, resultJson);
-                        // 缓存处理，下一期我们没事干，自己手写数据库框架
+
+                            executeSuccessMethod(httpCallBack, resultJson);
+
                     }
                 }
         );
     }
-
-    /**
-     *  执行成功的方法
-     **/
-    private void executeSuccessMethod(final HttpCallBack httpCallBack, final String resultJson) {
-        try {
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    httpCallBack.onSucceed(resultJson);
-                }
-            });
-        } catch (Exception e) {
-            executeError(httpCallBack, e);
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     *  执行失败的方法
-     */
-    private void executeError(final HttpCallBack httpCallBack, final Exception e) {
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                httpCallBack.onError(e);
-            }
-        });
-    }
-
     /**
      * get请求
      * @param context
      * @param url
      * @param urlParams
      * @param httpCallBack
-     * @param cache
      */
     @Override
-    public void get(Context context, String url, Map<String, String> urlParams, final HttpCallBack httpCallBack, boolean cache) {
-        StringBuilder stringBuilder=new StringBuilder(url).append("?");
+    public void get(Context context, String url, Map<String, String> urlParams,Map<String, String> headParams, final HttpCallBack httpCallBack) {
 
+        StringBuilder stringBuilder=new StringBuilder(url).append("?");
         if(urlParams!=null){
 
             for(Map.Entry<String,String> entry : urlParams.entrySet()){
 
-                stringBuilder.append(entry.getKey()).append("=").
-                        append(entry.getValue()).append("&");
+                    stringBuilder.append(entry.getKey()).append("=").
+                            append(entry.getValue()).append("&");
+
+
             }
         }
         Request.Builder requestBuilder = new Request.Builder().url(stringBuilder.substring(0,stringBuilder.length()-1)).tag(context).method("GET",null);
+
+        if(headParams!=null){
+            for(Map.Entry<String, String> entry:headParams.entrySet()){
+                requestBuilder.addHeader(entry.getKey(), entry.getValue());
+            }
+        }
         Request request = requestBuilder.build();
         mOkHttpClient.newCall(request).enqueue(new Callback() {
             @Override
@@ -152,13 +142,9 @@ public class OkHttpEngine implements HttpEngine {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String resultJson = response.body().string();
-                // 当然有的时候还需要不同的些许处理
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        httpCallBack.onSucceed(resultJson);
-                    }
-                });
+
+                    executeSuccessMethod(httpCallBack,resultJson);
+
             }
         });
 
@@ -184,7 +170,7 @@ public class OkHttpEngine implements HttpEngine {
      * @param  httpCallBackProgress 回调
      */
     @Override
-    public void downLoadFiles(Context context, String url,final String saveFileDir,final HttpCallBackProgress httpCallBackProgress) {
+    public void downLoadFiles(Context context, String url, final String saveFileDir, final HttpCallBackProgress httpCallBackProgress) {
 
         this.httpCallBackProgress=httpCallBackProgress;
 
@@ -219,7 +205,9 @@ public class OkHttpEngine implements HttpEngine {
     }
 
 
-    private File handleResponse(Response response,String saveFileDir){
+
+
+    private File handleResponse(Response response, String saveFileDir){
 
         if (response == null) {
             return null;
@@ -292,7 +280,6 @@ public class OkHttpEngine implements HttpEngine {
         }else{
 
             //文件存在返回长度
-
             return file.length();
         }
 
@@ -300,6 +287,42 @@ public class OkHttpEngine implements HttpEngine {
     }
 
 
+    /**
+     *  执行成功的方法
+     **/
+    private void executeSuccessMethod(final HttpCallBack httpCallBack, final String resultJson) {
+        try {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    httpCallBack.onSucceed(resultJson);
+                }
+            });
+        } catch (Exception e) {
+            executeError(httpCallBack, e);
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     *  执行失败的方法
+     */
+    private void executeError(final HttpCallBack httpCallBack, final Exception e) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+
+                try{
+                    httpCallBack.onError(e);
+
+                }catch ( Exception e1){
+
+
+                }
+
+            }
+        });
+    }
 
     /**
      * 上传文件
@@ -309,10 +332,10 @@ public class OkHttpEngine implements HttpEngine {
      * @param httpCallBack
      * @param cache
      */
-    private static final MediaType FILE_TYPE = MediaType.parse("application/octet-stream");
+    private static final MediaType FILE_TYPE = MediaType.parse("multipart/form-data");
 
     @Override
-    public void sendMultipart(Context context, String url, Map<String, Object> params, final HttpCallBack httpCallBack, boolean cache) {
+    public void sendMultipart(Context context, String url, Map<String, Object> params,Map<String, String> headParams, final HttpCallBack httpCallBack) {
 
 
         MultipartBody.Builder requestBody = new MultipartBody.Builder();
@@ -322,20 +345,25 @@ public class OkHttpEngine implements HttpEngine {
             for (Map.Entry<String, Object> entry :params.entrySet()) {
                 if (entry.getValue() instanceof File) {
 
-                    requestBody.addFormDataPart(entry.getKey(),((File) entry.getValue()).getName(),RequestBody.create(FILE_TYPE, (File) entry.getValue()));
+                    requestBody.addFormDataPart(entry.getKey(),((File) entry.getValue()).getName(), RequestBody.create(FILE_TYPE, (File) entry.getValue()));
 
                 } else if (entry.getValue() instanceof String) {
 
-                    requestBody.addFormDataPart(entry.getKey(),(String) entry.getValue());
+                        requestBody.addFormDataPart(entry.getKey(),(String) entry.getValue());
+
                 }
             }
         }
-
-        Request request = new Request.Builder()
+        Request.Builder requestBuilder = new Request.Builder()
                 .url(url)
-                .post(requestBody.build())
-                .build();
+                .post(requestBody.build());
 
+        if(headParams!=null){
+            for(Map.Entry<String, String> entry:headParams.entrySet()){
+                requestBuilder.addHeader(entry.getKey(), entry.getValue());
+            }
+        }
+        Request request = requestBuilder.build();
         mOkHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -355,6 +383,27 @@ public class OkHttpEngine implements HttpEngine {
             }
         });
 
+    }
+
+    /**
+     * websocket 长连接
+     * @param context 上下文
+     * @param url 连接url
+     * @param webSocketCallBackListener 长连接回掉
+     */
+    @Override
+    public void connectionWebSocket(Context context, String url, WebSocketCallBackListener webSocketCallBackListener) {
+
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+
+        WebSocketEngine webSocketEngine = WebSocketEngine.getInstance();
+        webSocketEngine.setWebSocketCallBack(webSocketCallBackListener);
+        OkHttpClient client = new OkHttpClient();
+        client.newWebSocket(request,webSocketEngine);
+
+        client.dispatcher().executorService().shutdown();
     }
 
 
