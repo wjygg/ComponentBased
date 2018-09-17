@@ -1,5 +1,6 @@
 package com.example.wangjingyun.componentbasesdk.http;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
@@ -9,7 +10,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
@@ -32,13 +36,18 @@ public class OkHttpEngine implements HttpEngine {
 
     private static final int TIME_OUT=10;//超时参数
 
+    //存储所有的call请求
+    private static List<Call> callLinkedList = new LinkedList<>();
+
     static {
         OkHttpClient.Builder builder=new OkHttpClient.Builder();
         builder.connectTimeout(TIME_OUT, TimeUnit.SECONDS);
         builder.writeTimeout(TIME_OUT, TimeUnit.SECONDS);
         builder.readTimeout(TIME_OUT, TimeUnit.SECONDS);
-
         mOkHttpClient=builder.build();
+
+
+
     }
     protected final String EMPTY_MSG = "下载文件为null";
 
@@ -85,8 +94,9 @@ public class OkHttpEngine implements HttpEngine {
             }
         }
         Request request = build.build();
-
-        mOkHttpClient.newCall(request).enqueue(
+        Call call = mOkHttpClient.newCall(request);
+        putCall(call);
+        call.enqueue(
                 new Callback() {
                     @Override
                     public void onFailure(Call call, final IOException e) {
@@ -121,8 +131,6 @@ public class OkHttpEngine implements HttpEngine {
 
                     stringBuilder.append(entry.getKey()).append("=").
                             append(entry.getValue()).append("&");
-
-
             }
         }
         Request.Builder requestBuilder = new Request.Builder().url(stringBuilder.substring(0,stringBuilder.length()-1)).tag(context).method("GET",null);
@@ -133,7 +141,9 @@ public class OkHttpEngine implements HttpEngine {
             }
         }
         Request request = requestBuilder.build();
-        mOkHttpClient.newCall(request).enqueue(new Callback() {
+        Call call = mOkHttpClient.newCall(request);
+        putCall(call);
+        call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 executeError(httpCallBack, e);
@@ -158,7 +168,7 @@ public class OkHttpEngine implements HttpEngine {
 
         if(mOkHttpClient!=null){
 
-            mOkHttpClient.dispatcher().cancelAll();
+            cancelCall();
         }
 
     }
@@ -178,7 +188,9 @@ public class OkHttpEngine implements HttpEngine {
                 .url(url)
                 .build();
 
-        mOkHttpClient.newCall(request).enqueue(new Callback() {
+        Call call = mOkHttpClient.newCall(request);
+        putCall(call);
+        call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -364,7 +376,9 @@ public class OkHttpEngine implements HttpEngine {
             }
         }
         Request request = requestBuilder.build();
-        mOkHttpClient.newCall(request).enqueue(new Callback() {
+        Call call = mOkHttpClient.newCall(request);
+        putCall(call);
+        call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 executeError(httpCallBack, e);
@@ -407,4 +421,27 @@ public class OkHttpEngine implements HttpEngine {
     }
 
 
+    /**
+     * 保存请求集合
+     * @param call
+     */
+    private void putCall(Call call){
+
+        if(null != callLinkedList){
+            callLinkedList.add(call);
+        }
+    }
+
+    /**
+     * 取消请求
+     */
+    public static void cancelCall(){
+        if(null != callLinkedList){
+            for(Call call : callLinkedList){
+                if(!call.isCanceled())
+                    call.cancel();
+                callLinkedList.remove(call);
+            }
+        }
+    }
 }
