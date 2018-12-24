@@ -46,7 +46,7 @@ public class OkHttpEngine implements HttpEngine {
         builder.writeTimeout(TIME_OUT, TimeUnit.SECONDS);
         builder.readTimeout(TIME_OUT, TimeUnit.SECONDS);
         mOkHttpClient=builder.build();
-
+        callMap=new ConcurrentHashMap<>();
 
 
     }
