@@ -7,7 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.sicheng.ydjw.commonsdk.recyview.recycleview.HeadTailRecycleView;
+import com.example.wangjingyun.componentbasesdk.recyview.recycleview.HeadTailRecycleView;
 
 
 /**

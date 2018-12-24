@@ -6,8 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.sicheng.ydjw.commonsdk.recyview.adapter.MultiItemCommonAdapter;
-
+import com.example.wangjingyun.componentbasesdk.recyview.adapter.MultiItemCommonAdapter;
 
 /**
  * 自定义recycleview 搭配 多布局 MultiItemCommonAdapter 使用

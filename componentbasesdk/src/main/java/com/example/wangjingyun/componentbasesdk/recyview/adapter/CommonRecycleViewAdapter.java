@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-import com.sicheng.ydjw.commonsdk.recyview.viewholder.CommonViewHolder;
+import com.example.wangjingyun.componentbasesdk.recyview.viewholder.CommonViewHolder;
 
 import java.util.List;
 

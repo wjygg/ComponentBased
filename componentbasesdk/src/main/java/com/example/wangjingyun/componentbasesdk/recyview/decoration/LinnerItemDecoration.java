@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.sicheng.ydjw.commonsdk.recyview.recycleview.HeadTailRecycleView;
+import com.example.wangjingyun.componentbasesdk.recyview.recycleview.HeadTailRecycleView;
 
 
 /**
@@ -76,8 +76,6 @@ public class LinnerItemDecoration extends RecyclerView.ItemDecoration{
                     mDrawable.setBounds(rect);
                     mDrawable.draw(c);
                 }
-
-
             }
         }
     }
