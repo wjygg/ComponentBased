@@ -15,7 +15,7 @@ public interface  HttpEngine {
     // get 提交
     public void get(Context context, String url, Map<String, String> params, Map<String, String> headParams, HttpCallBack httpCallBack);
     // 取消请求
-    public void cancelAll();
+    public void cancelAll(Context context);
     // 下载文件
     public void downLoadFiles(Context context, String url, String saveFileDir, HttpCallBackProgress httpCallBackProgress);
     // 上传文件

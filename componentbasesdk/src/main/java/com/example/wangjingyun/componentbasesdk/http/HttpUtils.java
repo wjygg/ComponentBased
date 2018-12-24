@@ -209,8 +209,8 @@ public class HttpUtils {
      * 取消所有请求
      * @return
      */
-    public void cancelAll(){
-        mHttpEngine.cancelAll();
+    public void cancelAll(Context context){
+        mHttpEngine.cancelAll(context);
     }
 
     // 执行方法

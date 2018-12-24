@@ -37,7 +37,8 @@ public class OkHttpEngine implements HttpEngine {
     private static final int TIME_OUT=10;//超时参数
 
     //存储所有的call请求
-    private static List<Call> callLinkedList = new LinkedList<>();
+    //存储请求集合
+    private static Map<Class<?>,List<Call>> callMap;
 
     static {
         OkHttpClient.Builder builder=new OkHttpClient.Builder();
@@ -95,7 +96,7 @@ public class OkHttpEngine implements HttpEngine {
         }
         Request request = build.build();
         Call call = mOkHttpClient.newCall(request);
-        putCall(call);
+        putCall((Activity)context,call);
         call.enqueue(
                 new Callback() {
                     @Override
@@ -142,7 +143,7 @@ public class OkHttpEngine implements HttpEngine {
         }
         Request request = requestBuilder.build();
         Call call = mOkHttpClient.newCall(request);
-        putCall(call);
+        putCall((Activity)context,call);
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -164,11 +165,11 @@ public class OkHttpEngine implements HttpEngine {
      * 取消所有请求
      */
     @Override
-    public void cancelAll() {
+    public void cancelAll(Context context) {
 
         if(mOkHttpClient!=null){
 
-            cancelCall();
+            cancelCall(((Activity)context).getClass());
         }
 
     }
@@ -189,7 +190,7 @@ public class OkHttpEngine implements HttpEngine {
                 .build();
 
         Call call = mOkHttpClient.newCall(request);
-        putCall(call);
+        putCall((Activity)context,call);
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -377,7 +378,7 @@ public class OkHttpEngine implements HttpEngine {
         }
         Request request = requestBuilder.build();
         Call call = mOkHttpClient.newCall(request);
-        putCall(call);
+        putCall((Activity)context, call);
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -423,25 +424,39 @@ public class OkHttpEngine implements HttpEngine {
 
     /**
      * 保存请求集合
-     * @param call
+     * @param
      */
-    private void putCall(Call call){
+    private static void putCall(Activity context, Call call){
 
-        if(null != callLinkedList){
-            callLinkedList.add(call);
+        Class<? extends Activity> aClass = context.getClass();
+        List<Call> calls = callMap.get(aClass);
+        if(calls==null){
+            calls=new LinkedList<>();
+            calls.add(call);
+            callMap.put(aClass,calls);
+        }else{
+            calls.add(call);
         }
+
     }
 
     /**
      * 取消请求
      */
-    public static void cancelCall(){
-        if(null != callLinkedList){
-            for(Call call : callLinkedList){
+    public static void cancelCall(Class<?> mzClass){
+
+        List<Call> callList = callMap.get(mzClass);
+
+        if(null != callList){
+
+            for(Call call : callList){
+
                 if(!call.isCanceled())
+
                     call.cancel();
-                callLinkedList.remove(call);
             }
+            callMap.remove(mzClass);
+
         }
     }
 }
