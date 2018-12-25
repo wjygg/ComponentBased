@@ -3,7 +3,7 @@ package com.example.wangjingyun.componentbased.designpattern.staticproxy;
 /**
  * 代理类扩展
  */
-public class Proxy implements Subject{
+public class Proxy extends Subject{
 
     private Subject realSubject;
 
@@ -19,5 +19,10 @@ public class Proxy implements Subject{
         realSubject.doAction();
     }
 
+    @Override
+    public void onSubject() {
+        super.onSubject();
+       realSubject.onSubject();
+    }
 
 }

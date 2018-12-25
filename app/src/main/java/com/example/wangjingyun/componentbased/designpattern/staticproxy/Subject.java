@@ -1,7 +1,11 @@
 package com.example.wangjingyun.componentbased.designpattern.staticproxy;
 
-public interface Subject {
+public abstract class Subject {
 
     //做一些事
-    void doAction();
+    public abstract void doAction();
+
+    public void onSubject(){
+        System.out.println("测试");
+    };
 }
