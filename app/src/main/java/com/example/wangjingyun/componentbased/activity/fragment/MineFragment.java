@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.coremedia.iso.boxes.Container;
 import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.activity.base.BaseFragment;
@@ -28,16 +27,10 @@ import com.example.wangjingyun.componentbased.widget.bannerview.BannerView;
 import com.example.wangjingyun.componentbasesdk.ioc.CheckNet;
 import com.example.wangjingyun.componentbasesdk.ioc.OnClick;
 import com.example.wangjingyun.componentbasesdk.ioc.ViewById;
-import com.googlecode.mp4parser.authoring.Movie;
-import com.googlecode.mp4parser.authoring.Track;
-import com.googlecode.mp4parser.authoring.builder.DefaultMp4Builder;
-import com.googlecode.mp4parser.authoring.container.mp4.MovieCreator;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -108,9 +101,7 @@ public class MineFragment extends BaseFragment {
             public View getView(int position) {
 
                 ImageView imageView=new ImageView(getActivity());
-                Glide.with(getActivity()).load("http://img2.3lian.com/2014/f6/173/d/51.jpg").into(imageView);
-
-                return imageView;
+                 return imageView;
             }
 
             @Override

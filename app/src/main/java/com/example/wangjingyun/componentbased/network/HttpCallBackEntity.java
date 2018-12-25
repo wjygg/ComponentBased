@@ -7,12 +7,13 @@ import android.util.Log;
 import android.view.Gravity;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.dialog.BaseDialog;
 import com.example.wangjingyun.componentbasesdk.http.HttpCallBack;
 
 
-import org.json.JSONObject;
+
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;

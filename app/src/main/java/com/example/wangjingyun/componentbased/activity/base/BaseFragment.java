@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.example.wangjingyun.componentbasesdk.ioc.ViewUtils;
 
-import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2017/3/11.
@@ -34,8 +33,6 @@ public abstract  class BaseFragment extends Fragment {
 
         View  view= (ViewGroup) inflater.inflate(getLayoutId(),null);
         setStatusBar(view);
-        ButterKnife.bind(this,view);
-
         ViewUtils.Inject(view,this);
 
         return view;

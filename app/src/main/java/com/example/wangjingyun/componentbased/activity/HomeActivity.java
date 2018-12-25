@@ -16,14 +16,14 @@ import com.example.wangjingyun.componentbased.activity.fragment.MessageFragment;
 import com.example.wangjingyun.componentbased.activity.fragment.MineFragment;
 import com.example.wangjingyun.componentbased.utils.StatusBarUtils;
 import com.example.wangjingyun.componentbased.widget.TriangleTypeView;
+import com.example.wangjingyun.componentbasesdk.ioc.OnClick;
 import com.example.wangjingyun.componentbasesdk.ioc.ViewById;
 import com.example.wangjingyun.componentbasesdk.log.ExctptionCarshHandler;
 
 import java.io.File;
 import java.io.FileInputStream;
 
-import butterknife.Bind;
-import butterknife.OnClick;
+
 
 
 public class HomeActivity extends BaseActivity {
@@ -31,10 +31,10 @@ public class HomeActivity extends BaseActivity {
    @ViewById(R.id.home_fragment)
     LinearLayout home_fragment;
 
-    @Bind(R.id.message_fragment)
+    @ViewById(R.id.message_fragment)
     LinearLayout message_fragment;
 
-    @Bind(R.id.mine_fragment)
+    @ViewById(R.id.mine_fragment)
     LinearLayout mine_fragment;
 
     @ViewById(R.id.btn_homepage)

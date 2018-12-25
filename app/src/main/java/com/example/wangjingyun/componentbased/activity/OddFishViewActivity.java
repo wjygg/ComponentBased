@@ -7,16 +7,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.wangjingyun.commonrecycleviewsdk.adapter.CommonRecycleViewAdapter;
-import com.example.wangjingyun.commonrecycleviewsdk.viewholder.CommonViewHolder;
+
 import com.example.wangjingyun.componentbased.R;
 import com.example.wangjingyun.componentbased.activity.base.BaseActivity;
-import com.example.wangjingyun.componentbased.widget.TestRecycleView;
-import com.example.wangjingyun.componentbasesdk.ioc.OnClick;
-import com.example.wangjingyun.componentbasesdk.ioc.ViewById;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * qiyu

@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.example.wangjingyun.componentbasesdk.ioc.ViewUtils;
 
-import butterknife.ButterKnife;
+
 
 
 /**
@@ -34,7 +34,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(getLayoutId());
         //状态栏的颜色
         setStatusBar();
-        ButterKnife.bind(this);
+
         ViewUtils.Inject(this);
         //设置头部
         initTitle();
