@@ -14,6 +14,6 @@ public class RealSubject extends Subject{
 
     @Override
     public void onSubject() {
-        System.out.println("测试2");
+        System.out.println("RealSubject");
     }
 }

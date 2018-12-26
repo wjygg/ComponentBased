@@ -6,6 +6,6 @@ public abstract class Subject {
     public abstract void doAction();
 
     public void onSubject(){
-        System.out.println("测试");
+        System.out.println("subject");
     };
 }

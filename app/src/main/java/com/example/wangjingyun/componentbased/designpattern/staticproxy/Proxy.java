@@ -22,7 +22,7 @@ public class Proxy extends Subject{
     @Override
     public void onSubject() {
         super.onSubject();
-       realSubject.onSubject();
+        System.out.println("proxy");
     }
 
 }
