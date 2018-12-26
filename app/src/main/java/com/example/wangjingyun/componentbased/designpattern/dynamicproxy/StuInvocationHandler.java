@@ -3,6 +3,10 @@ package com.example.wangjingyun.componentbased.designpattern.dynamicproxy;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
+/**
+ * 动态代理类
+ * @param <T>
+ */
 public class StuInvocationHandler<T>  implements InvocationHandler{
 
     private T mClzz;
