@@ -11,7 +11,7 @@ import java.util.Map;
 public interface HttpCallBack {
 
     //公共请求参数准备
-    public void onPreParameters(Context context, Map<String, String> params, Map<String, String> headParams, boolean isPreParameters, boolean isPreHeadParameters);
+    public void onPreParameters(Context context, Map<String, String> params,Map<String, Object> fileParams, Map<String, String> headParams, boolean isPreParameters, boolean isPreUpParameters, boolean isPreHeadParameters);
     //错误回调
     public void onError(Exception e);
     //成功回调

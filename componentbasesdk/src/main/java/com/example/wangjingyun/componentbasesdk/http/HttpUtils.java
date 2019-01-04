@@ -45,6 +45,9 @@ public class HttpUtils {
     //是否添加 公共参数
     private boolean isPreParameters=false;
 
+    //上传文件添加公共参数
+    private boolean isPreUpParameters=false;
+
     //是否添加 公共请求头参数
     private boolean isPreHeadParameters=false;
 
@@ -195,6 +198,18 @@ public class HttpUtils {
         return this;
     }
 
+
+    /**
+     * 上传文件添加公共参数
+     * @param isPreUpParameters
+     * @return
+     */
+    public HttpUtils isPreUpParameters(boolean isPreUpParameters){
+        this.isPreUpParameters=isPreUpParameters;
+        return this;
+    }
+
+
     /**
      * 是否添加公共请求头
      * @param isPreHeadParameters
@@ -222,7 +237,7 @@ public class HttpUtils {
             return;
         }
         //map 集合添加公共参数
-        httpCallBack.onPreParameters(mContext,mParams,mHeadParams,isPreParameters,isPreHeadParameters);
+        httpCallBack.onPreParameters(mContext,mParams,fileParams,mHeadParams,isPreParameters,isPreUpParameters,isPreHeadParameters);
 
         if (TextUtils.isEmpty(mUrl)) {
             throw new NullPointerException("访问路径不能为空");
