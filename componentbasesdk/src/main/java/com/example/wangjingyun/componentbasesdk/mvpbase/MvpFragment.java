@@ -19,7 +19,7 @@ public abstract class MvpFragment<T,P extends MvpPresenter<T>> extends BaseFragm
         //初始化 presenter
         presenter=initPresenter();
         //presenter 层与view层绑定
-        presenter.attach((T)this);
+        presenter.attachView((T)this);
 
     }
 
@@ -30,7 +30,7 @@ public abstract class MvpFragment<T,P extends MvpPresenter<T>> extends BaseFragm
         super.onDestroy();
         if(presenter!=null){
             //view层 和P 层解绑
-            presenter.dettach();
+            presenter.detachView();
         }
     }
 

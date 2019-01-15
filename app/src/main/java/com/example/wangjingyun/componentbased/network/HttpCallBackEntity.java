@@ -52,18 +52,8 @@ public abstract class HttpCallBackEntity<T> implements HttpCallBack {
     }
 
     @Override
-    public void onPreParameters(Context context, Map<String, String> params,Map<String, String> headParams,boolean isParams,boolean isHeadParams) {
+    public void onPreParameters(Context context, Map<String, String> params,Map<String, Object> fileParams, Map<String, String> headParams, boolean isPreParameters, boolean isPreUpParameters, boolean isPreHeadParameters) {
 
-        //添加公共请求参数
-        if(isParams&&params!=null){
-
-            params.put("policeno","1");
-        }
-        //添加公共请求头参数
-        if(isHeadParams&&headParams!=null){
-
-         // headParams.put("Cookie","jeeplus.session.id="+"这里登陆返回 sessionId");
-        }
         showDialog(context, isDialog);
     }
 

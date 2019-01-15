@@ -7,4 +7,5 @@ public class Man implements IBank{
 
         System.out.println("man");
     }
+
 }

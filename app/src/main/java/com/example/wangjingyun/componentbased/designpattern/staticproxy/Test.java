@@ -8,7 +8,7 @@ public class Test {
 
     public static void main(String args[]) {
 
-        Subject subject=new Proxy();
+        Subject subject=new RealSubject();
         subject.onSubject();
       //  subject.doAction();
     }

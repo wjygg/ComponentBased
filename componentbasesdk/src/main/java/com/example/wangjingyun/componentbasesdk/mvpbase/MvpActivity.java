@@ -22,7 +22,7 @@ public abstract class MvpActivity<T,P extends MvpPresenter<T>> extends BaseActiv
         presenter=initPresenter();
         //判断 P层不等于null
         if(presenter!=null){
-            presenter.attach((T)this);
+            presenter.attachView((T)this);
         }
     }
 
@@ -34,7 +34,7 @@ public abstract class MvpActivity<T,P extends MvpPresenter<T>> extends BaseActiv
         super.onDestroy();
         //解除绑定
         if(presenter!=null){
-            presenter.dettach();
+            presenter.detachView();
         }
     }
 }
