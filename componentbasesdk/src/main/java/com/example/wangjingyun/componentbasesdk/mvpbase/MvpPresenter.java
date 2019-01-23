@@ -36,17 +36,13 @@ public class MvpPresenter<T,M> {
             }
         });
 
-        // 注入 Model，怎么注入，获取泛型的类型，也就是 M 的 class，利用反射new 一个对象
         try {
             ParameterizedType parameterizedType = (ParameterizedType) this.getClass().getGenericSuperclass();
             Class<M> modelClazz = (Class<M>) (parameterizedType.getActualTypeArguments()[1]);
             model = modelClazz.newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     /**
