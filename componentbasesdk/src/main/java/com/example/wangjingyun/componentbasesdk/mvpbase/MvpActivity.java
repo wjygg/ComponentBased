@@ -5,13 +5,14 @@ import android.os.Bundle;
 
 import com.example.wangjingyun.componentbasesdk.base.BaseActivity;
 
-
 /**
  *
- * Created by wjy on 2018/5/7.
+ * @param <T> T是Persenter 回调
+ * @param <M> model 层
+ * @param <P>
  */
 
-public abstract class MvpActivity<T,P extends MvpPresenter<T>> extends BaseActivity {
+public abstract class MvpActivity<T,M,P extends MvpPresenter<T,M>> extends BaseActivity {
 
     public P presenter;
 
