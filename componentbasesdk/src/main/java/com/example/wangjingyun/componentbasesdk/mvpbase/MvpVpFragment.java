@@ -44,7 +44,7 @@ public abstract class MvpVpFragment<T,M,P extends MvpPresenter<T,M>> extends Bas
                 try {
                     // 创建 Presenter 对象
                     MvpPresenter basePresenter = presenterClazz.newInstance();
-                    // 并没有解绑，还是会有问题，这个怎么办？1 2
+                    //并没有解绑，还是会有问题，这个怎么办？1 2
                     basePresenter.attachView((T)this);
                     // 设置
                     field.setAccessible(true);
