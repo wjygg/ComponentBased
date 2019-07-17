@@ -43,6 +43,44 @@ android {
     }*/
 }
 
+task helloTask(group:'component',description:'自定义一个task1'){
+    println("自定义的task1") //在配置阶段执行
+    doFirst { //在task 执行阶段执行
+        println("自定义的task1")
+    }
+
+}
+//通过TaskContainer去创建task
+this.tasks.create('helloTask2'){
+    setGroup('component1')
+    setDescription('自定义的task2')
+
+    doFirst {
+        println("自定义的task2")
+    }
+}
+//为task 添加依赖
+task task1(group:'task',description:'task1'){
+    doLast{
+
+        println('task1')
+    }
+}
+task task2(group:'task',description:'task1'){
+    doLast{
+
+        println('task2')
+    }
+}
+
+task task3(group:'task',description: 'task3',dependsOn:['task1','task2']){
+
+    /*dependsOn(['task1','task2'])*/
+    doLast{
+
+        println('task3')
+    }
+}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
