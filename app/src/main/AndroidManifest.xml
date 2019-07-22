@@ -21,6 +21,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+<!--
+        <meta-data
+            android:name="PRODUCT_FLAVOR_NAME"
+            android:value="${PRODUCT_FLAVOR_NAME_VALUE}">
+
+        </meta-data>-->
+
         <activity
             android:name=".activity.HomeActivity"
             android:launchMode="singleTask"

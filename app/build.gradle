@@ -41,6 +41,39 @@ android {
     tasks.withType(JavaCompile) {
         compileTask -> compileTask.dependsOn ndkBuild
     }*/
+
+
+    flavorDimensions "city"
+    productFlavors {
+        zhejiang {
+            dimension "city"
+            versionCode 1
+            versionName "1.0"
+            applicationId "com.example.wangjingyun.componentbased"
+
+        }
+        wenzhou {
+            dimension "city"
+            versionCode 1
+            versionName "1.0"
+            applicationId "com.example.wangjingyun.componentbased"
+        }
+
+
+    }
+  /*  productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [PRODUCT_FLAVOR_NAME_VALUE: name]
+    }*/
+    applicationVariants.all { variant ->
+         variant.outputs.all { output ->
+                      def outputFile = output.outputFile
+                       if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                               // 输出apk名称为appName_v1.0.apk
+                              def fileName = "${variant.productFlavors[0].name}_${variant.buildType.name}_v${defaultConfig.versionName}.apk"
+                              outputFileName = fileName
+                           }
+                   }
+             }
 }
 
 task helloTask(group:'component',description:'自定义一个task1'){
