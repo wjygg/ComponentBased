@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -39,6 +40,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         //设置头部
         initTitle();
         initDatas();
+
+
     }
 
 
@@ -70,7 +73,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
             ActivityCompat.requestPermissions(this,permissions,requestCode);
         }
-
 
     }
 

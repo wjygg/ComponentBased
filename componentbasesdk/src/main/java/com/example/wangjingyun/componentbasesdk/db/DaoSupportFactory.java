@@ -17,7 +17,6 @@ public class DaoSupportFactory {
 
     private DaoSupportFactory(){
 
-
         // 把数据库放到内存卡里面  判断是否有存储卡 6.0要动态申请权限
         File dbRoot = new File(Environment.getExternalStorageDirectory()
                 .getAbsolutePath() + File.separator + "nhdz" + File.separator + "database");
