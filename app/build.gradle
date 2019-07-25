@@ -66,21 +66,37 @@ task task1(group:'task',description:'task1'){
         println('task1')
     }
 }
-task task2(group:'task',description:'task1'){
+task task2(group:'task',description:'task2'){
+
+    mustRunAfter task1
+
     doLast{
 
         println('task2')
     }
 }
 
-task task3(group:'task',description: 'task3',dependsOn:['task1','task2']){
+task task3(group:'task',description: 'task3'/*,dependsOn:['task1','task2']*/){
 
-    /*dependsOn(['task1','task2'])*/
+   // dependsOn(['task1','task2'])
+
+   mustRunAfter task2
     doLast{
 
         println('task3')
     }
 }
+
+//task 配置完成之后执行 确保task都配置完成
+afterEvaluate {
+
+
+}
+
+//自定义 plugin
+
+//task 输入输出
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
