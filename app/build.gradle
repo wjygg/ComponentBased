@@ -36,6 +36,7 @@ android {
                 'NDK_APPLICATION_MK=jni/Application.mk'
 
 
+
     }
 
     tasks.withType(JavaCompile) {
