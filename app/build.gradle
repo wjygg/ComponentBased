@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 25
@@ -146,5 +147,9 @@ dependencies {
     implementation files('libs/isoviewer-1.0-RC-27.jar')
     //fastjson
     implementation 'com.alibaba:fastjson:1.1.54.android'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+}
+repositories {
+    mavenCentral()
 }
