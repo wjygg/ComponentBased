@@ -4,6 +4,9 @@ import android.content.Context;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PixelaDaptationUtils {
 
     private static PixelaDaptationUtils mInstance;
