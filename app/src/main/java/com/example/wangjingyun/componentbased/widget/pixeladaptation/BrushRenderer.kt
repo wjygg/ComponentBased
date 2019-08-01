@@ -6,6 +6,8 @@ import android.os.Parcel
 import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.View
+import com.example.wangjingyun.componentbased.R
+import java.util.concurrent.CopyOnWriteArrayList
 
 /**
  * 自定义 paint 渲染器
@@ -13,24 +15,28 @@ import android.view.View
  */
 class BrushRenderer: View {
 
-    lateinit var paint : Paint
+     lateinit var paint : Paint
 
-    var list:List<String> =ArrayList<String>()
+     var list:List<String> =ArrayList()
 
-    var array:Array<String> = arrayOf("测试")
+     var array:Array<String> = arrayOf("测试")
 
+     lateinit var mContext: Context
 
     constructor(mContext:Context):super(mContext) {
-
+        this.mContext=mContext
         initPaint()
     }
 
     constructor(mContext:Context, mAttributeSet: AttributeSet):super(mContext,mAttributeSet) {
+        this.mContext=mContext
         initPaint()
     }
 
     constructor(mContext:Context, mAttributeSet: AttributeSet,defStyleAttr: Int):super(mContext,mAttributeSet,defStyleAttr) {
+        this.mContext=mContext
         initPaint()
+
     }
 
     private fun initPaint(){
@@ -44,8 +50,11 @@ class BrushRenderer: View {
         //线性渲染器
         var linearGradient:LinearGradient=LinearGradient(0f,0f, measuredWidth.toFloat(),measuredHeight.toFloat(),
                 intArrayOf(Color.BLUE,Color.BLACK),floatArrayOf(0.3f,1f), Shader.TileMode.CLAMP)
-        //bitmap shader
 
+
+
+        var bitmap=BitmapFactory.decodeResource(resources,R.drawable.actionbar_discover_prs)
+        var bitmapShaper=BitmapShader(bitmap,Shader.TileMode.CLAMP,Shader.TileMode.CLAMP)
 
 
         paint.setShader(linearGradient)
