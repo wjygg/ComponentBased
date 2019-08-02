@@ -52,10 +52,24 @@ class BrushRenderer: View {
                 intArrayOf(Color.BLUE,Color.BLACK),floatArrayOf(0.3f,1f), Shader.TileMode.CLAMP)
 
 
-
+        //位图图像渲染，用bitMap对绘制的图形进行渲染着色，即用图片对图形进行贴图:
         var bitmap=BitmapFactory.decodeResource(resources,R.drawable.actionbar_discover_prs)
         var bitmapShaper=BitmapShader(bitmap,Shader.TileMode.CLAMP,Shader.TileMode.CLAMP)
 
+
+        //环形渲染器
+        //创建一个着色器，以给定中心和半径绘制径向渐变
+        var radialGradient:RadialGradient=RadialGradient(500f,500f,200f,
+                intArrayOf(Color.BLACK,Color.BLUE), floatArrayOf(0.3f,1f),Shader.TileMode.CLAMP)
+
+
+        //扫描渲染器
+        //创建360度颜色旋转渐变效果，具体来说颜色是围绕中心点360度顺时针旋转的，起点位置是90°
+        var sweepGradient:SweepGradient= SweepGradient(500f,500f, intArrayOf(Color.BLUE,Color.DKGRAY),floatArrayOf(0.3f,1f))
+
+
+        //组合渲染器 PorterDuff.Mode 图像混合模式
+        var composeShader:ComposeShader= ComposeShader(radialGradient,sweepGradient, PorterDuff.Mode.MULTIPLY)
 
         paint.setShader(linearGradient)
         canvas!!.drawRect(Rect(0,0, measuredWidth,measuredHeight),paint)
