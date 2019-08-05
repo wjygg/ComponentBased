@@ -35,7 +35,7 @@ class CanvasStatus : View {
         canvas!!.drawRect(0f,0f,measuredWidth.toFloat(),measuredHeight.toFloat(),mPaint)
         //canvas 缩放操作
 
-        canvas.scale()
+     //   canvas.scale()
     }
 
     fun initPaint(){
