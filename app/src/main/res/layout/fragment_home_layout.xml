@@ -5,63 +5,10 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
 
-    <com.example.wangjingyun.componentbased.widget.QQView
-        app:QQViewTextSize="100px"
-        app:QQViewInnerColor="@color/orange"
-        app:QQViewOutnerColor="@color/blue_30"
-        app:QQViewTextColor="@color/orange"
-        app:QQViewText="5000"
-        android:id="@+id/QQView"
-        android:layout_width="200px"
-        android:layout_height="200px"
-       ></com.example.wangjingyun.componentbased.widget.QQView>
-
-
-    <com.example.wangjingyun.componentbased.widget.CircularScaleDiagramView
-        android:layout_width="200px"
-        app:CircularScaleDiagramViewArcWidth="20px"
-        app:CircularScaleDiagramViewArcColor="@color/blue_30"
-        android:layout_height="200px"
-        app:CircularScaleDiagramViewText="20"
-        app:CircularScaleDiagramViewTextColor="@color/white"
-        app:CircularScaleDiagramViewCircleColor="@color/orange"
-        app:CircularScaleDiagramViewTextSize="100px"
-        android:id="@+id/circularScaleDiagramView" />
-
-    <com.example.wangjingyun.componentbased.widget.TagView
-        android:id="@+id/tagview"
+    <com.example.wangjingyun.componentbased.widget.pixeladaptation.SplashView
+        android:id="@+id/splashView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-    </com.example.wangjingyun.componentbased.widget.TagView>
-
-    <com.example.wangjingyun.componentbased.widget.DialControlView
-        android:id="@+id/dialcontrolview"
-        android:layout_width="400px"
-        android:layout_height="400px"
-        ></com.example.wangjingyun.componentbased.widget.DialControlView>
-
-    <com.example.wangjingyun.componentbased.widget.VDHLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
         android:layout_height="match_parent"
-        >
-        <TextView
-            android:background="@color/blue_30"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-
-
-        <TextView
-            android:layout_marginTop="10dp"
-            android:background="@color/blue_30"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-        <TextView
-            android:layout_marginTop="10dp"
-            android:background="@color/blue_30"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-    </com.example.wangjingyun.componentbased.widget.VDHLayout>
+        ></com.example.wangjingyun.componentbased.widget.pixeladaptation.SplashView>
 </LinearLayout>
 

@@ -29,29 +29,7 @@ import java.util.List;
 
 public class HomeFragment extends BaseFragment{
 
-     @ViewById(R.id.QQView)
-     QQView qqView;
 
-    @ViewById(R.id.circularScaleDiagramView)
-    CircularScaleDiagramView circularScaleDiagramView;
-
-    @ViewById(R.id.tagview)
-    TagView tagview;
-
-    List<String> strings=new ArrayList<>();
-
-    private Handler handler=new Handler(){
-
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-
-            qqView.setCurrent(msg.arg1,100);
-
-            circularScaleDiagramView.setCurrent(msg.arg1);
-
-        }
-    };
     public static HomeFragment getInstance(){
 
         HomeFragment fragment=new HomeFragment();
@@ -73,56 +51,6 @@ public class HomeFragment extends BaseFragment{
     @Override
     public void initDatas() {
 
-
-        new Thread(){
-
-            @Override
-            public void run() {
-                super.run();
-
-                for(int i=1;i<=100;i++){
-
-                    Message msg=new Message();
-                    msg.arg1=i;
-
-                    handler.sendMessage(msg);
-                    try {
-                        sleep(200);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            }
-        }.start();
-
-        strings.add("测试");
-        strings.add("测试img");
-        strings.add("WelCome");
-        strings.add("工程师ing 进行中ing");
-        strings.add("进行中ing");
-        strings.add("WelCome");
-        strings.add("工程师ing WelCome");
-        strings.add("进行中ing");
-        strings.add("测试");
-        strings.add("测试img");
-
-
-
-
-        tagview.setAdater(new TagView.BaseAdapter(){
-            @Override
-            public int getCount() {
-                return strings.size();
-            }
-
-            @Override
-            public View getView(int count,TagView parents) {
-                TextView textview = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.tagview_textview_layout, parents, false);
-                textview.setText(strings.get(count));
-                return textview;
-            }
-        });
 
     }
 
