@@ -110,6 +110,7 @@ class SplashView : View {
 
 
 
+    //旋转动画
     inner class RotateState { //非静态内部类
 
         constructor(){
@@ -133,8 +134,14 @@ class SplashView : View {
             })
             valueAnimator.start()
         }
-
-
     }
+    //扩散动画
+    inner class MerginState{
+        constructor(){
+            valueAnimator=ValueAnimator.ofFloat()
+            valueAnimator.addUpdateListener {  }
+        }
+    }
+
 
 }
