@@ -122,6 +122,7 @@ class SplashView : View {
             var x:Float=measuredWidth/2.toFloat() //圆心x
             var y:Float=measuredHeight/2.toFloat() //圆心y
             var mStrokeWidth=mDistance-mCurrentHoleRadius
+            //特别注意 有描边宽度的半径=描边宽度/2+当前进度
             var radius = mStrokeWidth /2 + mCurrentHoleRadius;
             mHolePaint.strokeWidth=mStrokeWidth.toFloat()
             canvas!!.drawCircle(x,y,radius.toFloat(),mHolePaint)

@@ -6,10 +6,11 @@
     android:background="@color/blue_30"
     android:layout_height="match_parent">
 
-    <com.example.wangjingyun.componentbased.widget.pixeladaptation.SplashView
+    <com.example.wangjingyun.componentbased.widget.pixeladaptation.PathMeasureStatus
         android:id="@+id/splashView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        ></com.example.wangjingyun.componentbased.widget.pixeladaptation.SplashView>
+        android:background="@color/white"
+        ></com.example.wangjingyun.componentbased.widget.pixeladaptation.PathMeasureStatus>
 </LinearLayout>
 
