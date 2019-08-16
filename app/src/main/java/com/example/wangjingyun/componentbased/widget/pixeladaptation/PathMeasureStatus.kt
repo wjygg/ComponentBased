@@ -5,6 +5,7 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
+import com.example.wangjingyun.componentbased.R
 
 class PathMeasureStatus : View {
 
@@ -12,11 +13,15 @@ class PathMeasureStatus : View {
 
     lateinit var mContext: Context
 
-    var fx:FloatArray = FloatArray(2)
+    var pos:FloatArray = FloatArray(2)
 
-    var fy:FloatArray = FloatArray(2)
+    var tan:FloatArray = FloatArray(2)
 
     var currentFloat:Float=0f
+
+    var mMatrix:Matrix= Matrix()
+
+    lateinit var mBitmap:Bitmap
 
     constructor(mContext:Context):super(mContext){
         this.mContext=mContext
@@ -40,6 +45,11 @@ class PathMeasureStatus : View {
         mPaint.color=Color.BLACK
         mPaint.isAntiAlias=true
 
+
+        var option=BitmapFactory.Options()
+        option.inSampleSize=4
+        mBitmap=BitmapFactory.decodeResource(resources, R.mipmap.arrow,option)
+
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -48,11 +58,7 @@ class PathMeasureStatus : View {
 
         var path: Path =Path()
 
-        path.lineTo(0f,200f)
-        path.lineTo(200f,200f)
-        path.lineTo(200f,0f)
-
-
+        path.addCircle(0f,0f,100f,Path.Direction.CW)
 
         /*canvas.drawPath(path,mPaint)
 
@@ -75,19 +81,20 @@ class PathMeasureStatus : View {
         Log.d("tag",(pathMeasure.length).toString())*/
 
         //pathMeasure 的 getPosTan 方法 获取 某一长度的位置以及该位置的正切值
+        canvas.drawPath(path, mPaint);
         currentFloat+=0.01.toFloat()
         if(currentFloat>1){
             currentFloat=0f
         }
         var mPathMeasure:PathMeasure= PathMeasure(path,false)
-        mPathMeasure.getPosTan(mPathMeasure.length*currentFloat,fx,fy)
+        mPathMeasure.getPosTan(mPathMeasure.length*currentFloat,pos,tan)
         //获取旋转的角度
-
-
-
+        var degrees = Math.atan2(tan[1].toDouble(), tan[0].toDouble()) * 180.0 / Math.PI;
+        mMatrix.reset()
+        mMatrix.postRotate(degrees.toFloat(),(mBitmap.width/2).toFloat(),(mBitmap.height/2).toFloat())
+        mMatrix.postTranslate(pos[0]-mBitmap.width / 2,pos[1]-mBitmap.height/2)
+        canvas.drawBitmap(mBitmap,mMatrix, mPaint);
+        invalidate()
     }
-
-
-
 
 }
