@@ -127,10 +127,8 @@ class SplashView : View {
             mHolePaint.strokeWidth=mStrokeWidth.toFloat()
             canvas!!.drawCircle(x,y,radius.toFloat(),mHolePaint)
         }
-
         //旋转动画
         if(rotateState==null) rotateState=RotateState()
-
     }
 
     fun drawCircle(mCanvas: Canvas){
@@ -148,7 +146,6 @@ class SplashView : View {
             mPaint.color=intArray.value
             //绘制小圆点
             mCanvas!!.drawCircle(rx.toFloat(),ry.toFloat(),smallCircleRadius,mPaint)
-
         }
     }
 
@@ -226,6 +223,7 @@ class SplashView : View {
             valueAnimator.interpolator=AnticipateInterpolator()
             /*valueAnimator.addUpdateListener(object : ValueAnimator.AnimatorUpdateListener {0
                 override fun onAnimationUpdate(animation: ValueAnimator?) {
+
                 }
             })*/
             valueAnimator.addUpdateListener {
