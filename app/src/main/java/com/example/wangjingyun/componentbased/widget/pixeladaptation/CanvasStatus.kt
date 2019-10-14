@@ -20,6 +20,7 @@ class CanvasStatus : View {
 
     lateinit var mContext: Context
 
+
     constructor(mContext:Context):super(mContext){
         this.mContext=mContext
         initPaint()
