@@ -23,15 +23,15 @@ class PathMeasureStatus : View {
 
     lateinit var mBitmap:Bitmap
 
-    constructor(mContext:Context):super(mContext){
+    constructor(mContext:Context):this(mContext,null){
         this.mContext=mContext
         initPaint()
     }
-    constructor(mContext:Context,attributeSet: AttributeSet):super(mContext,attributeSet){
+    constructor(mContext:Context,attributeSet: AttributeSet?):this(mContext,attributeSet,0){
         this.mContext=mContext
         initPaint()
     }
-    constructor(mContext:Context,attributeSet: AttributeSet,defStyleAttr:Int):super(mContext,attributeSet,defStyleAttr){
+    constructor(mContext:Context,attributeSet: AttributeSet?,defStyleAttr:Int):super(mContext,attributeSet,defStyleAttr){
         this.mContext=mContext
         initPaint()
     }

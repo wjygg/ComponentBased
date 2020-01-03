@@ -14,6 +14,7 @@ import com.example.wangjingyun.componentbased.R
 
 /**
  * Created by Administrator on 2017/5/24.
+ * https://blog.csdn.net/xlh1191860939/article/details/79412319
  */
 
 class TestTextView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : View(context, attrs, defStyleAttr) {

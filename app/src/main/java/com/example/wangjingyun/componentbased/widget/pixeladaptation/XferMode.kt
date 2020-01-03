@@ -6,10 +6,7 @@ import android.os.Build
 import android.support.annotation.RequiresApi
 import android.util.AttributeSet
 import android.view.View
-import android.widget.ImageView
 import com.example.wangjingyun.componentbased.R
-import android.graphics.Color.parseColor
-import android.graphics.Paint.ANTI_ALIAS_FLAG
 import android.graphics.Bitmap
 
 
@@ -23,15 +20,14 @@ open class XferMode :View{
 
     lateinit var mPaint:Paint
 
-    constructor(mContext:Context):super(mContext){
-
+    constructor(mContext:Context):this(mContext,null){
     }
 
-    constructor(mContext:Context,attributeSet: AttributeSet):super(mContext,attributeSet){
+    constructor(mContext:Context, attributeSet: AttributeSet?):this(mContext,attributeSet,0){
 
     }
-    constructor(mContext:Context, attributeSet: AttributeSet, defStyleAttr:Int):super(mContext,attributeSet,defStyleAttr){
-
+    constructor(mContext:Context, attributeSet: AttributeSet?, defStyleAttr:Int):super(mContext,attributeSet,defStyleAttr){
+     initPaint()
     }
 
     fun initPaint(){
