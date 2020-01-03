@@ -32,6 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * RetrofitClient
  * Created by Tamic on 2016-06-15.
  * {@link # https://github.com/NeglectedByBoss/RetrofitClient}
+ * http://www.jianshu.com/p/acfefb0a204f
  */
 public class RetrofitClient {
 
@@ -165,7 +166,14 @@ public class RetrofitClient {
     }
 
     public void upload(String url, RequestBody requestBody, Observer<ResponseBody> observer) {
-        apiService.upLoadFile(url, requestBody)
+        apiService.uploadFiles(url, requestBody)
+                .compose(schedulersTransformer)
+                .compose(transformer)
+                .subscribe(observer);
+    }
+
+    public void downLoadFile(String url, Observer<ResponseBody> observer) {
+        apiService.downloadFile(url)
                 .compose(schedulersTransformer)
                 .compose(transformer)
                 .subscribe(observer);
